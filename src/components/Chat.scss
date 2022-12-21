@@ -2,6 +2,10 @@ html, body, #root{
     height: 100%;
     box-sizing: border-box;
 }
+*{
+    padding: 0px;
+    margin: 0px;
+}
 div.chat{
     border: 1px solid red;
     height: 100%;
@@ -9,9 +13,13 @@ div.chat{
     nav{
         border: 1px solid red;
         flex-basis: 20%;
-        ul{
+        display: flex;
+        flex-direction: column;
+        &>ul:nth-child(1){
+            height: 95%;
             list-style-type: none;
             padding: 0;
+            border: 1px solid green;
             li{
                 a{
                     display: block;
@@ -24,6 +32,23 @@ div.chat{
                 }
             }
         }
+
+        &>ul:nth-child(2){
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            height: 5%;
+            border: 1px solid green;
+            li{
+                a{
+                    display: block;
+                    // border: 1px solid red;
+                    padding: 10px;
+                    margin: 5px;
+                }
+            }
+        }
+
     }
     div.messages-chat{
         background-color: rgb(230, 230, 230);

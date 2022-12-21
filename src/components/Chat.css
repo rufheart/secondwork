@@ -3,6 +3,11 @@ html, body, #root {
   box-sizing: border-box;
 }
 
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
 div.chat {
   border: 1px solid red;
   height: 100%;
@@ -11,19 +16,35 @@ div.chat {
 div.chat nav {
   border: 1px solid red;
   flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
 }
-div.chat nav ul {
+div.chat nav > ul:nth-child(1) {
+  height: 95%;
   list-style-type: none;
   padding: 0;
+  border: 1px solid green;
 }
-div.chat nav ul li a {
+div.chat nav > ul:nth-child(1) li a {
   display: block;
   border: 1px solid red;
   padding: 10px;
   margin: 5px;
 }
-div.chat nav ul li a.active {
+div.chat nav > ul:nth-child(1) li a.active {
   background-color: rgb(230, 230, 230);
+}
+div.chat nav > ul:nth-child(2) {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  height: 5%;
+  border: 1px solid green;
+}
+div.chat nav > ul:nth-child(2) li a {
+  display: block;
+  padding: 10px;
+  margin: 5px;
 }
 div.chat div.messages-chat {
   background-color: rgb(230, 230, 230);

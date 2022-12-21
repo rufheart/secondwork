@@ -25,11 +25,11 @@ function Chat(){
                     <li><NavLink to={`/messages/muxtar/${num1}`}>Muxtar</NavLink> </li>
                     <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
                 </ul>
-                <div>
+                <ul>
                     <li><NavLink to='/card'>Card</NavLink></li>
                     <li><NavLink>About</NavLink></li>
-                    <li><NavLink></NavLink></li>
-                </div>
+                    <li><NavLink>Contact</NavLink></li>
+                </ul>
             </nav>
             
             <div className="messages-chat">
@@ -45,28 +45,27 @@ function Chat(){
 }
 
 
-function Message(){
-    console.log('message isledi')
-    let params = useParams();
-    return(
-        <div className="main-message">
-             <div className="header">Header 
-             </div>
-            <div className="messages">{params.userName}</div>
-        </div>
+// function Message(){
+//     console.log('message isledi')
+//     let params = useParams();
+//     return(
+//         <div className="main-message">
+//              <div className="header">Header 
+//              </div>
+//             <div className="messages">{params.userName}</div>
+//         </div>
      
-    )
-}
+//     )
+// }
 
 
-function Card(){
-    return(
-        <div>
-            Cards
-        </div>
-    )
-}
+// function Card(){
+//     return(
+//         <div className='cards'>
+//             Cards
+//         </div>
+//     )
+// }
 
 
 export default Chat;
-export {Message, Card};
