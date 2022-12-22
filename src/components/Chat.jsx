@@ -3,8 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
+import { useContext } from 'react';
+import { Context } from './Context';
+
 
 function Chat(){
+    let [ic, setIc] = useState('fa fa-bars')
     let num1 = '1'
     let [show, setShow] = useState(true);
     let nav = useRef()
@@ -18,9 +22,23 @@ function Chat(){
             nav.current.style.left = '-40%'
         }
         }   
+    function iconchange(){
+        
+        setIc('fa fa-arrow-left')
+    }    
+       
     return(
         <div className="chat">
             <nav ref={nav}>
+                <div>
+                    <div>
+                        <i className={ic}  ></i>
+                    </div>
+                    <div>
+                        <i className='fa fa-search'></i>
+                        <input type="text" placeholder="Search" onClick={iconchange}/>
+                    </div>
+                </div>
                 <ul>
                     <li><NavLink to={`/messages/muxtar/${num1}`}>Muxtar</NavLink> </li>
                     <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
@@ -34,7 +52,7 @@ function Chat(){
             
             <div className="messages-chat">
                 <div className="welcome">
-                    welecome 
+                    {/* welecome  */}
                 </div>
                 <Outlet />
             </div>

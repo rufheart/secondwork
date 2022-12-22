@@ -6,43 +6,79 @@ html, body, #root {
 * {
   padding: 0px;
   margin: 0px;
+  box-sizing: border-box;
 }
 
 div.chat {
-  border: 1px solid red;
   height: 100%;
   display: flex;
+  box-sizing: border-box;
 }
 div.chat nav {
   border: 1px solid red;
-  flex-basis: 20%;
+  width: 20%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
-div.chat nav > ul:nth-child(1) {
-  height: 95%;
+div.chat nav > div:nth-child(1) {
+  display: flex;
+  height: 5%;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  border: 1px solid blue;
+  padding: 5px;
+}
+div.chat nav > div:nth-child(1) > div:nth-child(1) {
+  width: 10%;
+}
+div.chat nav > div:nth-child(1) > div:nth-child(1) i {
+  padding: 10px;
+}
+div.chat nav > div:nth-child(1) > div:nth-child(2) {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+div.chat nav > div:nth-child(1) > div:nth-child(2) > i {
+  position: absolute;
+  margin-left: 15px;
+}
+div.chat nav > div:nth-child(1) > div:nth-child(2) input {
+  width: 100%;
+  padding: 10px;
+  padding-left: 40px;
+  border: none;
+  background-color: antiquewhite;
+}
+div.chat nav > div:nth-child(1) > div:nth-child(2) input:focus {
+  outline: 0.2em solid #3390ec;
+}
+div.chat nav > ul:nth-child(2) {
+  height: 90%;
   list-style-type: none;
   padding: 0;
   border: 1px solid green;
 }
-div.chat nav > ul:nth-child(1) li a {
+div.chat nav > ul:nth-child(2) li a {
   display: block;
   border: 1px solid red;
   padding: 10px;
   margin: 5px;
   text-decoration: none;
 }
-div.chat nav > ul:nth-child(1) li a.active {
+div.chat nav > ul:nth-child(2) li a.active {
   background-color: rgb(230, 230, 230);
 }
-div.chat nav > ul:nth-child(2) {
+div.chat nav > ul:nth-child(3) {
   display: flex;
   list-style-type: none;
   padding: 0;
   height: 5%;
   border: 1px solid green;
 }
-div.chat nav > ul:nth-child(2) li a {
+div.chat nav > ul:nth-child(3) li a {
   display: block;
   padding: 10px;
   margin: 5px;
@@ -77,7 +113,7 @@ div.chat div.messages-chat div.main-message {
 }
 
 .cards {
-  height: 966px;
+  height: 968px;
 }
 .cards > div:nth-child(1) {
   height: 90%;
