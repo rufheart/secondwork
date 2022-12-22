@@ -1,7 +1,12 @@
+import './Wellcome.css'
+
+
 function Welcome(){
     return(
-        <div>
-            Welcomezz
+        <div className="background">
+            <div>
+                Welcome
+            </div>
         </div>
     )
 }

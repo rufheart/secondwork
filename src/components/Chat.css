@@ -1,5 +1,5 @@
 html, body, #root {
-  height: 100%;
+  height: 968px;
   box-sizing: border-box;
 }
 
@@ -10,7 +10,7 @@ html, body, #root {
 }
 
 div.chat {
-  height: 100%;
+  height: 968px;
   display: flex;
   box-sizing: border-box;
 }
@@ -45,11 +45,15 @@ div.chat nav > div:nth-child(1) > div:nth-child(2) > i {
   position: absolute;
   margin-left: 15px;
 }
+div.chat nav > div:nth-child(1) > div:nth-child(2) i:hover {
+  transform: rotate(300deg);
+}
 div.chat nav > div:nth-child(1) > div:nth-child(2) input {
   width: 100%;
   padding: 10px;
   padding-left: 40px;
   border: none;
+  border-radius: 10px;
   background-color: antiquewhite;
 }
 div.chat nav > div:nth-child(1) > div:nth-child(2) input:focus {
@@ -61,15 +65,22 @@ div.chat nav > ul:nth-child(2) {
   padding: 0;
   border: 1px solid green;
 }
+div.chat nav > ul:nth-child(2) li {
+  margin: 0px 5px;
+}
 div.chat nav > ul:nth-child(2) li a {
   display: block;
-  border: 1px solid red;
   padding: 10px;
-  margin: 5px;
+  margin-top: 5px;
   text-decoration: none;
 }
 div.chat nav > ul:nth-child(2) li a.active {
+  background-color: #3390ec;
+  border-radius: 10px;
+}
+div.chat nav > ul:nth-child(2) li:hover {
   background-color: rgb(230, 230, 230);
+  border-radius: 10px;
 }
 div.chat nav > ul:nth-child(3) {
   display: flex;

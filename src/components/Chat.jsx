@@ -10,6 +10,8 @@ import { Context } from './Context';
 function Chat(){
     let [ic, setIc] = useState('fa fa-bars')
     let num1 = '1'
+    let [style, setStyle] = useState({})
+    let [style1, setStyle1] = useState({})
     let [show, setShow] = useState(true);
     let nav = useRef()
     function showNav(){
@@ -22,9 +24,11 @@ function Chat(){
             nav.current.style.left = '-40%'
         }
         }   
-    function iconchange(){
+    function iconchange(){    
+        setStyle1({transform: "rotate(90deg)"})
+        // setIc('fa fa-arrow-left')
+        setStyle({color: "#3390ec"})
         
-        setIc('fa fa-arrow-left')
     }    
        
     return(
@@ -32,10 +36,10 @@ function Chat(){
             <nav ref={nav}>
                 <div>
                     <div>
-                        <i className={ic}  ></i>
+                        <i className={ic} style={style1}></i>
                     </div>
                     <div>
-                        <i className='fa fa-search'></i>
+                        <i className='fa fa-search' style={style}></i>
                         <input type="text" placeholder="Search" onClick={iconchange}/>
                     </div>
                 </div>
