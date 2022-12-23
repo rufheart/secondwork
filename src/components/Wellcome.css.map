@@ -1,1 +1,1 @@
-{"version":3,"sources":["Wellcome.scss","Wellcome.css"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,YAAA;EACA,sBAAA;ACCJ;;ADEA;EACI,qBAAA;EACA,YAAA;EACA,sCAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;ACCJ;ADAI;EACI,YAAA;EACA,eAAA;ACER","file":"Wellcome.css"}
+{"version":3,"sources":["Wellcome.scss","Wellcome.css"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,YAAA;EACA,sBAAA;ACCJ;;ADEA;EACI,qBAAA;EACA,YAAA;EACA,qDAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;ACCJ;ADAI;EACI,YAAA;EACA,eAAA;ACER","file":"Wellcome.css"}
