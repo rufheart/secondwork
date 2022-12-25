@@ -5,14 +5,15 @@
 }
 
 .background{
-    border: 1px solid red;
     height: 100%;
-    background-image: url('../pexels-pixabay-268415.jpg');
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 5px solid #25d366;
+    // position: relative;
     div{
+        position:absolute;
         color: white;
         font-size: 50px;
     }
-}
+}           

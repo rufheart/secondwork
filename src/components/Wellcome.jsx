@@ -5,7 +5,7 @@ function Welcome(){
     return(
         <div className="background">
             <div>
-                {/* Welcome */}
+                Welcome
             </div>
         </div>
     )

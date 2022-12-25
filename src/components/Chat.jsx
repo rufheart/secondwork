@@ -32,42 +32,52 @@ function Chat(){
     }    
        
     return(
-        <div className='main'>
-            <div>soz</div>
-            <div>
-                <div className="chat">
-                    <nav ref={nav}>
-                        <div>
-                            <div>
-                                <i className={ic} style={style1}></i>
+        // <div className='cast'>
+            <div className='main'>
+                <div>
+                    <div>
+                        <div className="chat">
+                            <nav ref={nav}>
+                                <div>
+                                    <div>
+                                        <i className={ic} style={style1}></i>
+                                    </div>
+                                    <div>
+                                        <i className='fa fa-search' id='ip' style={style}></i>
+                                        <input type="text" placeholder="Search" onClick={iconchange}/>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li><NavLink to={`/messages/muxtar/${num1}`}>Muxtar</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                    <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
+                                </ul>
+                                <ul>
+                                    <li><NavLink to='/card'>Card</NavLink></li>
+                                    <li><NavLink>About</NavLink></li>
+                                    <li><NavLink>Contact</NavLink></li>
+                                </ul>
+                            </nav>
+                            
+                            <div className="messages-chat">
+                                <div className="welcome">
+                                    {/* welecome  */}
+                                </div>
+                                <Outlet />
                             </div>
-                            <div>
-                                <i className='fa fa-search' style={style}></i>
-                                <input type="text" placeholder="Search" onClick={iconchange}/>
-                            </div>
-                        </div>
-                        <ul>
-                            <li><NavLink to={`/messages/muxtar/${num1}`}>Muxtar</NavLink> </li>
-                            <li><NavLink to={`/messages/rufet/${num1}`}>Rufet</NavLink> </li>
-                        </ul>
-                        <ul>
-                            <li><NavLink to='/card'>Card</NavLink></li>
-                            <li><NavLink>About</NavLink></li>
-                            <li><NavLink>Contact</NavLink></li>
-                        </ul>
-                    </nav>
-                    
-                    <div className="messages-chat">
-                        <div className="welcome">
-                            {/* welecome  */}
-                        </div>
-                        <Outlet />
-                    </div>
-                    <div className="show" onClick={showNav}>show</div>
+                            <div className="show" onClick={showNav}>show</div>
 
-                </div>
-            </div>
-        </div>    
+                        </div>
+                    </div>
+                </div>    
+            </div>  
+        // </div>      
     )
 }
 

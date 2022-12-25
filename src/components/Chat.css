@@ -13,31 +13,32 @@ html, body, #root {
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
-  background-color: #d9dcdc;
+  flex-direction: column;
 }
-.main > div:nth-child(1) {
-  height: 12%;
+.main > div {
+  height: 100%;
   width: 100%;
-  background-color: #00a884;
-  position: absolute;
+  background-image: conic-gradient(#00a884 0deg 90deg, #dbdddc 90deg 270deg, #00a884 270deg 360deg);
   z-index: 1;
 }
-.main > div:nth-child(2) {
-  align-items: center;
-  background-color: white;
-  height: 90%;
-  width: 87%;
-  position: absolute;
-  z-index: 1;
-}
-
-div.chat {
-  z-index: -1;
+.main > div > div:nth-child(1) {
   height: 100%;
   width: 100%;
   display: flex;
-  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid green;
+}
+
+div.chat {
+  position: absolute;
+  height: 95%;
+  width: 85%;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
 }
 div.chat > div:nth-child(1) {
   height: 100%;
@@ -50,29 +51,30 @@ div.chat nav {
 }
 div.chat nav > div:nth-child(1) {
   display: flex;
-  height: 5%;
   align-items: center;
   width: 100%;
-  position: relative;
-  padding: 5px;
+  background-color: #f0f2f5;
+  border-right: 1px solid #dededd;
+  padding: 10px 0px;
 }
 div.chat nav > div:nth-child(1) > div:nth-child(1) {
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
   width: 10%;
 }
 div.chat nav > div:nth-child(1) > div:nth-child(1) i {
   padding: 10px;
 }
 div.chat nav > div:nth-child(1) > div:nth-child(2) {
-  width: 90%;
+  width: 89%;
   display: flex;
   align-items: center;
+  position: relative;
 }
 div.chat nav > div:nth-child(1) > div:nth-child(2) > i {
-  position: absolute;
   margin-left: 15px;
-}
-div.chat nav > div:nth-child(1) > div:nth-child(2) i:hover {
-  transform: rotate(300deg);
+  position: absolute;
 }
 div.chat nav > div:nth-child(1) > div:nth-child(2) input {
   width: 100%;
@@ -80,7 +82,7 @@ div.chat nav > div:nth-child(1) > div:nth-child(2) input {
   padding-left: 40px;
   border: none;
   border-radius: 10px;
-  background-color: antiquewhite;
+  background-color: rgb(222, 222, 151);
 }
 div.chat nav > div:nth-child(1) > div:nth-child(2) input:focus {
   outline: 0.2em solid #3390ec;
@@ -89,6 +91,7 @@ div.chat nav > ul:nth-child(2) {
   height: 90%;
   list-style-type: none;
   padding: 0;
+  background-color: white;
 }
 div.chat nav > ul:nth-child(2) li {
   margin: 0px 5px;
@@ -111,8 +114,7 @@ div.chat nav > ul:nth-child(3) {
   display: flex;
   list-style-type: none;
   padding: 0;
-  height: 5%;
-  border: 1px solid green;
+  border-top: 1px solid #d9dcdc;
 }
 div.chat nav > ul:nth-child(3) li a {
   display: block;
@@ -121,7 +123,7 @@ div.chat nav > ul:nth-child(3) li a {
   text-decoration: none;
 }
 div.chat div.messages-chat {
-  background-color: rgb(230, 230, 230);
+  background-color: #f0f2f5;
   flex-basis: 80%;
   position: relative;
 }
@@ -133,7 +135,6 @@ div.chat div.messages-chat div.welcome {
 div.chat div.messages-chat div.header {
   background-color: white;
   color: white;
-  padding: 10px;
   display: flex;
   position: relative;
   color: black;
@@ -184,7 +185,6 @@ div.chat div.messages-chat div.main-message {
 }
 .main-message > div:nth-child(2) {
   height: 95%;
-  background-image: url("../pexels-pixabay-268415.jpg");
 }
 
 @media screen and (max-width: 1200px) {

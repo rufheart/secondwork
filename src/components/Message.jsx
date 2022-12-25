@@ -6,9 +6,9 @@ function Message(){
     let params = useParams();
     return(
         <div className="main-message">
-             <div className="header">
+            <div className="header">
                 {params.userName}
-             </div>
+            </div>
             <div className="messages">
                     
             </div>
