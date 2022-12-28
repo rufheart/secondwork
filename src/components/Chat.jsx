@@ -35,7 +35,7 @@ function Chat(){
         // <div className='cast'>
             <div className='main'>
                 <div>
-                    <div>
+                    <div className='main2'>
                         <div className="chat">
                             <nav ref={nav}>
                                 <div>

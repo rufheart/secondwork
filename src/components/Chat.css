@@ -1,6 +1,9 @@
 html, body, #root {
   box-sizing: border-box;
   height: 968px;
+  padding: 0px;
+  background-color: var(--app-background);
+  background-image: linear-gradient(180deg, var(--app-background), var(--app-background-deeper));
 }
 
 * {
@@ -14,31 +17,39 @@ html, body, #root {
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: absolute;
 }
 .main > div {
   height: 100%;
   width: 100%;
-  background-image: conic-gradient(#00a884 0deg 90deg, #dbdddc 90deg 270deg, #00a884 270deg 360deg);
-  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  scrollbar-color: rgba(var(--black-rgb), 0.2) rgba(var(--white-rgb), 0.1);
 }
 .main > div > div:nth-child(1) {
   height: 100%;
   width: 100%;
+  border: 1px solid green;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  border: 1px solid green;
+  position: fixed;
+  overflow: hidden;
 }
 
 div.chat {
-  position: absolute;
-  height: 95%;
+  position: relative;
+  height: calc(100% - 38px);
   width: 85%;
+  top: 19px;
   border: 1px solid red;
   display: flex;
   justify-content: center;
   z-index: 1;
+  overflow: hidden;
+  background-color: var(--panel-background-lighter);
+  box-shadow: 0 6px 18px rgba(var(--shadow-rgb), 0.05);
+  transform-origin: center;
 }
 div.chat > div:nth-child(1) {
   height: 100%;

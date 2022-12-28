@@ -1,6 +1,10 @@
 html, body, #root{
     box-sizing: border-box;
     height: 968px;
+    padding: 0px;
+    background-color: var(--app-background);
+    background-image: linear-gradient(180deg,var(--app-background),var(--app-background-deeper));
+    
 }
 *{
     padding: 0px;
@@ -15,38 +19,45 @@ html, body, #root{
     width: 100%;
     display: flex;
     flex-direction: column;
-    // z-index: -1;
-    // border: 3px solid orange;
+    position: absolute;
+    // background-color: #3390ec;
+
     &>div{
         height: 100%;
         width: 100%;
-        background-image: conic-gradient(#00a884 0deg 90deg, #dbdddc 90deg 270deg,#00a884 270deg 360deg);
-        z-index: 1;
-        // position: absolute;
+        // border: 1px solid red;
+        position: relative;
+        overflow: hidden;
+        scrollbar-color: rgba(var(--black-rgb),.2) rgba(var(--white-rgb),.1);
+        // background-color: red;
         &>div:nth-child(1){
-            // background-image: conic-gradient(#00a884 0deg 90deg, #dbdddc 90deg 270deg,#00a884 270deg 360deg);
             height: 100%;
             width: 100%;
-            // background-color: white;
-            // border: 1px solid gray;
+            border: 1px solid green;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            border: 1px solid green;
+            position: fixed;
+            // border: 5px solid red;
+            overflow: hidden;
         }        
         
     }
 }
 div.chat{
-    position: absolute;
-    height: 95%;
+    position: relative;
+    height: calc(100% - 38px);
     width: 85%;
+    top: 19px;
     border: 1px solid red;
     display: flex;
     justify-content: center;
     z-index: 1;
-    // background-color: orange;
+    overflow: hidden;
+    background-color: var(--panel-background-lighter);
+    box-shadow: 0 6px 18px rgba(var(--shadow-rgb),.05);
+    transform-origin: center;
+    // min-height: 517px;
     &>div:nth-child(1){
         height: 100%;
         
@@ -234,3 +245,9 @@ div.chat{
         }
     }
 }
+
+// @media screen and(max-height:450px) {
+//     div.main2{
+//         position: relative;
+//     }
+// }
