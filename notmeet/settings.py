@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-g0@3^mes=b#zqpyw54yx%81-zd^9)u^58!xd*hogl9@-jt)aym
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'account.User'
 
 # Application definition
 
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Myapps
+    'account',
+    'card',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'notmeet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,13 +74,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'notmeet.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'data',
+        'USER':'rufat',
+        'PASSWORD':'1234',
+        'HOST':'localhost',
     }
 }
 

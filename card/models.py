@@ -4,13 +4,13 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Card_Main(models.Model):
-    user = models.ForeignKey(User,related_name="card_main", on_delete=models.CASCADE)
-    family = models.ForeignKey("self")
-    friends = models.ForeignKey("self")
+    user = models.ForeignKey(User, related_name="card_main", on_delete=models.CASCADE)
+    family = models.ForeignKey("self", on_delete=models.CASCADE)
+    # friends = models.ForeignKey("self", on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     lname = models.CharField(max_length=60)
     fathername = models.CharField(max_length=60)
-    brith_year = models.IntegerField(max_length=20)
+    brith_year = models.IntegerField(blank=True, null=True)
     features = models.TextField()
 
 class Photos(models.Model):
@@ -19,7 +19,7 @@ class Photos(models.Model):
 
 class Phone(models.Model):
     ph_numbers_card = models.ForeignKey(Card_Main, related_name="phone", on_delete=models.CASCADE)
-    numbers = models.IntegerField(max_length=15,blank=True)
+    numbers = models.IntegerField(blank=True)
 
 class Work(models.Model):
     card_work = models.ForeignKey(Card_Main, related_name="work", on_delete=models.CASCADE)
@@ -50,7 +50,7 @@ class Comments(models.Model):
     comments = models.TextField(blank=True,null=True)
 
 class About(models.Model):
-    card_about = models.OneToOneField(Card_Main, related_name="card_main")  
+    card_about = models.OneToOneField(Card_Main, related_name="card_main1",on_delete=models.CASCADE)  
     name = models.BooleanField()
     lanme = models.BooleanField()
     father_name = models.BooleanField()
