@@ -31,7 +31,7 @@ class CarSerializer(serializers.ModelSerializer):
 class HomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Home
-        fields = ['home_address']   
+        fields = ['home_address_city','home_address_street','home_number']   
 
 class CommentSerializer(serializers.ModelSerializer):
     user_comment = UserSerializer()
@@ -47,12 +47,27 @@ class PhoneSerializer(serializers.ModelSerializer):
 class WorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Work
-        fields = ['company_name','position','company_address']
+        fields = ['company_name','position','company_address_city','company_address_street']
 
-class PhotosSerialzier(serializers.ModelSerializer):
+class PhotosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photos
         fields = ['photo']
+
+class FacebookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Facebook
+        fields = ['account']        
+
+class InstagramSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Instagram
+        fields = ['account']     
+
+class TiktokSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tiktok
+        fields = ['account']                   
 
 class CardSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -61,8 +76,11 @@ class CardSerializer(serializers.ModelSerializer):
     comments = CommentSerializer()
     phone = PhoneSerializer(many =True)
     work = WorkSerializer(many = True)
-    images = PhoneSerializer(many = True)
+    images = PhotosSerializer(many = True)
+    tiktok = TiktokSerializer(many = True)
+    instagram = InstagramSerializer(many = True)
+    facebook = FacebookSerializer(many = True)
     class Meta:
         model=Card_Main
-        fields = ['id','user','family','friends','name','lname','fathername','brith_year','features','car','home','comments','phone','work','images']
+        fields = ['id','user','family','friends','name','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook']
         

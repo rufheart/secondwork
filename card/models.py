@@ -14,11 +14,17 @@ class Card_Main(models.Model):
     features = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.name+' '+self.lname
+        if self.lname:
+            return self.name+' '+self.lname
+        return self.name    
+        
 
 class Photos(models.Model):
     user_image = models.ForeignKey(Card_Main, related_name="images", on_delete=models.CASCADE)
     photo = models.ImageField(blank=True,null=True)
+
+    def __str__(self) -> str:
+        return self.user_image.name
 
 class Phone(models.Model):
     ph_numbers_card = models.ForeignKey(Card_Main, related_name="phone", on_delete=models.CASCADE)
@@ -28,7 +34,8 @@ class Work(models.Model):
     card_work = models.ForeignKey(Card_Main, related_name="work", on_delete=models.CASCADE)
     company_name = models.CharField(max_length=35, blank=True,null=True)   
     position = models.CharField(max_length=60, blank=True,null=True) 
-    company_address = models.CharField(max_length=35,blank=True,null=True)
+    company_address_city = models.CharField(max_length=55,blank=True,null=True)
+    company_address_street = models.CharField(max_length=55,blank=True,null=True)
 
 class Car_Model(models.Model):
     carModels = models.CharField(max_length=35,blank=True,null=True)
@@ -45,7 +52,9 @@ class Car(models.Model):
 
 class Home(models.Model):
     card_home = models.ForeignKey(Card_Main, related_name="home", on_delete=models.CASCADE)
-    home_address = models.CharField(max_length=45,blank=True,null=True)    
+    home_address_city = models.CharField(max_length=45,blank=True,null=True) 
+    home_address_street = models.CharField(max_length=45,blank=True,null=True)   
+    home_number = models.CharField(max_length=30,blank=True,null=True)
 
 class Comments(models.Model):
     card_comment = models.OneToOneField(Card_Main, related_name='comments',on_delete=models.CASCADE, primary_key=True)
@@ -70,17 +79,17 @@ class About(models.Model):
     work = models.BooleanField()
     car = models.BooleanField()
 
-class tiktok(models.Model):
+class Tiktok(models.Model):
     card_tiktok = models.ForeignKey(Card_Main, related_name="tiktok", on_delete=models.CASCADE)
-    account = models.CharField(max_length=35,blank=True,null=True)
+    account = models.CharField(max_length=65,blank=True,null=True)
 
-class instagram(models.Model):
+class Instagram(models.Model):
     card_instagram = models.ForeignKey(Card_Main, related_name="instagram", on_delete=models.CASCADE)
-    account  = models.CharField(max_length=35,blank=True,null=True)
+    account  = models.CharField(max_length=65,blank=True,null=True)
 
-class facebook(models.Model):
+class Facebook(models.Model):
     card_facebook = models.ForeignKey(Card_Main, related_name="facebook", on_delete=models.CASCADE)
-    account  = models.CharField(max_length=35,blank=True,null=True)
+    account  = models.CharField(max_length=65,blank=True,null=True)
 
 
 
