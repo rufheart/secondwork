@@ -37,24 +37,35 @@ class Work(models.Model):
     company_address_city = models.CharField(max_length=55,blank=True,null=True)
     company_address_street = models.CharField(max_length=55,blank=True,null=True)
 
-class Car_Model(models.Model):
-    carModels = models.CharField(max_length=35,blank=True,null=True)
     
 class Color(models.Model):
-    colors = models.CharField(max_length=36,blank=True,null=True)    
+    colors = models.CharField(max_length=36,blank=True,null=True)  
+
+    def __str__(self) -> str:
+        return self.colors  
 
 class Car(models.Model):
     card_cars = models.ForeignKey(Card_Main, related_name="car", on_delete=models.CASCADE)
-    car_model = models.ForeignKey(Car_Model, related_name="car",on_delete=models.CASCADE)
-    car_color = models.ForeignKey(Color, related_name="car",on_delete=models.CASCADE)
+    car_color = models.ForeignKey(Color, related_name="car",on_delete=models.DO_NOTHING,blank=True,null=True)
     car_name = models.CharField(max_length=35,blank=True,null=True)
     car_number = models.CharField(max_length=9,blank=True,null=True)
+
+    def __str__(self) -> str:
+        if self.car_color:
+            return str(self.card_cars.name)+' '+self.car_name+' '+' '+str(self.car_color.colors)    
+        return str(self.card_cars.name)+' '+self.car_name
+
+class Car_Model(models.Model):
+    car = models.OneToOneField(Car, related_name="car_model",on_delete=models.CASCADE, primary_key=True)
+    carModels = models.CharField(max_length=35,blank=True,null=True)
 
 class Home(models.Model):
     card_home = models.ForeignKey(Card_Main, related_name="home", on_delete=models.CASCADE)
     home_address_city = models.CharField(max_length=45,blank=True,null=True) 
     home_address_street = models.CharField(max_length=45,blank=True,null=True)   
     home_number = models.CharField(max_length=30,blank=True,null=True)
+
+
 
 class Comments(models.Model):
     card_comment = models.OneToOneField(Card_Main, related_name='comments',on_delete=models.CASCADE, primary_key=True)

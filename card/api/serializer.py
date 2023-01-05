@@ -16,17 +16,18 @@ class ColorSerialize(serializers.ModelSerializer):
     class Meta:
         model = Color
         fields = ['colors']
-class CarSerializer(serializers.ModelSerializer):
+
+class CarModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car_Model
         fields = ['carModels']        
 
 class CarSerializer(serializers.ModelSerializer):
     car_color = ColorSerialize()
-    car_model = CarSerializer()
+    car_model = CarModelSerializer()
     class Meta:
         model = Car
-        fields = ['id','card_cars','car_model','car_color','car_model']        
+        fields = ['id','card_cars','car_name','car_model','car_color',  'car_number',]        
 
 class HomeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,7 +43,9 @@ class CommentSerializer(serializers.ModelSerializer):
 class PhoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phone
-        fields = ['numbers']   
+        fields = ['numbers']  
+    
+         
 
 class WorkSerializer(serializers.ModelSerializer):
     class Meta:
@@ -84,3 +87,8 @@ class CardSerializer(serializers.ModelSerializer):
         model=Card_Main
         fields = ['id','user','family','friends','name','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook']
         
+
+class CreateCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Card_Main
+        fields = ['user','name','lname']
