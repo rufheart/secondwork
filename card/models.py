@@ -52,12 +52,15 @@ class Car(models.Model):
 
     def __str__(self) -> str:
         if self.car_color:
-            return str(self.card_cars.name)+' '+self.car_name+' '+' '+str(self.car_color.colors)    
+            return str(self.card_cars.name)+' '+self.car_name+' '+' '+str(self.car_color.colors)+ ' ' + self.car_number 
         return str(self.card_cars.name)+' '+self.car_name
 
 class Car_Model(models.Model):
     car = models.OneToOneField(Car, related_name="car_model",on_delete=models.CASCADE, primary_key=True)
     carModels = models.CharField(max_length=35,blank=True,null=True)
+
+    def __str__(self) -> str:
+        return self.carModels
 
 class Home(models.Model):
     card_home = models.ForeignKey(Card_Main, related_name="home", on_delete=models.CASCADE)

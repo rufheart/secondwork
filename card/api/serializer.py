@@ -43,8 +43,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class PhoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phone
-        fields = ['numbers']  
-    
+        fields = ['numbers']      
          
 
 class WorkSerializer(serializers.ModelSerializer):
