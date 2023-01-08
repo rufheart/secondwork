@@ -2,6 +2,7 @@ from card.api.serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from card.api.permisson import MyPermissons
+from rest_framework import status
 from card.models import *
 
 class CardApi(APIView):
@@ -13,9 +14,8 @@ class CardApi(APIView):
         return Response(data=all.data)
 
     def post(self, request, format=None):
-        all = request.data
-        serial = CreateCardSerializer(all)
+        serial = CreateCardSerializer(data=request.data)
         if serial.is_valid():
             serial.save()
-            Response(data=serial.data) 
-        return Response(serial.errors)   
+            Response(serial.data, status=status.HTTP_201_CREATED)  
+        return Response()   

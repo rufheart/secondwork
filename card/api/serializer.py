@@ -84,10 +84,10 @@ class CardSerializer(serializers.ModelSerializer):
     facebook = FacebookSerializer(many = True)
     class Meta:
         model=Card_Main
-        fields = ['id','user','family','friends','name','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook']
+        fields = ['id','user','name','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook']
         
 
 class CreateCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card_Main
-        fields = ['user','name','lname']
+        fields = ['user','name','lname','fathername','brith_year','features']

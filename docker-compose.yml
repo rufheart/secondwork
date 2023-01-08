@@ -8,4 +8,8 @@ services:
       - POSTGRES_USER=rufat
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=data
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080    
      
