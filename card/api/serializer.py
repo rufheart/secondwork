@@ -91,3 +91,4 @@ class CreateCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card_Main
         fields = ['user','name','lname','fathername','brith_year','features']
+

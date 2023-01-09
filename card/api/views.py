@@ -14,7 +14,12 @@ class CardApi(APIView):
         return Response(data=all.data)
 
     def post(self, request, format=None):
-        serial = CreateCardSerializer(data=request.data)
+        user1=request.user.pk
+        data=request.data
+        data.update({'user':user1})
+        print(request.user.pk,'++')
+        print(data)
+        serial = CreateCardSerializer(data=data)
         if serial.is_valid():
             serial.save()
             Response(serial.data, status=status.HTTP_201_CREATED)  
