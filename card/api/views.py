@@ -17,7 +17,7 @@ class CardApi(APIView):
         user1=request.user.pk
         data=request.data
         data.update({'user':user1})
-        print(request.user.pk,'++')
+        print(request.data,'++')
         print(data)
         serial = CreateCardSerializer(data=data)
         if serial.is_valid():

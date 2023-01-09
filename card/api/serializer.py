@@ -88,7 +88,12 @@ class CardSerializer(serializers.ModelSerializer):
         
 
 class CreateCardSerializer(serializers.ModelSerializer):
+    phone = PhoneSerializer()
     class Meta:
         model = Card_Main
-        fields = ['user','name','lname','fathername','brith_year','features']
+        fields = ['user','name','lname','fathername','brith_year','features','phone']
+
+    def create(self, validated_data):
+        print(validated_data)
+        return validated_data   
 
