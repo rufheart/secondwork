@@ -44,6 +44,8 @@ class Color(models.Model):
     def __str__(self) -> str:
         return self.colors  
 
+
+
 class Car(models.Model):
     card_cars = models.ForeignKey(Card_Main, related_name="car", on_delete=models.CASCADE)
     car_color = models.ForeignKey(Color, related_name="car",on_delete=models.DO_NOTHING,blank=True,null=True)
@@ -68,6 +70,10 @@ class Home(models.Model):
     home_address_street = models.CharField(max_length=45,blank=True,null=True)   
     home_number = models.CharField(max_length=30,blank=True,null=True)
 
+
+# class Phone(models.Model):
+#     ph_numbers_card = models.ForeignKey(Card_Main, related_name="phone", on_delete=models.CASCADE)
+#     numbers = models.CharField(max_length=15, blank=True,null=True)
 
 
 class Comments(models.Model):

@@ -89,17 +89,19 @@ class CardSerializer(serializers.ModelSerializer):
 
 class CreateCardSerializer(serializers.ModelSerializer):
     phone = PhoneSerializer()
-    # comments = CommentSerializer()
+    comments = CommentSerializer(many=True)
+    home = HomeSerializer()
     class Meta:
         model = Card_Main
-        fields = ['user','name','lname','fathername','brith_year','features','phone']
+        fields = ['user','name','lname','fathername','brith_year','features','phone','home','comments']
 
     def create(self,request):
-        print(request['user'],'request')
+        print(request,'request')
         # print(request['phone'],'phone')
-        # data = Phone.objects.create(ph_numbers_card_id=33,numbers=request['phone']['numbers'])
-        data = Comments.objects.create(card_comment_id=33,user_comment=request['user'],comments=request['comments'][''])
-
+        data = Phone.objects.create(ph_numbers_card_id=14,numbers=request['phone']['numbers'])
+        # data = Comments.objects.create(card_comment_id=14,user_comment=1,comments=request['comments']['comments'])
+        data = Home.objects.create(card_home_id=14,home_address_city=request['home']['home_address_city'])
+        # print(data,'dattttttttttttttttttttttttttttttttttaaaaaaaaaaaaaaaaaa*********')
         return request
 
 
