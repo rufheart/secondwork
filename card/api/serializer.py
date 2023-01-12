@@ -85,26 +85,45 @@ class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model=Card_Main
         fields = ['id','user','name','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook']
-        
+
+class CarCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = ['card_cars','car_name','car_number']
+
 
 class CreateCardSerializer(serializers.ModelSerializer):
-    phone = PhoneSerializer()
-    comments = CommentSerializer()
-    home = HomeSerializer()
-    work = WorkSerializer()
+    phone = PhoneSerializer(required=False)
+    home = HomeSerializer(required=False)
+    work = WorkSerializer(required=False)
+    # car  = CarCreateSerializer()
+    # images = PhotosSerializer()
+    tiktok = TiktokSerializer(required=False)
+    instagram = InstagramSerializer(required=False)
+    facebook = FacebookSerializer(required=False)
+
     class Meta:
         model = Card_Main
-        fields = ['user','name','lname','fathername','brith_year','features','phone','home','work','comments']
+        fields = ['user','name','lname','fathername','brith_year','features','phone','home','work','tiktok','instagram','facebook']
+        extra_kwargs = {"instagram": {"required": False, "allow_null": True}}
 
+    
     def create(self,request):
+        print('create isledi')
         print(request,'requestsssssssssssssssssssssss')
         # user = User.objects.get(id=request.user.id)
         data1 = Card_Main.objects.create(user = request['user'],name=request['name'])
         id=data1.id
-        data = Phone.objects.create(ph_numbers_card_id=id,numbers=request['phone']['numbers'])
-        data = Work.objects.create(card_work_id=id,company_name=request['work']['company_name'])
-        data = Comments.objects.create(card_comment_id=id,user_comment=request['user'],comments=request['comments']['comments'])
-        data = Home.objects.create(card_home_id=id ,home_address_city=request['home']['home_address_city'])
+        color = Color.objects.get(id=1)
+        Phone.objects.create(ph_numbers_card_id=id,numbers=request['phone']['numbers'])
+        Work.objects.create(card_work_id=id,company_name=request['work']['company_name'])
+        Home.objects.create(card_home_id=id ,home_address_city=request['home']['home_address_city'])
+        # Car.objects.create(card_cars_id=id,car_name=request['car']['car_name'],car_number=request['car']['car_number'])
+        # Photos.objects.create(user_image_id=id,photo=request['photo'])
+        Tiktok.objects.create(card_tiktok_id=id,account=request['tiktok']['account'])
+        Instagram.objects.create(card_instagram_id=id,account=request['instagram']['account'])
+        Facebook.objects.create(card_facebook_id=id,account=request['facebook']['account'])
+
         # print(data,'dattttttttttttttttttttttttttttttttttaaaaaaaaaaaaaaaaaa*********')
         return request
 
