@@ -77,7 +77,7 @@ class Home(models.Model):
 
 
 class Comments(models.Model):
-    card_comment = models.OneToOneField(Card_Main, related_name='comments',on_delete=models.CASCADE, primary_key=True)
+    card_comment = models.OneToOneField(Card_Main, related_name='comments',on_delete=models.CASCADE)
     user_comment = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
     comments = models.TextField(blank=True,null=True)
 
