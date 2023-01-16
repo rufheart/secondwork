@@ -18,18 +18,22 @@ class ColorSerialize(serializers.ModelSerializer):
         model = Color
         fields = ['id','colors']
 
+class ChooseCarSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = ChooseCars
+        fields = ['id','name']        
+
 # class CarModelSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = Car_Model
 #         fields = ['carModels']        
 
 class CarSerializer(serializers.ModelSerializer):
-    print('carserialize isledei')
     car_color = ColorSerialize()
-    # car_model = CarModelSerializer()
+    choose_car = ChooseCarSerialize()
     class Meta:
         model = Car
-        fields = ['car_name','car_color','car_number',]        
+        fields = ['choose_car','car_color','car_number',]        
 
 class HomeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -114,7 +118,7 @@ class CreateCardSerializer(serializers.ModelSerializer):
         tiktoks_data = validated_data.pop("tiktok")
         instagrams_data = validated_data.pop("instagram")
         facebooks_data = validated_data.pop("facebook")
-        # print(cars_data)
+        print(cars_data)
         card = Card_Main.objects.create(**validated_data)
         # for car_data in cars_data:
         #     for color in Color.objects.all():
@@ -128,11 +132,9 @@ class CreateCardSerializer(serializers.ModelSerializer):
         for home_data in homes_data:
             Home.objects.create(card_home=card,home_address=home_data['home_address']) 
         for car_data in cars_data:
-            if car_data['car_color']['colors']:
-                cat = Color.objects.get(id=car_data['car_color']['colors'])
-            else:
-                cat = ""    
-            Car.objects.create(card_cars=card,car_name=car_data['car_name'],car_number=car_data['car_number'],car_color=cat)     
+            sec = ChooseCars.objects.get(id=car_data['choose_car']['name'])
+            cat = Color.objects.get(id=car_data['car_color']['colors']) 
+            Car.objects.create(card_cars=card,choose_car=sec,car_number=car_data['car_number'],car_color=cat)     
         for tiktok_data in tiktoks_data:
             Tiktok.objects.create(card_tiktok=card,account=tiktok_data['account'])
         for instagram_data in instagrams_data:
