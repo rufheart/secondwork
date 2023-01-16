@@ -13,9 +13,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["id","username","image"]
 
 class ColorSerialize(serializers.ModelSerializer):
+    print('colors serialize isledi')
     class Meta:
         model = Color
-        fields = ['colors']
+        fields = ['id','colors']
 
 # class CarModelSerializer(serializers.ModelSerializer):
 #     class Meta:
@@ -23,6 +24,7 @@ class ColorSerialize(serializers.ModelSerializer):
 #         fields = ['carModels']        
 
 class CarSerializer(serializers.ModelSerializer):
+    print('carserialize isledei')
     car_color = ColorSerialize()
     # car_model = CarModelSerializer()
     class Meta:
@@ -86,10 +88,6 @@ class CardSerializer(serializers.ModelSerializer):
         model=Card_Main
         fields = ['id','user','name','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook']
 
-# class CreateCarSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Car
-#         fields = ['card_cars','car_name','car_number']
 
 
 class CreateCardSerializer(serializers.ModelSerializer):
@@ -101,12 +99,14 @@ class CreateCardSerializer(serializers.ModelSerializer):
     tiktok = TiktokSerializer(many=True)
     instagram = InstagramSerializer(many=True)
     facebook = FacebookSerializer(many=True)
-
+    
+    
 
 
     
     def create(self, validated_data):
         print("create function")
+    
         phones_data= validated_data.pop("phone")
         works_data = validated_data.pop("work")
         homes_data = validated_data.pop("home")
@@ -114,8 +114,13 @@ class CreateCardSerializer(serializers.ModelSerializer):
         tiktoks_data = validated_data.pop("tiktok")
         instagrams_data = validated_data.pop("instagram")
         facebooks_data = validated_data.pop("facebook")
-        print(phones_data,works_data,homes_data)
+        # print(cars_data)
         card = Card_Main.objects.create(**validated_data)
+        # for car_data in cars_data:
+        #     for color in Color.objects.all():
+        #         if color.id == car_data['car_color']['colors']:
+        #             car_color = color
+        
         for phone_data in phones_data:
             Phone.objects.create(ph_numbers_card=card,numbers=phone_data['numbers'])
         for work_data in works_data:
@@ -123,7 +128,11 @@ class CreateCardSerializer(serializers.ModelSerializer):
         for home_data in homes_data:
             Home.objects.create(card_home=card,home_address=home_data['home_address']) 
         for car_data in cars_data:
-            Car.objects.create(card_cars=card,car_name=car_data['car_name'],car_number=car_data['car_number'])     
+            if car_data['car_color']['colors']:
+                cat = Color.objects.get(id=car_data['car_color']['colors'])
+            else:
+                cat = ""    
+            Car.objects.create(card_cars=card,car_name=car_data['car_name'],car_number=car_data['car_number'],car_color=cat)     
         for tiktok_data in tiktoks_data:
             Tiktok.objects.create(card_tiktok=card,account=tiktok_data['account'])
         for instagram_data in instagrams_data:

@@ -14,6 +14,9 @@ class CardApi(APIView):
         return Response(data=all.data)
 
     def post(self, request, format=None):
+        colors = Color.objects.all()
+        for color in colors:
+            print(color.id,'==================================')
         user1=request.user.pk
         data=request.data
         print(data,'+++++++++++++++++++++++++')

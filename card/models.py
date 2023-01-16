@@ -5,8 +5,8 @@ User = get_user_model()
 
 class Card_Main(models.Model):
     user = models.ForeignKey(User, related_name="card_main", on_delete=models.CASCADE)
-    family =  models.ManyToManyField("self",blank=True,null=True)
-    friends =  models.ManyToManyField("self",blank=True,null=True)
+    family =  models.ManyToManyField("self",blank=True)
+    friends =  models.ManyToManyField("self",blank=True)
     name = models.CharField(max_length=50)
     lname = models.CharField(max_length=60,blank=True,null=True)
     fathername = models.CharField(max_length=60,blank=True,null=True)
