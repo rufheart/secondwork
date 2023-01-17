@@ -23,4 +23,6 @@ class CardApi(APIView):
         if serial.is_valid():
             serial.save()
             Response(serial.data, status=status.HTTP_201_CREATED)  
+        else:
+            print(serial.errors)
         return Response()   

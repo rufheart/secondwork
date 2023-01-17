@@ -5,9 +5,9 @@ User = get_user_model()
 
 class Card_Main(models.Model):
     user = models.ForeignKey(User, related_name="card_main", on_delete=models.CASCADE)
-    family =  models.ManyToManyField("self",blank=True)
-    friends =  models.ManyToManyField("self",blank=True)
     name = models.CharField(max_length=50)
+    family =  models.ManyToManyField("self", blank=True, null = True, symmetrical=False, related_name='myfamily')
+    friends =  models.ManyToManyField("self", blank=True, symmetrical=False, related_name='myfriend')
     lname = models.CharField(max_length=60,blank=True,null=True)
     fathername = models.CharField(max_length=60,blank=True,null=True)
     brith_year = models.IntegerField(blank=True, null=True)
@@ -37,7 +37,6 @@ class Work(models.Model):
     company_address = models.CharField(max_length=55,blank=True,null=True)
     
 
-    
 class Color(models.Model):
     colors = models.CharField(max_length=36,blank=True,null=True)  
 
@@ -59,17 +58,15 @@ class Car_Model(models.Model):
 
 class Car(models.Model):
     card_cars = models.ForeignKey(Card_Main, related_name="car", on_delete=models.CASCADE)
-    car_color = models.ForeignKey(Color, related_name="car",on_delete=models.DO_NOTHING,blank=True,null=True)
+    car_color = models.ForeignKey(Color, related_name="car",on_delete=models.DO_NOTHING, blank=True,null=True)
     choose_car = models.ForeignKey(ChooseCars, related_name="car",on_delete=models.CASCADE)
-    car_model = models.ForeignKey(Car_Model, related_name='car',on_delete=models.DO_NOTHING,blank=True,null=True)
+    car_model = models.ForeignKey(Car_Model, related_name='car',on_delete=models.DO_NOTHING, blank=True,null=True)
     car_number = models.CharField(max_length=9,blank=True,null=True)
 
     # def __str__(self) -> str:
     #     if self.car_color:
     #         return str(self.card_cars.name)+' '+self.car_name+' '+' '+str(self.car_color.colors)+ ' ' + self.car_number 
     #     return str(self.card_cars.name)+' '+self.car_name
-
-
 
 
 class Home(models.Model):
