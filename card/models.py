@@ -54,14 +54,14 @@ class Car_Model(models.Model):
     car_model = models.ForeignKey(ChooseCars, related_name="car_model",on_delete=models.CASCADE)
     carModels = models.CharField(max_length=35,blank=True,null=True)
 
-    def __str__(self) -> str:
-        return self.carModels
+    # def __str__(self) -> str:
+    #     return self.carModels
 
 class Car(models.Model):
     card_cars = models.ForeignKey(Card_Main, related_name="car", on_delete=models.CASCADE)
     car_color = models.ForeignKey(Color, related_name="car",on_delete=models.DO_NOTHING,blank=True,null=True)
     choose_car = models.ForeignKey(ChooseCars, related_name="car",on_delete=models.CASCADE)
-    # car_name = models.CharField(max_length=35,blank=True,null=True)
+    car_model = models.ForeignKey(Car_Model, related_name='car',on_delete=models.DO_NOTHING,blank=True,null=True)
     car_number = models.CharField(max_length=9,blank=True,null=True)
 
     # def __str__(self) -> str:

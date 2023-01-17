@@ -23,17 +23,18 @@ class ChooseCarSerialize(serializers.ModelSerializer):
         model = ChooseCars
         fields = ['id','name']        
 
-# class CarModelSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Car_Model
-#         fields = ['carModels']        
+class CarModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car_Model
+        fields = ['id','carModels']        
 
 class CarSerializer(serializers.ModelSerializer):
     car_color = ColorSerialize()
     choose_car = ChooseCarSerialize()
+    car_model = CarModelSerializer()
     class Meta:
         model = Car
-        fields = ['choose_car','car_color','car_number',]        
+        fields = ['choose_car','car_color','car_model','car_number',]        
 
 class HomeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -118,29 +119,30 @@ class CreateCardSerializer(serializers.ModelSerializer):
         tiktoks_data = validated_data.pop("tiktok")
         instagrams_data = validated_data.pop("instagram")
         facebooks_data = validated_data.pop("facebook")
-        print(cars_data)
+        print(validated_data,'validated_data')
         card = Card_Main.objects.create(**validated_data)
-        # for car_data in cars_data:
-        #     for color in Color.objects.all():
-        #         if color.id == car_data['car_color']['colors']:
-        #             car_color = color
         
         for phone_data in phones_data:
-            Phone.objects.create(ph_numbers_card=card,numbers=phone_data['numbers'])
+            # phone_data.update({'ph_numbers_card':card})
+            Phone.objects.create(ph_numbers_card=card,**phone_data)
         for work_data in works_data:
-            Work.objects.create(card_work=card,company_name=work_data['company_name'],position=work_data['position'],company_address=work_data['company_address'])
+            Work.objects.create(card_work=card,**work_data) #company_name=work_data['company_name'],position=work_data['position'],company_address=work_data['company_address'])
         for home_data in homes_data:
-            Home.objects.create(card_home=card,home_address=home_data['home_address']) 
+            Home.objects.create(card_home=card,**home_data) 
         for car_data in cars_data:
-            sec = ChooseCars.objects.get(id=car_data['choose_car']['name'])
-            cat = Color.objects.get(id=car_data['car_color']['colors']) 
-            Car.objects.create(card_cars=card,choose_car=sec,car_number=car_data['car_number'],car_color=cat)     
+            # print(car_data,'cardata')
+            car_model = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+            print(car_model.car_model_id,'Dirrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+            select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
+            car_color = Color.objects.get(id=car_data['car_color']['colors']) 
+            car_data.update({"choose_car":select,"car_color":car_color,"car_model":car_model})
+            Car.objects.create(card_cars=card,**car_data)     
         for tiktok_data in tiktoks_data:
-            Tiktok.objects.create(card_tiktok=card,account=tiktok_data['account'])
+            Tiktok.objects.create(card_tiktok=card,**tiktok_data)
         for instagram_data in instagrams_data:
-            Instagram.objects.create(card_instagram=card,account=tiktok_data['account'])
+            Instagram.objects.create(card_instagram=card,**instagram_data)
         for facebook_data in facebooks_data:
-            Facebook.objects.create(card_facebook=card,account=tiktok_data['account'])
+            Facebook.objects.create(card_facebook=card,**facebook_data)
 
 
         return card
