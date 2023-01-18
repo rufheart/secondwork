@@ -136,11 +136,21 @@ class CreateCardSerializer(serializers.ModelSerializer):
             Home.objects.create(card_home=card,**home_data) 
 
         for car_data in cars_data:
-            # print(car_data,'cardata')
-            car_model = Car_Model.objects.get(id=car_data['car_model']['carModels'])
-            # print(car_model.car_model_id,'Dirrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
             select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
-            car_color = Color.objects.get(id=car_data['car_color']['colors']) 
+            if car_data['car_model']['carModels']:
+                print('if 1 isledi')
+                data_car = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                if select.id==data_car.car_model.id:
+                    print('if 2 isledi')
+                    car_model = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                else:
+                    car_model=None
+            else:
+                car_model=None
+            if car_data['car_color']['colors']:
+                car_color = Color.objects.get(id=car_data['car_color']['colors']) 
+            else:
+                car_color = None
             car_data.update({"choose_car":select,"car_color":car_color,"car_model":car_model})
             Car.objects.create(card_cars=card,**car_data)
 

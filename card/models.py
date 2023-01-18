@@ -53,8 +53,8 @@ class Car_Model(models.Model):
     car_model = models.ForeignKey(ChooseCars, related_name="car_model",on_delete=models.CASCADE)
     carModels = models.CharField(max_length=35,blank=True,null=True)
 
-    # def __str__(self) -> str:
-    #     return self.carModels
+    def __str__(self) -> str:
+        return self.carModels
 
 class Car(models.Model):
     card_cars = models.ForeignKey(Card_Main, related_name="car", on_delete=models.CASCADE)
