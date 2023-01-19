@@ -2,11 +2,12 @@ from card.api.serializer import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from card.api.permisson import MyPermissons
+from rest_framework.permissions import AllowAny
 from rest_framework import status
 from card.models import *
 
 class CardApi(APIView):
-    # permission_classes = [MyPermissons]
+    permission_classes = [AllowAny]
 
     def get(self, request, format=None):
         all = Card_Main.objects.all()
@@ -15,9 +16,10 @@ class CardApi(APIView):
 
     def post(self, request, format=None):
         print(ChooseCars.objects.all()[0])
-        user1=request.user.pk
+        # user1=request.user.pk
+        user1 = User.objects.all()[0].id
         data=request.data
-        print(data,'+++++++++++++++++++++++++')
+        print(user1,'+++++++++++++++++++++++++')
         data.update({'user':user1})
         serial = CreateCardSerializer(data=data)
         if serial.is_valid():

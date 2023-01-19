@@ -91,7 +91,7 @@ class CardSerializer(serializers.ModelSerializer):
     facebook = FacebookSerializer(many = True)
     class Meta:
         model=Card_Main
-        fields = ['id','user','name','family','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook']
+        fields = ['id','user','name','family','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook',]
 
 
 
@@ -100,7 +100,7 @@ class CreateCardSerializer(serializers.ModelSerializer):
     home = HomeSerializer(many=True)
     work = WorkSerializer(many=True)
     car  = CarSerializer(many=True)
-    # images = PhotosSerializer()
+    images = PhotosSerializer(many=True)
     tiktok = TiktokSerializer(many=True)
     instagram = InstagramSerializer(many=True)
     facebook = FacebookSerializer(many=True)
@@ -119,6 +119,7 @@ class CreateCardSerializer(serializers.ModelSerializer):
         tiktoks_data = validated_data.pop("tiktok")
         instagrams_data = validated_data.pop("instagram")
         facebooks_data = validated_data.pop("facebook")
+        user_images = validated_data.pop("images")
         family = validated_data.pop('family')
         card = Card_Main.objects.create(**validated_data)
         
@@ -134,6 +135,14 @@ class CreateCardSerializer(serializers.ModelSerializer):
             Work.objects.create(card_work=card,**work_data) #company_name=work_data['company_name'],position=work_data['position'],company_address=work_data['company_address'])
         for home_data in homes_data:
             Home.objects.create(card_home=card,**home_data) 
+        for tiktok_data in tiktoks_data:
+            Tiktok.objects.create(card_tiktok=card,**tiktok_data)
+        for instagram_data in instagrams_data:
+            Instagram.objects.create(card_instagram=card,**instagram_data)
+        for facebook_data in facebooks_data:
+            Facebook.objects.create(card_facebook=card,**facebook_data)
+        for user_image in user_images:
+            Photos.objects.create(user_image=card,**user_image)
 
         for car_data in cars_data:
             select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
@@ -154,18 +163,12 @@ class CreateCardSerializer(serializers.ModelSerializer):
             car_data.update({"choose_car":select,"car_color":car_color,"car_model":car_model})
             Car.objects.create(card_cars=card,**car_data)
 
-        for tiktok_data in tiktoks_data:
-            Tiktok.objects.create(card_tiktok=card,**tiktok_data)
-        for instagram_data in instagrams_data:
-            Instagram.objects.create(card_instagram=card,**instagram_data)
-        for facebook_data in facebooks_data:
-            Facebook.objects.create(card_facebook=card,**facebook_data)
 
 
         return card
 
     class Meta:
         model = Card_Main
-        fields = ['user','name','family', 'lname','fathername','brith_year','features','phone','work','car','home','tiktok','instagram','facebook']   
+        fields = ['user','name','family', 'lname','fathername','brith_year','features','phone','work','car','home','tiktok','instagram','facebook','images']   
 
 
