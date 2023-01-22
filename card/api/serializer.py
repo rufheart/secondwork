@@ -91,8 +91,7 @@ class CardSerializer(serializers.ModelSerializer):
     facebook = FacebookSerializer(many = True)
     class Meta:
         model=Card_Main
-        fields = ['id','user','name','family','lname','fathername','brith_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook',]
-
+        fields = ['id','user','name','family','lname','fathername','birth_year','features','car','home','comments','phone','work','images','tiktok','instagram','facebook',]
 
 
 class CreateCardSerializer(serializers.ModelSerializer):
@@ -106,12 +105,7 @@ class CreateCardSerializer(serializers.ModelSerializer):
     facebook = FacebookSerializer(many=True)
     
     
-
-
-    
     def create(self, validated_data):
-        print("create function")
-        print('serial', validated_data)
         phones_data= validated_data.pop("phone")
         works_data = validated_data.pop("work")
         homes_data = validated_data.pop("home")
@@ -129,10 +123,9 @@ class CreateCardSerializer(serializers.ModelSerializer):
                 card.save()
         
         for phone_data in phones_data:
-            # phone_data.update({'ph_numbers_card':card})
             Phone.objects.create(ph_numbers_card=card,**phone_data)
         for work_data in works_data:
-            Work.objects.create(card_work=card,**work_data) #company_name=work_data['company_name'],position=work_data['position'],company_address=work_data['company_address'])
+            Work.objects.create(card_work=card,**work_data) 
         for home_data in homes_data:
             Home.objects.create(card_home=card,**home_data) 
         for tiktok_data in tiktoks_data:
@@ -147,10 +140,8 @@ class CreateCardSerializer(serializers.ModelSerializer):
         for car_data in cars_data:
             select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
             if car_data['car_model']['carModels']:
-                print('if 1 isledi')
                 data_car = Car_Model.objects.get(id=car_data['car_model']['carModels'])
                 if select.id==data_car.car_model.id:
-                    print('if 2 isledi')
                     car_model = Car_Model.objects.get(id=car_data['car_model']['carModels'])
                 else:
                     car_model=None
@@ -169,6 +160,238 @@ class CreateCardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Card_Main
-        fields = ['user','name','family', 'lname','fathername','brith_year','features','phone','work','car','home','tiktok','instagram','facebook','images']   
+        fields = ['user','name','family', 'lname','fathername','birth_year','features','phone','work','car','home','tiktok','instagram','facebook','images']   
 
 
+class UpdateCardSerializerPut(serializers.ModelSerializer):
+    phone = PhoneSerializer(many=True)
+    home = HomeSerializer(many=True)
+    work = WorkSerializer(many=True)
+    car  = CarSerializer(many=True)
+    images = PhotosSerializer(many=True)
+    tiktok = TiktokSerializer(many=True)
+    instagram = InstagramSerializer(many=True)
+    facebook = FacebookSerializer(many=True)
+  
+
+    def update(self, instance, validated_data):   
+        print(type(instance.id))
+        card = Card_Main.objects.get(id=instance.id) 
+        print(card)
+        phones_data= validated_data.pop("phone")
+        print(phones_data,'++++++++++++++')
+        phones = (instance.phone).all()
+        print(phones,'phonesssssssssssuudp')
+        phones = list(phones)
+        works_data = validated_data.pop("work")
+        works = (instance.work).all()
+        works = list(works)
+        homes_data = validated_data.pop("home")
+        homes = (instance.home).all()
+        homes = list(homes)
+        cars_data = validated_data.pop("car")
+        cars = (instance.car).all()
+        cars = list(cars)
+        tiktoks_data = validated_data.pop("tiktok")
+        tiktoks = (instance.tiktok).all()
+        tiktoks = list(tiktoks)
+        instagrams_data = validated_data.pop("instagram")
+        instagrams = (instance.instagram).all()
+        instagrams = list(instagrams)
+        facebooks_data = validated_data.pop("facebook")
+        facebooks = (instance.facebook).all()
+        facebooks = list(facebooks)
+        user_images = validated_data.pop("images")
+        users = (instance.images).all()
+        users = list(users)
+        # family = validated_data.pop('family')
+        instance.name = validated_data.get("name", instance.name)   
+        instance.lname = validated_data.get("lname", instance.lname)  
+        instance.fathername = validated_data.get("fathername", instance.fathername)
+        instance.birth_year = validated_data.get("birth_year", instance.birth_year)
+        instance.features = validated_data.get("features", instance.features)
+        fmly = validated_data.get("family", instance.family)
+        families = (instance.family).all()
+        families = list(families)
+        for i in fmly:
+            instance.family.add(i)
+        instance.save()
+
+        for phone_data in phones_data: 
+            if phone_data !="":
+                nm = Phone(ph_numbers_card=card,**phone_data)
+                nm.save()
+            # print(phones,'------------')
+            # pho = phones.pop(0)
+            # pho.numbers = phone_data.get("numbers")
+            # pho.save()
+        for work_data in works_data:
+            wor = works.pop(0)
+            wor.company_name = work_data.get("company_name")   
+            wor.position = work_data.get("position")
+            wor.company_address = work_data.get("company_address")   
+            wor.save()   
+        for home_data in homes_data:
+            hom = homes.pop(0)
+            hom.home_address = home_data.get("home_address")
+            hom.save()
+        for tiktok_data in tiktoks_data:
+            tik = tiktoks.pop(0)
+            tik.account = tiktok_data.get("account")
+            tik.save()
+        for facebook_data in facebooks_data:
+            fac = facebooks.pop(0)
+            fac.account = facebook_data.get("account")
+            fac.save()
+        for instagram_data in instagrams_data:
+            ins = instagrams.pop(0)
+            ins.account = instagram_data.get("account")
+            ins.save()
+        for car_data in cars_data:
+            car = cars.pop(0)
+            color= car_data.get("car_color")
+            car.car_color = Color.objects.get(id=color['colors'])
+            choose= car_data.get("choose_car")
+            ch = ChooseCars.objects.get(id=choose['name'])
+            car.choose_car = ChooseCars(id=choose['name']) 
+            model = car_data.get("car_model")
+            md = Car_Model.objects.get(id=model['carModels'])
+            if ch.id == md.car_model.id:
+                car.car_model = Car_Model.objects.get(id=model['carModels'])
+            else: 
+                car.car_model = None   
+            car.car_number = car_data.get("car_number")
+            car.save()                   
+        for user_image in user_images:
+            img = user_images.pop(0)
+            img.photo = user_image.get("photo")
+            img.save()           
+        return instance
+        
+    
+
+    class Meta:
+        model =Card_Main
+        fields = ['user','name','family', 'lname','fathername','birth_year','features','phone','work','car','home','tiktok','instagram','facebook','images']   
+        read_only_fields = ['user']
+
+class UpdateCardSerializer(serializers.ModelSerializer):
+    phone = PhoneSerializer(many=True)
+    home = HomeSerializer(many=True)
+    work = WorkSerializer(many=True)
+    car  = CarSerializer(many=True)
+    images = PhotosSerializer(many=True)
+    tiktok = TiktokSerializer(many=True)
+    instagram = InstagramSerializer(many=True)
+    facebook = FacebookSerializer(many=True)
+    
+    
+
+    def update(self, instance, validated_data):
+        tenda_data = validated_data.copy()
+        if validated_data.get("phone"):
+            print('if islediii')
+            phones_data= validated_data.pop("phone")
+            phones = (instance.phone).all()
+            phones = list(phones)
+            print(phones, 'phonesssssssssssssss')
+        if validated_data.get("work"):    
+            works_data = validated_data.pop("work")
+            works = (instance.work).all()
+            works = list(works)
+        if validated_data.get("home"):
+            homes_data = validated_data.pop("home")
+            homes = (instance.home).all()
+            homes = list(homes)    
+        if validated_data.get("car"):
+            cars_data = validated_data.pop("car")
+            cars = (instance.car).all()
+            cars = list(cars)    
+        if validated_data.get("tiktok"):
+            tiktoks_data = validated_data.pop("tiktok")
+            tiktoks = (instance.tiktok).all()
+            tiktoks = list(tiktoks)
+        if validated_data.get("instagram"):
+            instagrams_data = validated_data.pop("instagram")
+            instagrams = (instance.instagram).all()
+            instagrams = list(instagrams)
+        if validated_data.get("facebook"):
+            facebooks_data = validated_data.pop("facebook")
+            facebooks = (instance.facebook).all()
+            facebooks = list(facebooks) 
+        if validated_data.get("images"):
+            user_images = validated_data.pop("images")
+            users = (instance.images).all()
+            users = list(users)   
+        if validated_data.get("family"):
+            family = validated_data.pop('family')
+            families = (instance.family).all()
+            families = list(families)         
+        instance.name = validated_data.get("name", instance.name)   
+        instance.lname = validated_data.get("lname", instance.lname)  
+        instance.fathername = validated_data.get("fathername", instance.fathername)
+        instance.birth_year = validated_data.get("birth_year", instance.birth_year)
+        instance.features = validated_data.get("features", instance.features)
+        instance.save()
+
+        if tenda_data.get("phone"):
+            print('if ilsedi2')
+            for phone_data in phones_data: 
+                pho = phones.pop(0)
+                pho.numbers = phone_data.get("numbers")
+                pho.save()
+        if tenda_data.get("work"):
+            for work_data in works_data:    
+                wor = works.pop(0)
+                wor.company_name = work_data.get("company_name")   
+                wor.position = work_data.get("position")
+                wor.company_address = work_data.get("company_address")   
+                wor.save()   
+        if tenda_data.get("home"):
+            for home_data in homes_data:
+                hom = homes.pop(0)
+                hom.home_address = home_data.get("home_address")
+                hom.save()
+        if tenda_data.get("tiktok"):
+            for tiktok_data in tiktoks_data:
+                tik = tiktoks.pop(0)
+                tik.account = tiktok_data.get("account")
+                tik.save() 
+        if tenda_data.get("instagram"):
+            for instagram_data in instagrams_data:
+                ins = instagrams.pop(0)
+                ins.account = instagram_data.get("account")
+                ins.save()    
+        if tenda_data.get("facebook"):
+            for facebook_data in facebooks_data:
+                fac = facebooks.pop(0)
+                fac.account = facebook_data.get("account")
+                fac.save()
+        if tenda_data.get("car"):
+            for car_data in cars_data:
+                car = cars.pop(0)
+                color= car_data.get("car_color")
+                car.car_color = Color.objects.get(id=color['colors'])
+                choose= car_data.get("choose_car")
+                ch = ChooseCars.objects.get(id=choose['name'])
+                car.choose_car = ChooseCars.objects.get(id=choose['name']) 
+                model = car_data.get("car_model")
+                md = Car_Model.objects.get(id=model['carModels'])
+                print(ch,md.car_model)
+                if ch.id == md.car_model.id:
+                    car.car_model = Car_Model.objects.get(id=model['carModels'])
+                else: 
+                    car.car_model = None    
+                car.car_number = car_data.get("car_number")
+                car.save()                            
+        return instance
+    
+
+
+
+    class Meta:
+        model =Card_Main
+        fields = ['user','name','family', 'lname','fathername','birth_year','features','phone','work','car','home','tiktok','instagram','facebook','images']   
+        read_only_fields = ['user']
+      
+      

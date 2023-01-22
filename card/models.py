@@ -6,11 +6,11 @@ User = get_user_model()
 class Card_Main(models.Model):
     user = models.ForeignKey(User, related_name="card_main", on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    family =  models.ManyToManyField("self", blank=True, null = True, symmetrical=False, related_name='myfamily')
-    friends =  models.ManyToManyField("self", blank=True, symmetrical=False, related_name='myfriend')
     lname = models.CharField(max_length=60,blank=True,null=True)
     fathername = models.CharField(max_length=60,blank=True,null=True)
-    brith_year = models.IntegerField(blank=True, null=True)
+    birth_year = models.IntegerField(blank=True, null=True)
+    family =  models.ManyToManyField("self", blank=True, null = True, symmetrical=False, related_name='myfamily')
+    friends =  models.ManyToManyField("self", blank=True, symmetrical=False, related_name='myfriend')
     features = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
@@ -30,11 +30,17 @@ class Phone(models.Model):
     ph_numbers_card = models.ForeignKey(Card_Main, related_name="phone", on_delete=models.CASCADE)
     numbers = models.CharField(max_length=15, blank=True,null=True)
 
+    def __str__(self) -> str:
+        return self.numbers
+
 class Work(models.Model):
     card_work = models.ForeignKey(Card_Main, related_name="work", on_delete=models.CASCADE)
     company_name = models.CharField(max_length=35, blank=True,null=True)   
     position = models.CharField(max_length=60, blank=True,null=True) 
     company_address = models.CharField(max_length=55,blank=True,null=True)
+
+    def __str__(self) -> str:
+        return self.company_name
     
 
 class Color(models.Model):
@@ -53,8 +59,7 @@ class Car_Model(models.Model):
     car_model = models.ForeignKey(ChooseCars, related_name="car_model",on_delete=models.CASCADE)
     carModels = models.CharField(max_length=35,blank=True,null=True)
 
-    def __str__(self) -> str:
-        return self.carModels
+
 
 class Car(models.Model):
     card_cars = models.ForeignKey(Card_Main, related_name="car", on_delete=models.CASCADE)
@@ -63,15 +68,16 @@ class Car(models.Model):
     car_model = models.ForeignKey(Car_Model, related_name='car',on_delete=models.DO_NOTHING, blank=True,null=True)
     car_number = models.CharField(max_length=9,blank=True,null=True)
 
-    # def __str__(self) -> str:
-    #     if self.car_color:
-    #         return str(self.card_cars.name)+' '+self.car_name+' '+' '+str(self.car_color.colors)+ ' ' + self.car_number 
-    #     return str(self.card_cars.name)+' '+self.car_name
+    def __str__(self) -> str:
+        return self.card_cars 
 
 
 class Home(models.Model):
     card_home = models.ForeignKey(Card_Main, related_name="home", on_delete=models.CASCADE)
     home_address = models.CharField(max_length=45,blank=True,null=True) 
+
+    def __str__(self) -> str:
+        return self.home_address
 
 
 class Comments(models.Model):
@@ -99,15 +105,24 @@ class About(models.Model):
 
 class Tiktok(models.Model):
     card_tiktok = models.ForeignKey(Card_Main, related_name="tiktok", on_delete=models.CASCADE)
-    account = models.CharField(max_length=65,blank=True,null=True)
+    account = models.CharField(max_length=65)
+
+    def __str__(self) -> str:
+        return self.account
 
 class Instagram(models.Model):
     card_instagram = models.ForeignKey(Card_Main, related_name="instagram", on_delete=models.CASCADE)
-    account  = models.CharField(max_length=65,blank=True,null=True)
+    account  = models.CharField(max_length=65)
+
+    def __str__(self) -> str:
+        return self.account
 
 class Facebook(models.Model):
     card_facebook = models.ForeignKey(Card_Main, related_name="facebook", on_delete=models.CASCADE)
-    account  = models.CharField(max_length=65,blank=True,null=True)
+    account  = models.CharField(max_length=65)
+
+    def __str__(self) -> str:
+        return self.account
 
 
 
