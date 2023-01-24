@@ -216,15 +216,17 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         for i in fmly:
             instance.family.add(i)
         instance.save()
-
-        for phone_data in phones_data: 
-            if phone_data !="":
-                nm = Phone(ph_numbers_card=card,**phone_data)
-                nm.save()
-            # print(phones,'------------')
-            # pho = phones.pop(0)
-            # pho.numbers = phone_data.get("numbers")
-            # pho.save()
+        if phones_data == []:
+            ph = Card_Main.objects.get(id=card.id)
+            (ph.phone).all().delete()
+        for phone_data in phones_data:
+            if phones == []:
+                ph = Phone.objects.create(ph_numbers_card=card,**phone_data)
+                ph.save()
+            else:                
+                pho = phones.pop(0)
+                pho.numbers = phone_data.get("numbers")
+                pho.save()
         for work_data in works_data:
             wor = works.pop(0)
             wor.company_name = work_data.get("company_name")   
