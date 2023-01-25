@@ -55,9 +55,10 @@ class PhoneSerializer(serializers.ModelSerializer):
          
 
 class WorkSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Work
-        fields = ['company_name','position','company_address']
+        fields = ['id','company_name','position','company_address']
 
 class PhotosSerializer(serializers.ModelSerializer):
     class Meta:
@@ -213,7 +214,14 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         for i in fmly:
             instance.family.add(i)
         instance.save()
-        keep_phones = []
+        keep_phones_id = []
+        keep_works_id = []
+        keep_homes_id = []
+        keep_tiktoks_id = []
+        keep_fbs_id = []
+        keep_instgrms_id = []
+        ids = [c.id for c in phones]
+        print(ids,'idssssss')
         for phone_data in phones_data:
             if "id" in phone_data.keys():
                 if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
@@ -221,54 +229,117 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                     print(c,'ccccc')
                     c.numbers = phone_data.get('numbers', c.numbers)
                     c.save()
-                    keep_phones.append(c.id)
+                    keep_phones_id.append(c.id)
                 else:
                     continue
             else:
                 c=Phone.objects.create(ph_numbers_card=card,**phone_data)
-                keep_phones.append(c.id)
+                keep_phones_id.append(c.id)
         for ph in phones:
             print(phones,1)
-            if ph.id not in keep_phones:
+            if ph.id not in keep_phones_id:
                 ph.delete()
             print(phones,2)    
         for work_data in works_data:
-            wor = works.pop(0)
-            wor.company_name = work_data.get("company_name")   
-            wor.position = work_data.get("position")
-            wor.company_address = work_data.get("company_address")   
-            wor.save()   
+            if  "id" in work_data.keys():   
+                if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
+                    c=Work.objects.get(id=work_data["id"])
+                    c.company_name = work_data.get('company_name', c.company_name)
+                    c.position = work_data.get('position', c.position)
+                    c.company_address = work_data.get('company_address', c.company_address)
+                    c.save()
+                    keep_works_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Work.objects.create(card_work=card, **work_data)
+                keep_works_id.append(c.id)          
+        for wk in works:
+            if wk.id not in keep_works_id:
+                wk.delete()         
         for home_data in homes_data:
-            hom = homes.pop(0)
-            hom.home_address = home_data.get("home_address")
-            hom.save()
+            if "id" in home_data.keys():
+                if Home.objects.filter(id=home_data["id"],card_home=card):
+                    c=Home.objects.get(id=home_data["id"])
+                    c.home_address = homes.get("home_address", c.home_address)
+                    c.save()
+                    keep_homes_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Home.objects.create(card_home=card, **home_data)
+                keep_homes_id(c.id)
+        for hm in homes:
+            if hm.id not in keep_homes_id:
+                hm.delete()
         for tiktok_data in tiktoks_data:
-            tik = tiktoks.pop(0)
-            tik.account = tiktok_data.get("account")
-            tik.save()
+            if "id" in tiktok_data.keys():
+                if Tiktok.objects.filter(id=tiktok_data["id"], card_tiktok=card):
+                    c = Tiktok.objects.get(id=tiktok_data["id"])
+                    c.account = tiktok_data.get("account", c.account)
+                    c.save()
+                    keep_tiktoks_id.append(c.id)
+                else:
+                    continue
+            else:
+                c = Tiktok.objects.create(card_tiktok=card, **tiktok_data)
+                keep_tiktoks_id.append(c.id)    
+        for tk in tiktoks:
+            if tk.id not in keep_tiktoks_id:
+                tk.delete()
+
         for facebook_data in facebooks_data:
-            fac = facebooks.pop(0)
-            fac.account = facebook_data.get("account")
-            fac.save()
+            if "id" not in facebook_data.keys():
+                if Facebook.objects.filter(id=facebook_data["id"], card_facebook=card):
+                    c = Facebook.objects.get(id=facebook_data["id"])
+                    c.account = facebook_data.get("account", c.account)
+                    c.save()
+                    keep_fbs_id.append(c.id)
+                else:
+                    continue
+            else:
+                c = Facebook.objects.create(card_facebook=card, **facebook_data)
+                keep_fbs_id.append(c.id)
+        for fb in facebooks:
+            if fb.id not in keep_fbs_id:
+                fb.delete()                
         for instagram_data in instagrams_data:
-            ins = instagrams.pop(0)
-            ins.account = instagram_data.get("account")
-            ins.save()
+            if "id" in instagram_data.keys():
+                if Instagram.objects.filter(id=instagram_data["id"], card_instagram=card):
+                    c = Instagram.objects.get(id=instagram_data["id"])
+                    c.account = instagram_data.get("account", c.account)
+                    c.save()
+                    keep_instgrms_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Instagram.objects.create(card_instagram=card)
+                keep_instgrms_id.append(c.id)
+        for inst in instagrams:
+            if inst.id not in keep_instgrms_id:
+                inst.delete()                
         for car_data in cars_data:
-            car = cars.pop(0)
-            color= car_data.get("car_color")
-            car.car_color = Color.objects.get(id=color['colors'])
-            choose= car_data.get("choose_car")
-            ch = ChooseCars.objects.get(id=choose['name'])
-            car.choose_car = ChooseCars(id=choose['name']) 
-            model = car_data.get("car_model")
-            md = Car_Model.objects.get(id=model['carModels'])
-            if ch.id == md.car_model.id:
-                car.car_model = Car_Model.objects.get(id=model['carModels'])
-            else: 
-                car.car_model = None   
-            car.car_number = car_data.get("car_number")
-            car.save()                   
+            if "id" in car_data.keys():
+                if Car.objects.filter(id=car_data["id"],card_cars=card):
+                    c=Car.objects.get(id=car_data["id"])
+                    c.car_color=car_data.get("car_color", c.car_color)
+                    c.choose_car=car_data.get("choose_car", c.choose_car)
+                    c.car_model = car_data.get("car_model", c.car_model)
+                    c.car_number = car_data
+            # car = cars.pop(0)
+            # color= car_data.get("car_color")
+            # car.car_color = Color.objects.get(id=color['colors'])
+            # choose= car_data.get("choose_car")
+            # ch = ChooseCars.objects.get(id=choose['name'])
+            # car.choose_car = ChooseCars(id=choose['name']) 
+            # model = car_data.get("car_model")
+            # md = Car_Model.objects.get(id=model['carModels'])
+            # if ch.id == md.car_model.id:
+            #     car.car_model = Car_Model.objects.get(id=model['carModels'])
+            # else: 
+            #     car.car_model = None   
+            # car.car_number = car_data.get("car_number")
+            # car.save()                   
         for user_image in user_images:
             img = user_images.pop(0)
             img.photo = user_image.get("photo")

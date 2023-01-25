@@ -68,8 +68,8 @@ class Car(models.Model):
     car_model = models.ForeignKey(Car_Model, related_name='car',on_delete=models.DO_NOTHING, blank=True,null=True)
     car_number = models.CharField(max_length=9,blank=True,null=True)
 
-    def __str__(self) -> str:
-        return self.card_cars 
+    # def __str__(self) -> str:
+    #     return self.card_cars 
 
 
 class Home(models.Model):
