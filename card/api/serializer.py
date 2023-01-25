@@ -220,6 +220,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         keep_tiktoks_id = []
         keep_fbs_id = []
         keep_instgrms_id = []
+        keep_cars_id = []
         ids = [c.id for c in phones]
         print(ids,'idssssss')
         for phone_data in phones_data:
@@ -324,8 +325,22 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                     c=Car.objects.get(id=car_data["id"])
                     c.car_color=car_data.get("car_color", c.car_color)
                     c.choose_car=car_data.get("choose_car", c.choose_car)
-                    c.car_model = car_data.get("car_model", c.car_model)
-                    c.car_number = car_data
+                    
+                    if c.choose_car.id == Car_Model.objects.get(id=car_data["car_model"]):
+                        c.car_model = car_data.get("car_model", c.car_model)
+                    else:
+                        c.car_model=None    
+                    c.car_number = car_data.get("car_number", c.car_number)
+                    c.save()
+                    keep_cars_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Car.objects.create(card_cars=card, **car_data)
+                keep_cars_id.append(c.id)
+        for cr in cars:
+            if cr.id not in keep_cars_id:
+                cr.delete()               
             # car = cars.pop(0)
             # color= car_data.get("car_color")
             # car.car_color = Color.objects.get(id=color['colors'])
