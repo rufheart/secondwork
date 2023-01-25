@@ -48,9 +48,10 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['user_comment','comments']
 
 class PhoneSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Phone
-        fields = ['numbers']      
+        fields = ['id','numbers']      
          
 
 class WorkSerializer(serializers.ModelSerializer):
@@ -153,9 +154,6 @@ class CreateCardSerializer(serializers.ModelSerializer):
                 car_color = None
             car_data.update({"choose_car":select,"car_color":car_color,"car_model":car_model})
             Car.objects.create(card_cars=card,**car_data)
-
-
-
         return card
 
     class Meta:
@@ -175,7 +173,6 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
   
 
     def update(self, instance, validated_data):   
-        print(type(instance.id))
         card = Card_Main.objects.get(id=instance.id) 
         print(card)
         phones_data= validated_data.pop("phone")
@@ -216,17 +213,25 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         for i in fmly:
             instance.family.add(i)
         instance.save()
-        if phones_data == []:
-            ph = Card_Main.objects.get(id=card.id)
-            (ph.phone).all().delete()
+        keep_phones = []
         for phone_data in phones_data:
-            if phones == []:
-                ph = Phone.objects.create(ph_numbers_card=card,**phone_data)
-                ph.save()
-            else:                
-                pho = phones.pop(0)
-                pho.numbers = phone_data.get("numbers")
-                pho.save()
+            if "id" in phone_data.keys():
+                if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
+                    c = Phone.objects.get(id=phone_data["id"])
+                    print(c,'ccccc')
+                    c.numbers = phone_data.get('numbers', c.numbers)
+                    c.save()
+                    keep_phones.append(c.id)
+                else:
+                    continue
+            else:
+                c=Phone.objects.create(ph_numbers_card=card,**phone_data)
+                keep_phones.append(c.id)
+        for ph in phones:
+            print(phones,1)
+            if ph.id not in keep_phones:
+                ph.delete()
+            print(phones,2)    
         for work_data in works_data:
             wor = works.pop(0)
             wor.company_name = work_data.get("company_name")   
