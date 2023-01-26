@@ -13,17 +13,19 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["id","username","image"]
 
 class ColorSerialize(serializers.ModelSerializer):
-    print('colors serialize isledi')
+
     class Meta:
         model = Color
         fields = ['id','colors']
 
 class ChooseCarSerialize(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = ChooseCars
         fields = ['id','name']        
 
 class CarModelSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Car_Model
         fields = ['id','carModels']        
@@ -32,14 +34,16 @@ class CarSerializer(serializers.ModelSerializer):
     car_color = ColorSerialize()
     choose_car = ChooseCarSerialize()
     car_model = CarModelSerializer()
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Car
-        fields = ['choose_car','car_color','car_model','car_number',]        
+        fields = ['id', 'choose_car','car_color','car_model','car_number',]        
 
 class HomeSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Home
-        fields = ['home_address']   
+        fields = ['id', 'home_address']   
 
 class CommentSerializer(serializers.ModelSerializer):
     user_comment = UserSerializer()
@@ -61,24 +65,28 @@ class WorkSerializer(serializers.ModelSerializer):
         fields = ['id','company_name','position','company_address']
 
 class PhotosSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Photos
-        fields = ['photo']
+        fields = ['id', 'photo']
 
 class FacebookSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Facebook
-        fields = ['account']        
+        fields = ['id', 'account']        
 
 class InstagramSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Instagram
-        fields = ['account']     
+        fields = ['id', 'account']     
 
 class TiktokSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Tiktok
-        fields = ['account']                   
+        fields = ['id', 'account']                   
 
 class CardSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -175,11 +183,8 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):   
         card = Card_Main.objects.get(id=instance.id) 
-        print(card)
         phones_data= validated_data.pop("phone")
-        print(phones_data,'++++++++++++++')
         phones = (instance.phone).all()
-        print(phones,'phonesssssssssssuudp')
         phones = list(phones)
         works_data = validated_data.pop("work")
         works = (instance.work).all()
@@ -221,13 +226,13 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         keep_fbs_id = []
         keep_instgrms_id = []
         keep_cars_id = []
+        keep_images_id = []
         ids = [c.id for c in phones]
-        print(ids,'idssssss')
         for phone_data in phones_data:
             if "id" in phone_data.keys():
                 if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
                     c = Phone.objects.get(id=phone_data["id"])
-                    print(c,'ccccc')
+                    print(type(phone_data))
                     c.numbers = phone_data.get('numbers', c.numbers)
                     c.save()
                     keep_phones_id.append(c.id)
@@ -237,11 +242,10 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 c=Phone.objects.create(ph_numbers_card=card,**phone_data)
                 keep_phones_id.append(c.id)
         for ph in phones:
-            print(phones,1)
             if ph.id not in keep_phones_id:
-                ph.delete()
-            print(phones,2)    
+                ph.delete()    
         for work_data in works_data:
+            print('work isledi')
             if  "id" in work_data.keys():   
                 if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
                     c=Work.objects.get(id=work_data["id"])
@@ -262,7 +266,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
             if "id" in home_data.keys():
                 if Home.objects.filter(id=home_data["id"],card_home=card):
                     c=Home.objects.get(id=home_data["id"])
-                    c.home_address = homes.get("home_address", c.home_address)
+                    c.home_address = home_data.get("home_address", c.home_address)
                     c.save()
                     keep_homes_id.append(c.id)
                 else:
@@ -289,8 +293,24 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
             if tk.id not in keep_tiktoks_id:
                 tk.delete()
 
+        for instagram_data in instagrams_data:
+            if "id" in instagram_data.keys():
+                if Instagram.objects.filter(id=instagram_data["id"], card_instagram=card):
+                    c = Instagram.objects.get(id=instagram_data["id"])
+                    c.account = instagram_data.get("account", c.account)
+                    c.save()
+                    keep_instgrms_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Instagram.objects.create(card_instagram=card, **instagram_data)
+                keep_instgrms_id.append(c.id)
+        for inst in instagrams:
+            if inst.id not in keep_instgrms_id:
+                inst.delete()    
+
         for facebook_data in facebooks_data:
-            if "id" not in facebook_data.keys():
+            if "id" in facebook_data.keys():
                 if Facebook.objects.filter(id=facebook_data["id"], card_facebook=card):
                     c = Facebook.objects.get(id=facebook_data["id"])
                     c.account = facebook_data.get("account", c.account)
@@ -304,30 +324,17 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         for fb in facebooks:
             if fb.id not in keep_fbs_id:
                 fb.delete()                
-        for instagram_data in instagrams_data:
-            if "id" in instagram_data.keys():
-                if Instagram.objects.filter(id=instagram_data["id"], card_instagram=card):
-                    c = Instagram.objects.get(id=instagram_data["id"])
-                    c.account = instagram_data.get("account", c.account)
-                    c.save()
-                    keep_instgrms_id.append(c.id)
-                else:
-                    continue
-            else:
-                c=Instagram.objects.create(card_instagram=card)
-                keep_instgrms_id.append(c.id)
-        for inst in instagrams:
-            if inst.id not in keep_instgrms_id:
-                inst.delete()                
         for car_data in cars_data:
             if "id" in car_data.keys():
                 if Car.objects.filter(id=car_data["id"],card_cars=card):
                     c=Car.objects.get(id=car_data["id"])
-                    c.car_color=car_data.get("car_color", c.car_color)
-                    c.choose_car=car_data.get("choose_car", c.choose_car)
-                    
-                    if c.choose_car.id == Car_Model.objects.get(id=car_data["car_model"]):
-                        c.car_model = car_data.get("car_model", c.car_model)
+                    car_color = Color.objects.get(id=car_data['car_color']['colors'])
+                    c.car_color=car_color
+                    car_choose = ChooseCars.objects.get(id=car_data['choose_car']['name'])
+                    c.choose_car=car_choose
+                    mod = Car_Model.objects.get(id=car_data['car_model']['carModels'])                  
+                    if car_choose.id == mod.car_model.id:
+                        c.car_model = mod
                     else:
                         c.car_model=None    
                     c.car_number = car_data.get("car_number", c.car_number)
@@ -340,25 +347,21 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 keep_cars_id.append(c.id)
         for cr in cars:
             if cr.id not in keep_cars_id:
-                cr.delete()               
-            # car = cars.pop(0)
-            # color= car_data.get("car_color")
-            # car.car_color = Color.objects.get(id=color['colors'])
-            # choose= car_data.get("choose_car")
-            # ch = ChooseCars.objects.get(id=choose['name'])
-            # car.choose_car = ChooseCars(id=choose['name']) 
-            # model = car_data.get("car_model")
-            # md = Car_Model.objects.get(id=model['carModels'])
-            # if ch.id == md.car_model.id:
-            #     car.car_model = Car_Model.objects.get(id=model['carModels'])
-            # else: 
-            #     car.car_model = None   
-            # car.car_number = car_data.get("car_number")
-            # car.save()                   
+                cr.delete()                                 
         for user_image in user_images:
-            img = user_images.pop(0)
-            img.photo = user_image.get("photo")
-            img.save()           
+            if "id" in user_image.keys():
+                if Photos.objects.filter(id=user_image["id"], user_image=card):
+                    c=Photos.objects.get(id=user_image["id"])
+                    c.save()
+                    keep_images_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Photos.objects.create(user_image=card, **user_image)
+                keep_images_id.append(c.id)     
+        for user_im in users:
+            if user_im.id not in keep_images_id:
+                user_im.delete()        
         return instance
         
     
@@ -378,108 +381,189 @@ class UpdateCardSerializer(serializers.ModelSerializer):
     instagram = InstagramSerializer(many=True)
     facebook = FacebookSerializer(many=True)
     
-    
-
-    def update(self, instance, validated_data):
-        tenda_data = validated_data.copy()
-        if validated_data.get("phone"):
-            print('if islediii')
-            phones_data= validated_data.pop("phone")
-            phones = (instance.phone).all()
-            phones = list(phones)
-            print(phones, 'phonesssssssssssssss')
-        if validated_data.get("work"):    
-            works_data = validated_data.pop("work")
-            works = (instance.work).all()
-            works = list(works)
-        if validated_data.get("home"):
-            homes_data = validated_data.pop("home")
-            homes = (instance.home).all()
-            homes = list(homes)    
-        if validated_data.get("car"):
-            cars_data = validated_data.pop("car")
-            cars = (instance.car).all()
-            cars = list(cars)    
-        if validated_data.get("tiktok"):
-            tiktoks_data = validated_data.pop("tiktok")
-            tiktoks = (instance.tiktok).all()
-            tiktoks = list(tiktoks)
-        if validated_data.get("instagram"):
-            instagrams_data = validated_data.pop("instagram")
-            instagrams = (instance.instagram).all()
-            instagrams = list(instagrams)
-        if validated_data.get("facebook"):
-            facebooks_data = validated_data.pop("facebook")
-            facebooks = (instance.facebook).all()
-            facebooks = list(facebooks) 
-        if validated_data.get("images"):
-            user_images = validated_data.pop("images")
-            users = (instance.images).all()
-            users = list(users)   
-        if validated_data.get("family"):
-            family = validated_data.pop('family')
-            families = (instance.family).all()
-            families = list(families)         
+    def update(self, instance, validated_data): 
+        print('update isledi')  
+        card = Card_Main.objects.get(id=instance.id) 
+        phones_data= validated_data.pop("phone")
+        phones = (instance.phone).all()
+        phones = list(phones)
+        works_data = validated_data.pop("work")
+        works = (instance.work).all()
+        works = list(works)
+        homes_data = validated_data.pop("home")
+        homes = (instance.home).all()
+        homes = list(homes)
+        cars_data = validated_data.pop("car")
+        cars = (instance.car).all()
+        cars = list(cars)
+        tiktoks_data = validated_data.pop("tiktok")
+        tiktoks = (instance.tiktok).all()
+        tiktoks = list(tiktoks)
+        instagrams_data = validated_data.pop("instagram")
+        instagrams = (instance.instagram).all()
+        instagrams = list(instagrams)
+        facebooks_data = validated_data.pop("facebook")
+        facebooks = (instance.facebook).all()
+        facebooks = list(facebooks)
+        user_images = validated_data.pop("images")
+        users = (instance.images).all()
+        users = list(users)
+        # family = validated_data.pop('family')
         instance.name = validated_data.get("name", instance.name)   
         instance.lname = validated_data.get("lname", instance.lname)  
         instance.fathername = validated_data.get("fathername", instance.fathername)
         instance.birth_year = validated_data.get("birth_year", instance.birth_year)
         instance.features = validated_data.get("features", instance.features)
+        fmly = validated_data.get("family", instance.family)
+        families = (instance.family).all()
+        families = list(families)
+        for i in fmly:
+            instance.family.add(i)
         instance.save()
+        keep_phones_id = []
+        keep_works_id = []
+        keep_homes_id = []
+        keep_tiktoks_id = []
+        keep_fbs_id = []
+        keep_instgrms_id = []
+        keep_cars_id = []
+        keep_images_id = []
+        ids = [c.id for c in phones]
+        for phone_data in phones_data:
+            if "id" in phone_data.keys():
+                if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
+                    c = Phone.objects.get(id=phone_data["id"])
+                    print(type(phone_data))
+                    c.numbers = phone_data.get('numbers', c.numbers)
+                    c.save()
+                    keep_phones_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Phone.objects.create(ph_numbers_card=card,**phone_data)
+                keep_phones_id.append(c.id)
+        for ph in phones:
+            if ph.id not in keep_phones_id:
+                ph.delete()    
+        for work_data in works_data:
+            print('work isledi')
+            if  "id" in work_data.keys():   
+                if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
+                    c=Work.objects.get(id=work_data["id"])
+                    c.company_name = work_data.get('company_name', c.company_name)
+                    c.position = work_data.get('position', c.position)
+                    c.company_address = work_data.get('company_address', c.company_address)
+                    c.save()
+                    keep_works_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Work.objects.create(card_work=card, **work_data)
+                keep_works_id.append(c.id)          
+        for wk in works:
+            if wk.id not in keep_works_id:
+                wk.delete()         
+        for home_data in homes_data:
+            if "id" in home_data.keys():
+                if Home.objects.filter(id=home_data["id"],card_home=card):
+                    c=Home.objects.get(id=home_data["id"])
+                    c.home_address = home_data.get("home_address", c.home_address)
+                    c.save()
+                    keep_homes_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Home.objects.create(card_home=card, **home_data)
+                keep_homes_id(c.id)
+        for hm in homes:
+            if hm.id not in keep_homes_id:
+                hm.delete()
+        for tiktok_data in tiktoks_data:
+            if "id" in tiktok_data.keys():
+                if Tiktok.objects.filter(id=tiktok_data["id"], card_tiktok=card):
+                    c = Tiktok.objects.get(id=tiktok_data["id"])
+                    c.account = tiktok_data.get("account", c.account)
+                    c.save()
+                    keep_tiktoks_id.append(c.id)
+                else:
+                    continue
+            else:
+                c = Tiktok.objects.create(card_tiktok=card, **tiktok_data)
+                keep_tiktoks_id.append(c.id)    
+        for tk in tiktoks:
+            if tk.id not in keep_tiktoks_id:
+                tk.delete()
 
-        if tenda_data.get("phone"):
-            print('if ilsedi2')
-            for phone_data in phones_data: 
-                pho = phones.pop(0)
-                pho.numbers = phone_data.get("numbers")
-                pho.save()
-        if tenda_data.get("work"):
-            for work_data in works_data:    
-                wor = works.pop(0)
-                wor.company_name = work_data.get("company_name")   
-                wor.position = work_data.get("position")
-                wor.company_address = work_data.get("company_address")   
-                wor.save()   
-        if tenda_data.get("home"):
-            for home_data in homes_data:
-                hom = homes.pop(0)
-                hom.home_address = home_data.get("home_address")
-                hom.save()
-        if tenda_data.get("tiktok"):
-            for tiktok_data in tiktoks_data:
-                tik = tiktoks.pop(0)
-                tik.account = tiktok_data.get("account")
-                tik.save() 
-        if tenda_data.get("instagram"):
-            for instagram_data in instagrams_data:
-                ins = instagrams.pop(0)
-                ins.account = instagram_data.get("account")
-                ins.save()    
-        if tenda_data.get("facebook"):
-            for facebook_data in facebooks_data:
-                fac = facebooks.pop(0)
-                fac.account = facebook_data.get("account")
-                fac.save()
-        if tenda_data.get("car"):
-            for car_data in cars_data:
-                car = cars.pop(0)
-                color= car_data.get("car_color")
-                car.car_color = Color.objects.get(id=color['colors'])
-                choose= car_data.get("choose_car")
-                ch = ChooseCars.objects.get(id=choose['name'])
-                car.choose_car = ChooseCars.objects.get(id=choose['name']) 
-                model = car_data.get("car_model")
-                md = Car_Model.objects.get(id=model['carModels'])
-                print(ch,md.car_model)
-                if ch.id == md.car_model.id:
-                    car.car_model = Car_Model.objects.get(id=model['carModels'])
-                else: 
-                    car.car_model = None    
-                car.car_number = car_data.get("car_number")
-                car.save()                            
-        return instance
-    
+        for instagram_data in instagrams_data:
+            if "id" in instagram_data.keys():
+                if Instagram.objects.filter(id=instagram_data["id"], card_instagram=card):
+                    c = Instagram.objects.get(id=instagram_data["id"])
+                    c.account = instagram_data.get("account", c.account)
+                    c.save()
+                    keep_instgrms_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Instagram.objects.create(card_instagram=card, **instagram_data)
+                keep_instgrms_id.append(c.id)
+        for inst in instagrams:
+            if inst.id not in keep_instgrms_id:
+                inst.delete()    
 
+        for facebook_data in facebooks_data:
+            if "id" in facebook_data.keys():
+                if Facebook.objects.filter(id=facebook_data["id"], card_facebook=card):
+                    c = Facebook.objects.get(id=facebook_data["id"])
+                    c.account = facebook_data.get("account", c.account)
+                    c.save()
+                    keep_fbs_id.append(c.id)
+                else:
+                    continue
+            else:
+                c = Facebook.objects.create(card_facebook=card, **facebook_data)
+                keep_fbs_id.append(c.id)
+        for fb in facebooks:
+            if fb.id not in keep_fbs_id:
+                fb.delete()                
+        for car_data in cars_data:
+            if "id" in car_data.keys():
+                if Car.objects.filter(id=car_data["id"],card_cars=card):
+                    c=Car.objects.get(id=car_data["id"])
+                    car_color = Color.objects.get(id=car_data['car_color']['colors'])
+                    c.car_color=car_color
+                    car_choose = ChooseCars.objects.get(id=car_data['choose_car']['name'])
+                    c.choose_car=car_choose
+                    mod = Car_Model.objects.get(id=car_data['car_model']['carModels'])                  
+                    if car_choose.id == mod.car_model.id:
+                        c.car_model = mod
+                    else:
+                        c.car_model=None    
+                    c.car_number = car_data.get("car_number", c.car_number)
+                    c.save()
+                    keep_cars_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Car.objects.create(card_cars=card, **car_data)
+                keep_cars_id.append(c.id)
+        for cr in cars:
+            if cr.id not in keep_cars_id:
+                cr.delete()                                 
+        for user_image in user_images:
+            if "id" in user_image.keys():
+                if Photos.objects.filter(id=user_image["id"], user_image=card):
+                    c=Photos.objects.get(id=user_image["id"])
+                    c.save()
+                    keep_images_id.append(c.id)
+                else:
+                    continue
+            else:
+                c=Photos.objects.create(user_image=card, **user_image)
+                keep_images_id.append(c.id)     
+        for user_im in users:
+            if user_im.id not in keep_images_id:
+                user_im.delete()        
+        return instance    
 
 
     class Meta:
