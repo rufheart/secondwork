@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["id","username","image"]
 
 class ColorSerialize(serializers.ModelSerializer):
-
+    id = serializers.IntegerField(required=False)
     class Meta:
         model = Color
         fields = ['id','colors']
@@ -31,9 +31,9 @@ class CarModelSerializer(serializers.ModelSerializer):
         fields = ['id','carModels']        
 
 class CarSerializer(serializers.ModelSerializer):
-    car_color = ColorSerialize()
+    car_color = ColorSerialize(required=False)
     choose_car = ChooseCarSerialize()
-    car_model = CarModelSerializer()
+    car_model = CarModelSerializer(required=False)
     id = serializers.IntegerField(required=False)
     class Meta:
         model = Car
@@ -213,11 +213,16 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         instance.fathername = validated_data.get("fathername", instance.fathername)
         instance.birth_year = validated_data.get("birth_year", instance.birth_year)
         instance.features = validated_data.get("features", instance.features)
-        fmly = validated_data.get("family", instance.family)
+        fmly = validated_data.get("family", instance.family)  #Bu hissesin put-a bax
         families = (instance.family).all()
         families = list(families)
-        for i in fmly:
-            instance.family.add(i)
+        if validated_data.get("family"): 
+            print('family isledi')   
+            for i in fmly:
+                instance.family.add(i)  
+        else:
+            for i in families:
+                instance.family.remove(i) 
         instance.save()
         keep_phones_id = []
         keep_works_id = []
@@ -239,19 +244,24 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
-                c=Phone.objects.create(ph_numbers_card=card,**phone_data)
+                c=Phone.objects.create(ph_numbers_card=card,**phone_data)        #Bu daxil edilen datanin idsi olmasa yeni data yaradir
                 keep_phones_id.append(c.id)
         for ph in phones:
-            if ph.id not in keep_phones_id:
+            if ph.id not in keep_phones_id:     #Eger evvleceden olan deyerin ve ya deyerlerin id-si burda olazsa hemin deyeri yaxud deyerleri silir
                 ph.delete()    
         for work_data in works_data:
             print('work isledi')
             if  "id" in work_data.keys():   
                 if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
                     c=Work.objects.get(id=work_data["id"])
-                    c.company_name = work_data.get('company_name', c.company_name)
-                    c.position = work_data.get('position', c.position)
-                    c.company_address = work_data.get('company_address', c.company_address)
+                    if work_data.get('company_name') != "":
+                        c.company_name = work_data.get('company_name', c.company_name)
+                    elif work_data.get('company_name') == "":
+                        c.company_name = None    
+                    if work_data.get('position') != "":
+                        c.position = work_data.get('position', c.position)
+                    if work_data.get('company_address') == "":
+                        c.company_address = work_data.get('company_address', c.company_address)
                     c.save()
                     keep_works_id.append(c.id)
                 else:
@@ -328,16 +338,25 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
             if "id" in car_data.keys():
                 if Car.objects.filter(id=car_data["id"],card_cars=card):
                     c=Car.objects.get(id=car_data["id"])
-                    car_color = Color.objects.get(id=car_data['car_color']['colors'])
-                    c.car_color=car_color
+                    if car_data['car_color'] !={}:
+                        car_color = Color.objects.get(id=car_data['car_color']['colors'])
+                        c.car_color=car_color
+                    elif car_data['car_color'] =={}:
+                        c.car_color = None
                     car_choose = ChooseCars.objects.get(id=car_data['choose_car']['name'])
                     c.choose_car=car_choose
-                    mod = Car_Model.objects.get(id=car_data['car_model']['carModels'])                  
-                    if car_choose.id == mod.car_model.id:
-                        c.car_model = mod
-                    else:
-                        c.car_model=None    
-                    c.car_number = car_data.get("car_number", c.car_number)
+                    if car_data['car_model'] !={}:
+                        mod = Car_Model.objects.get(id=car_data['car_model']['carModels'])                  
+                        if car_choose.id == mod.car_model.id:
+                            c.car_model = mod
+                        else:
+                            c.car_model=None    
+                    elif car_data['car_model'] == {}:
+                        c.car_model = None
+                    if car_data.get("car_number") !="":     
+                        c.car_number = car_data.get("car_number", c.car_number)
+                    elif car_data.get("car_number") =="":
+                        c.car_number = None
                     c.save()
                     keep_cars_id.append(c.id)
                 else:
@@ -346,6 +365,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 c=Car.objects.create(card_cars=card, **car_data)
                 keep_cars_id.append(c.id)
         for cr in cars:
+            print('car -----')
             if cr.id not in keep_cars_id:
                 cr.delete()                                 
         for user_image in user_images:
@@ -383,7 +403,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data): 
         tenda_data = validated_data.copy()
-        print('update isledi')  
+        print(tenda_data)
         card = Card_Main.objects.get(id=instance.id) 
         if validated_data.get("phone"):
             phones_data= validated_data.pop("phone")
@@ -410,7 +430,6 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         instagrams = (instance.instagram).all()
         instagrams = list(instagrams)
         if validated_data.get("facebook"): 
-            print('fb')   
             facebooks_data = validated_data.pop("facebook")
         facebooks = (instance.facebook).all()
         facebooks = list(facebooks)
@@ -425,11 +444,15 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         instance.features = validated_data.get("features", instance.features)
         if validated_data.get("family"):
             fmly = validated_data.pop("family", instance.family)
-            families = (instance.family).all()
-            families = list(families)
-        if tenda_data.get("family"):    
+        families = (instance.family).all()
+        families = list(families)
+        if tenda_data.get("family"): 
+            print('family isledi')   
             for i in fmly:
-                instance.family.add(i)
+                instance.family.add(i)  
+        else:
+            for i in families:
+                instance.family.remove(i)             
         instance.save()
         keep_phones_id = []
         keep_works_id = []
@@ -445,7 +468,6 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                 if "id" in phone_data.keys():
                     if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
                         c = Phone.objects.get(id=phone_data["id"])
-                        print(type(phone_data))
                         c.numbers = phone_data.get('numbers', c.numbers)
                         c.save()
                         keep_phones_id.append(c.id)
@@ -454,25 +476,47 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                 else:
                     c=Phone.objects.create(ph_numbers_card=card,**phone_data)
                     keep_phones_id.append(c.id)
+        elif tenda_data.get("phone") == []:
+            phone = Phone.objects.filter(ph_numbers_card=card)
+            phone.delete()
+        else:
+            for ph in range(len(phones)):
+                phs = phones.pop(0)
+                phs.save()
         for ph in phones:
             if ph.id not in keep_phones_id:
                 ph.delete()    
         if tenda_data.get("work"):         
             for work_data in works_data:
-                print('work isledi')
                 if  "id" in work_data.keys():   
                     if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
                         c=Work.objects.get(id=work_data["id"])
-                        c.company_name = work_data.get('company_name', c.company_name)
-                        c.position = work_data.get('position', c.position)
-                        c.company_address = work_data.get('company_address', c.company_address)
+                        if work_data.get('company_name') !="":
+                            c.company_name = work_data.get('company_name', c.company_name)
+                        elif work_data.get('company_name')=="":
+                            c.company_name = None    
+                        if work_data.get('position') !="":
+                            c.position = work_data.get('position', c.position)
+                        elif work_data.get('position') =="":
+                            c.position = None    
+                        if work_data.get('company_address')!="":
+                            c.company_address = work_data.get('company_address', c.company_address)
+                        elif work_data.get('company_address') == "":
+                            c.company_address = None
                         c.save()
                         keep_works_id.append(c.id)
                     else:
                         continue
                 else:
                     c=Work.objects.create(card_work=card, **work_data)
-                    keep_works_id.append(c.id)          
+                    keep_works_id.append(c.id)   
+        elif tenda_data.get("work") == []:
+            work = Work.objects.filter(card_work=card)
+            work.delete()
+        else:
+            for wk in range(len(works)):
+                wks = works.pop(0)
+                wks.save()                       
         for wk in works:
             if wk.id not in keep_works_id:
                 wk.delete()   
@@ -504,10 +548,19 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                         continue
                 else:
                     c = Tiktok.objects.create(card_tiktok=card, **tiktok_data)
-                    keep_tiktoks_id.append(c.id)    
+                    keep_tiktoks_id.append(c.id)
+        elif tenda_data.get("tiktok") == []:
+            tiktok = Tiktok.objects.filter(card_tiktok=card)
+            tiktok.delete()
+        else:
+            for t in range(len(tiktoks)):
+                tki = tiktoks.pop(0)
+                tki.save()
+                             
         for tk in tiktoks:
             if tk.id not in keep_tiktoks_id:
                 tk.delete()
+
         if tenda_data.get("instagram"):
             for instagram_data in instagrams_data:
                 if "id" in instagram_data.keys():
@@ -521,9 +574,17 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                 else:
                     c=Instagram.objects.create(card_instagram=card, **instagram_data)
                     keep_instgrms_id.append(c.id)
+        elif tenda_data.get("instagram")==[]:
+            instag = Instagram.objects.filter(card_instagram=card)
+            instag.delete()
+        else:
+            for ins in range(len(instagrams)):
+                inss =  instagrams.pop(0)
+                inss.save()           
         for inst in instagrams:
             if inst.id not in keep_instgrms_id:
-                inst.delete()    
+                inst.delete() 
+
         if tenda_data.get("facebook"):
             for facebook_data in facebooks_data:
                 if "id" in facebook_data.keys():
@@ -537,24 +598,49 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                 else:
                     c = Facebook.objects.create(card_facebook=card, **facebook_data)
                     keep_fbs_id.append(c.id)
+        elif tenda_data.get("facebook")==[]:
+            face = Facebook.objects.filter(card_facebook=card)
+            face.delete()
+        else:
+            for fb in range(len(facebooks)):
+                fbs = facebooks.pop(0)
+                fbs.save()            
         for fb in facebooks:
             if fb.id not in keep_fbs_id:
                 fb.delete()  
-        if tenda_data.get("car"):              
+
+        if tenda_data.get("car"): 
+            print('car')             
             for car_data in cars_data:
+                print(car_data)
                 if "id" in car_data.keys():
                     if Car.objects.filter(id=car_data["id"],card_cars=card):
                         c=Car.objects.get(id=car_data["id"])
-                        car_color = Color.objects.get(id=car_data['car_color']['colors'])
-                        c.car_color=car_color
+                        if car_data['car_color'] != {}:
+                            if car_data['car_color']['colors'] != "----":
+                                car_color = Color.objects.get(id=car_data['car_color']['colors'])
+                                c.car_color=car_color
+                        elif car_data['car_color'] == {}:  
+                            c.car_color = None     
+                        # elif car_data['car_color']['colors'] == "----":   
+                        #     c.car_color = None   
                         car_choose = ChooseCars.objects.get(id=car_data['choose_car']['name'])
                         c.choose_car=car_choose
-                        mod = Car_Model.objects.get(id=car_data['car_model']['carModels'])                  
-                        if car_choose.id == mod.car_model.id:
-                            c.car_model = mod
-                        else:
-                            c.car_model=None    
-                        c.car_number = car_data.get("car_number", c.car_number)
+                        if car_data['car_model'] !={}:
+                            if car_data['car_model']["carModels"] != "----":
+                                mod = Car_Model.objects.get(id=car_data['car_model']['carModels'])                  
+                                if car_choose.id == mod.car_model.id:
+                                    c.car_model = mod
+                                else:
+                                    c.car_model=None   
+                            elif car_data["car_model"]["carModels"] == "----":
+                                c.car_model = None 
+                        elif car_data['car_model'] =={}:
+                            c.car_model=None
+                        if car_data.get("car_number") !="":     
+                            c.car_number = car_data.get("car_number", c.car_number)
+                        elif car_data.get("car_number") =="":
+                            c.car_number = None
                         c.save()
                         keep_cars_id.append(c.id)
                     else:
@@ -562,6 +648,13 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                 else:
                     c=Car.objects.create(card_cars=card, **car_data)
                     keep_cars_id.append(c.id)
+        elif tenda_data.get("car") == []:
+            car=Car.objects.filter(card_cars=card)
+            car.delete()
+        else:
+            for cr in range(len(cars)):
+                crs = cars.pop(0)
+                crs.save()
         for cr in cars:
             if cr.id not in keep_cars_id:
                 cr.delete()
@@ -576,7 +669,10 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                         continue
                 else:
                     c=Photos.objects.create(user_image=card, **user_image)
-                    keep_images_id.append(c.id)     
+                    keep_images_id.append(c.id)   
+        elif tenda_data.get("images"):
+            images = Photos.objects.filter(user_image=card)
+            images.delete()             
         for user_im in users:
             if user_im.id not in keep_images_id:
                 user_im.delete()        

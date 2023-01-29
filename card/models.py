@@ -28,7 +28,7 @@ class Photos(models.Model):
 
 class Phone(models.Model):
     ph_numbers_card = models.ForeignKey(Card_Main, related_name="phone", on_delete=models.CASCADE)
-    numbers = models.CharField(max_length=15, blank=True,null=True)
+    numbers = models.CharField(max_length=15)
 
     def __str__(self) -> str:
         return self.numbers
@@ -44,20 +44,20 @@ class Work(models.Model):
     
 
 class Color(models.Model):
-    colors = models.CharField(max_length=36,blank=True,null=True)  
+    colors = models.CharField(max_length=36)  
 
     def __str__(self) -> str:
         return self.colors  
 
 class ChooseCars(models.Model):
-    name = models.CharField(max_length=40,blank=True,null=True)
+    name = models.CharField(max_length=40)
 
     def __str__(self) -> str:
         return self.name 
 
 class Car_Model(models.Model):
     car_model = models.ForeignKey(ChooseCars, related_name="car_model",on_delete=models.CASCADE)
-    carModels = models.CharField(max_length=35,blank=True,null=True)
+    carModels = models.CharField(max_length=35)
 
 
 
@@ -74,7 +74,7 @@ class Car(models.Model):
 
 class Home(models.Model):
     card_home = models.ForeignKey(Card_Main, related_name="home", on_delete=models.CASCADE)
-    home_address = models.CharField(max_length=45,blank=True,null=True) 
+    home_address = models.CharField(max_length=45) 
 
     def __str__(self) -> str:
         return self.home_address
@@ -83,7 +83,7 @@ class Home(models.Model):
 class Comments(models.Model):
     card_comment = models.OneToOneField(Card_Main, related_name='comments',on_delete=models.CASCADE)
     user_comment = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
-    comments = models.TextField(blank=True,null=True)
+    comments = models.TextField()
 
 class About(models.Model):
     card_about = models.OneToOneField(Card_Main, related_name="card_main1",on_delete=models.CASCADE)  
