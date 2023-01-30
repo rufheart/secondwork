@@ -33,7 +33,7 @@ class CarModelSerializer(serializers.ModelSerializer):
 class CarSerializer(serializers.ModelSerializer):
     car_color = ColorSerialize(required=False)
     choose_car = ChooseCarSerialize()
-    car_model = CarModelSerializer(required=False)
+    car_model = CarModelSerializer(default='')
     id = serializers.IntegerField(required=False)
     class Meta:
         model = Car
@@ -52,6 +52,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['user_comment','comments']
 
 class PhoneSerializer(serializers.ModelSerializer):
+    print('phone sial isledi')
     id = serializers.IntegerField(required=False)
     class Meta:
         model = Phone
@@ -336,22 +337,26 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 fb.delete()                
         for car_data in cars_data:
             if "id" in car_data.keys():
+                print(car_data)
                 if Car.objects.filter(id=car_data["id"],card_cars=card):
+                    print('ikinci if isledi')
                     c=Car.objects.get(id=car_data["id"])
-                    if car_data['car_color'] !={}:
+                    if car_data['car_color']['colors'] !="----":
+                        print('if color')
                         car_color = Color.objects.get(id=car_data['car_color']['colors'])
                         c.car_color=car_color
-                    elif car_data['car_color'] =={}:
+                    elif car_data['car_color']['colors'] =="----":
+                        print('elif color')
                         c.car_color = None
                     car_choose = ChooseCars.objects.get(id=car_data['choose_car']['name'])
                     c.choose_car=car_choose
-                    if car_data['car_model'] !={}:
+                    if car_data['car_model']['carModels'] != "----":
                         mod = Car_Model.objects.get(id=car_data['car_model']['carModels'])                  
                         if car_choose.id == mod.car_model.id:
                             c.car_model = mod
                         else:
                             c.car_model=None    
-                    elif car_data['car_model'] == {}:
+                    elif car_data['car_model']['carModels'] == "----":
                         c.car_model = None
                     if car_data.get("car_number") !="":     
                         c.car_number = car_data.get("car_number", c.car_number)
@@ -362,10 +367,29 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
+                select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
+                if car_data['car_model'] != {}:
+                    if car_data['car_model']['carModels']:
+                        data_car = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                        if select.id==data_car.car_model.id:
+                            car_model = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                        else:
+                            car_model=None
+                    else:
+                        car_model=None
+                elif car_data['car_model'] == {}:
+                    car_model = None
+                if car_data['car_color'] != {}: 
+                    if car_data['car_color']['colors']:
+                        car_color = Color.objects.get(id=car_data['car_color']['colors']) 
+                    else:
+                        car_color = None
+                elif car_data['car_color'] == {}:
+                    car_model = None
+                car_data.update({"choose_car":select,"car_color":car_color,"car_model":car_model})
                 c=Car.objects.create(card_cars=card, **car_data)
                 keep_cars_id.append(c.id)
         for cr in cars:
-            print('car -----')
             if cr.id not in keep_cars_id:
                 cr.delete()                                 
         for user_image in user_images:
@@ -447,7 +471,6 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         families = (instance.family).all()
         families = list(families)
         if tenda_data.get("family"): 
-            print('family isledi')   
             for i in fmly:
                 instance.family.add(i)  
         else:
@@ -617,9 +640,10 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                     if Car.objects.filter(id=car_data["id"],card_cars=card):
                         c=Car.objects.get(id=car_data["id"])
                         if car_data['car_color'] != {}:
-                            if car_data['car_color']['colors'] != "----":
-                                car_color = Color.objects.get(id=car_data['car_color']['colors'])
-                                c.car_color=car_color
+                            print('cardaki if isledi')
+                            # if car_data['car_color']['colors'] != "----":
+                            car_color = Color.objects.get(id=car_data['car_color']['colors'])
+                            c.car_color=car_color
                         elif car_data['car_color'] == {}:  
                             c.car_color = None     
                         # elif car_data['car_color']['colors'] == "----":   
@@ -646,6 +670,26 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                     else:
                         continue
                 else:
+                    select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
+                    if car_data['car_model'] != {}:
+                        if car_data['car_model']['carModels']:
+                            data_car = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                            if select.id==data_car.car_model.id:
+                                car_model = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                            else:
+                                car_model=None
+                        else:
+                            car_model=None
+                    elif car_data['car_model'] == {}:
+                        car_model = None   
+                    if car_data['car_color'] != {}:     
+                        if car_data['car_color']['colors']:
+                            car_color = Color.objects.get(id=car_data['car_color']['colors']) 
+                        else:
+                            car_color = None
+                    elif car_data['car_color'] == {}:
+                        car_color = None        
+                    car_data.update({"choose_car":select,"car_color":car_color,"car_model":car_model})
                     c=Car.objects.create(card_cars=card, **car_data)
                     keep_cars_id.append(c.id)
         elif tenda_data.get("car") == []:
