@@ -217,8 +217,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         fmly = validated_data.get("family", instance.family)  #Bu hissesin put-a bax
         families = (instance.family).all()
         families = list(families)
-        if validated_data.get("family"): 
-            print('family isledi')   
+        if validated_data.get("family"):    
             for i in fmly:
                 instance.family.add(i)  
         else:
@@ -238,7 +237,6 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
             if "id" in phone_data.keys():
                 if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
                     c = Phone.objects.get(id=phone_data["id"])
-                    print(type(phone_data))
                     c.numbers = phone_data.get('numbers', c.numbers)
                     c.save()
                     keep_phones_id.append(c.id)
@@ -251,7 +249,6 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
             if ph.id not in keep_phones_id:     #Eger evvleceden olan deyerin ve ya deyerlerin id-si burda olazsa hemin deyeri yaxud deyerleri silir
                 ph.delete()    
         for work_data in works_data:
-            print('work isledi')
             if  "id" in work_data.keys():   
                 if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
                     c=Work.objects.get(id=work_data["id"])

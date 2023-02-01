@@ -20,7 +20,6 @@ class CardApi(APIView):
         # user1=request.user.pk
         user1 = User.objects.all()[0].id
         data=request.data
-        print(user1,'+++++++++++++++++++++++++')
         data.update({'user':user1})
         serializer = CreateCardSerializer(data=data)
         if serializer.is_valid():
