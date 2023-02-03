@@ -16,8 +16,6 @@ class CardApi(APIView):
         return Response(data=serializer.data)
 
     def post(self, request, format=None):
-        print(ChooseCars.objects.all()[0])
-        # user1=request.user.pk
         user1 = User.objects.all()[0].id
         data=request.data
         data.update({'user':user1})
