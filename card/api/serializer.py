@@ -134,19 +134,19 @@ class CreateCardSerializer(serializers.ModelSerializer):
                 card.save()
         
         for phone_data in phones_data:
-            Phone.objects.create(ph_numbers_card=card,**phone_data)
+            Phone.objects.create(card_phones=card,**phone_data)
         for work_data in works_data:
-            Work.objects.create(card_work=card,**work_data) 
+            Work.objects.create(card_works=card,**work_data) 
         for home_data in homes_data:
-            Home.objects.create(card_home=card,**home_data) 
+            Home.objects.create(card_homes=card,**home_data) 
         for tiktok_data in tiktoks_data:
-            Tiktok.objects.create(card_tiktok=card,**tiktok_data)
+            Tiktok.objects.create(card_tiktoks=card,**tiktok_data)
         for instagram_data in instagrams_data:
-            Instagram.objects.create(card_instagram=card,**instagram_data)
+            Instagram.objects.create(card_instagrams=card,**instagram_data)
         for facebook_data in facebooks_data:
-            Facebook.objects.create(card_facebook=card,**facebook_data)
+            Facebook.objects.create(card_facebooks=card,**facebook_data)
         for user_image in user_images:
-            Photos.objects.create(user_image=card,**user_image)
+            Photos.objects.create(card_photos=card,**user_image)
 
         for car_data in cars_data:
             select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
@@ -235,7 +235,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
         ids = [c.id for c in phones]
         for phone_data in phones_data:
             if "id" in phone_data.keys():
-                if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
+                if Phone.objects.filter(id=phone_data["id"],card_phones=card).exists():
                     c = Phone.objects.get(id=phone_data["id"])
                     c.numbers = phone_data.get('numbers', c.numbers)
                     c.save()
@@ -243,7 +243,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
-                c=Phone.objects.create(ph_numbers_card=card,**phone_data)        #Bu daxil edilen datanin idsi olmasa yeni data yaradir
+                c=Phone.objects.create(card_phones=card,**phone_data)        #Bu daxil edilen datanin idsi olmasa yeni data yaradir
                 keep_phones_id.append(c.id)
         for ph in phones:
             if ph.id not in keep_phones_id:     #Eger evvleceden olan deyerin ve ya deyerlerin id-si burda olazsa hemin deyeri yaxud deyerleri silir
@@ -486,7 +486,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         if tenda_data.get("phone"):
             for phone_data in phones_data:
                 if "id" in phone_data.keys():
-                    if Phone.objects.filter(id=phone_data["id"],ph_numbers_card=card).exists():
+                    if Phone.objects.filter(id=phone_data["id"],card_phones=card).exists():
                         c = Phone.objects.get(id=phone_data["id"])
                         c.numbers = phone_data.get('numbers', c.numbers)
                         c.save()
