@@ -250,7 +250,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 ph.delete()    
         for work_data in works_data:
             if  "id" in work_data.keys():   
-                if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
+                if  Work.objects.filter(id=work_data["id"],card_works=card).exists():
                     c=Work.objects.get(id=work_data["id"])
                     if work_data.get('company_name') != "":
                         c.company_name = work_data.get('company_name', c.company_name)
@@ -265,14 +265,14 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
-                c=Work.objects.create(card_work=card, **work_data)
+                c=Work.objects.create(card_works=card, **work_data)
                 keep_works_id.append(c.id)          
         for wk in works:
             if wk.id not in keep_works_id:
                 wk.delete()         
         for home_data in homes_data:
             if "id" in home_data.keys():
-                if Home.objects.filter(id=home_data["id"],card_home=card):
+                if Home.objects.filter(id=home_data["id"],card_homes=card):
                     c=Home.objects.get(id=home_data["id"])
                     c.home_address = home_data.get("home_address", c.home_address)
                     c.save()
@@ -280,14 +280,14 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
-                c=Home.objects.create(card_home=card, **home_data)
+                c=Home.objects.create(card_homes=card, **home_data)
                 keep_homes_id(c.id)
         for hm in homes:
             if hm.id not in keep_homes_id:
                 hm.delete()
         for tiktok_data in tiktoks_data:
             if "id" in tiktok_data.keys():
-                if Tiktok.objects.filter(id=tiktok_data["id"], card_tiktok=card):
+                if Tiktok.objects.filter(id=tiktok_data["id"], card_tiktoks=card):
                     c = Tiktok.objects.get(id=tiktok_data["id"])
                     c.account = tiktok_data.get("account", c.account)
                     c.save()
@@ -295,7 +295,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
-                c = Tiktok.objects.create(card_tiktok=card, **tiktok_data)
+                c = Tiktok.objects.create(card_tiktoks=card, **tiktok_data)
                 keep_tiktoks_id.append(c.id)    
         for tk in tiktoks:
             if tk.id not in keep_tiktoks_id:
@@ -303,7 +303,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
 
         for instagram_data in instagrams_data:
             if "id" in instagram_data.keys():
-                if Instagram.objects.filter(id=instagram_data["id"], card_instagram=card):
+                if Instagram.objects.filter(id=instagram_data["id"], card_instagrams=card):
                     c = Instagram.objects.get(id=instagram_data["id"])
                     c.account = instagram_data.get("account", c.account)
                     c.save()
@@ -311,7 +311,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
-                c=Instagram.objects.create(card_instagram=card, **instagram_data)
+                c=Instagram.objects.create(card_instagrams=card, **instagram_data)
                 keep_instgrms_id.append(c.id)
         for inst in instagrams:
             if inst.id not in keep_instgrms_id:
@@ -319,7 +319,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
 
         for facebook_data in facebooks_data:
             if "id" in facebook_data.keys():
-                if Facebook.objects.filter(id=facebook_data["id"], card_facebook=card):
+                if Facebook.objects.filter(id=facebook_data["id"], card_facebooks=card):
                     c = Facebook.objects.get(id=facebook_data["id"])
                     c.account = facebook_data.get("account", c.account)
                     c.save()
@@ -327,7 +327,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 else:
                     continue
             else:
-                c = Facebook.objects.create(card_facebook=card, **facebook_data)
+                c = Facebook.objects.create(card_facebooks=card, **facebook_data)
                 keep_fbs_id.append(c.id)
         for fb in facebooks:
             if fb.id not in keep_fbs_id:
@@ -424,7 +424,6 @@ class UpdateCardSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data): 
         tenda_data = validated_data.copy()
-        print(tenda_data)
         card = Card_Main.objects.get(id=instance.id) 
         if validated_data.get("phone"):
             phones_data= validated_data.pop("phone")
@@ -494,10 +493,10 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                     else:
                         continue
                 else:
-                    c=Phone.objects.create(ph_numbers_card=card,**phone_data)
+                    c=Phone.objects.create(card_phones=card,**phone_data)
                     keep_phones_id.append(c.id)
         elif tenda_data.get("phone") == []:
-            phone = Phone.objects.filter(ph_numbers_card=card)
+            phone = Phone.objects.filter(card_phones=card)
             phone.delete()
         else:
             for ph in range(len(phones)):
@@ -509,7 +508,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         if tenda_data.get("work"):         
             for work_data in works_data:
                 if  "id" in work_data.keys():   
-                    if  Work.objects.filter(id=work_data["id"],card_work=card).exists():
+                    if  Work.objects.filter(id=work_data["id"],card_works=card).exists():
                         c=Work.objects.get(id=work_data["id"])
                         if work_data.get('company_name') !="":
                             c.company_name = work_data.get('company_name', c.company_name)
@@ -528,10 +527,10 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                     else:
                         continue
                 else:
-                    c=Work.objects.create(card_work=card, **work_data)
+                    c=Work.objects.create(card_works=card, **work_data)
                     keep_works_id.append(c.id)   
         elif tenda_data.get("work") == []:
-            work = Work.objects.filter(card_work=card)
+            work = Work.objects.filter(card_works=card)
             work.delete()
         else:
             for wk in range(len(works)):
@@ -543,7 +542,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         if tenda_data.get("home"):                      
             for home_data in homes_data:
                 if "id" in home_data.keys():
-                    if Home.objects.filter(id=home_data["id"],card_home=card):
+                    if Home.objects.filter(id=home_data["id"],card_homes=card):
                         c=Home.objects.get(id=home_data["id"])
                         c.home_address = home_data.get("home_address", c.home_address)
                         c.save()
@@ -551,7 +550,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                     else:
                         continue
                 else:
-                    c=Home.objects.create(card_home=card, **home_data)
+                    c=Home.objects.create(card_homes=card, **home_data)
                     keep_homes_id(c.id)
         for hm in homes:
             if hm.id not in keep_homes_id:
@@ -559,7 +558,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         if tenda_data.get("tiktok"):                           
             for tiktok_data in tiktoks_data:
                 if "id" in tiktok_data.keys():
-                    if Tiktok.objects.filter(id=tiktok_data["id"], card_tiktok=card):
+                    if Tiktok.objects.filter(id=tiktok_data["id"], card_tiktoks=card):
                         c = Tiktok.objects.get(id=tiktok_data["id"])
                         c.account = tiktok_data.get("account", c.account)
                         c.save()
@@ -567,10 +566,10 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                     else:
                         continue
                 else:
-                    c = Tiktok.objects.create(card_tiktok=card, **tiktok_data)
+                    c = Tiktok.objects.create(card_tiktoks=card, **tiktok_data)
                     keep_tiktoks_id.append(c.id)
         elif tenda_data.get("tiktok") == []:
-            tiktok = Tiktok.objects.filter(card_tiktok=card)
+            tiktok = Tiktok.objects.filter(card_tiktoks=card)
             tiktok.delete()
         else:
             for t in range(len(tiktoks)):
@@ -584,7 +583,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         if tenda_data.get("instagram"):
             for instagram_data in instagrams_data:
                 if "id" in instagram_data.keys():
-                    if Instagram.objects.filter(id=instagram_data["id"], card_instagram=card):
+                    if Instagram.objects.filter(id=instagram_data["id"], card_instagrams=card):
                         c = Instagram.objects.get(id=instagram_data["id"])
                         c.account = instagram_data.get("account", c.account)
                         c.save()
@@ -592,10 +591,10 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                     else:
                         continue
                 else:
-                    c=Instagram.objects.create(card_instagram=card, **instagram_data)
+                    c=Instagram.objects.create(card_instagrams=card, **instagram_data)
                     keep_instgrms_id.append(c.id)
         elif tenda_data.get("instagram")==[]:
-            instag = Instagram.objects.filter(card_instagram=card)
+            instag = Instagram.objects.filter(card_instagrams=card)
             instag.delete()
         else:
             for ins in range(len(instagrams)):
@@ -608,7 +607,7 @@ class UpdateCardSerializer(serializers.ModelSerializer):
         if tenda_data.get("facebook"):
             for facebook_data in facebooks_data:
                 if "id" in facebook_data.keys():
-                    if Facebook.objects.filter(id=facebook_data["id"], card_facebook=card):
+                    if Facebook.objects.filter(id=facebook_data["id"], card_facebooks=card):
                         c = Facebook.objects.get(id=facebook_data["id"])
                         c.account = facebook_data.get("account", c.account)
                         c.save()
@@ -630,14 +629,11 @@ class UpdateCardSerializer(serializers.ModelSerializer):
                 fb.delete()  
 
         if tenda_data.get("car"): 
-            print('car')             
             for car_data in cars_data:
-                print(car_data)
                 if "id" in car_data.keys():
                     if Car.objects.filter(id=car_data["id"],card_cars=card):
                         c=Car.objects.get(id=car_data["id"])
                         if car_data['car_color'] != {}:
-                            print('cardaki if isledi')
                             # if car_data['car_color']['colors'] != "----":
                             car_color = Color.objects.get(id=car_data['car_color']['colors'])
                             c.car_color=car_color

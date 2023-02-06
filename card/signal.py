@@ -6,7 +6,10 @@ from django.dispatch import receiver
 id=0
 @receiver(post_save)
 def created_card(sender, instance ,created=False, **kwargs):
-    if created:
+    
+
+    if created:   
+        print(instance,'created')     
         lists = ['Phone','Work','Home','Tiktok','Instagram','Facebook','Car']
         global id        
         if sender.__name__ == 'Card_Main':
@@ -16,8 +19,9 @@ def created_card(sender, instance ,created=False, **kwargs):
             if sender.__name__==alfa:
                 if alfa=='Phone' and id!=0:
                     about=About.objects.get(card_about=id)
-                    about.phone=True
-                    about.save() 
+                    for i in range(len(dir(about))):
+                        if dir(about)[i] == alfa.lower():
+                            pass
                 if alfa=='Work' and id!=0:
                     about=About.objects.get(card_about=id)
                     about.work=True
@@ -65,11 +69,10 @@ def created_card(sender, instance ,created=False, **kwargs):
                     about.save()   
                 if about.car==None:
                     about.car=False
-                    about.save()                                                                                                                       
-                                                                                                                     
-
-
-
+                    about.save()     
+    if not created:
+        print(instance, 'not created')
+        
 
 
 
