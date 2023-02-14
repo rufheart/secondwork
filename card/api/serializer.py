@@ -18,17 +18,24 @@ class ColorSerialize(serializers.ModelSerializer):
         model = Color
         fields = ['id','colors']
 
-class ChooseCarSerialize(serializers.ModelSerializer):
-    id = serializers.IntegerField(required=False)
-    class Meta:
-        model = ChooseCars
-        fields = ['id','name']        
-
 class CarModelSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     class Meta:
         model = Car_Model
-        fields = ['id','carModels']        
+        fields = ['id','carModels']   
+
+class ChooseCarSerialize(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    class Meta:
+        model = ChooseCars
+        fields = ['id','name']   
+
+# class ChooseCarSerializeTwo(serializers.ModelSerializer):
+
+#     car_model=CarModelSerializer(many=True)
+#     class Meta:
+#         model = ChooseCars
+#         fields = ['car_model']               
 
 class CarSerializer(serializers.ModelSerializer):
     car_color = ColorSerialize(required=False)
@@ -127,7 +134,7 @@ class CreateCardSerializer(serializers.ModelSerializer):
         user_images = validated_data.pop("images")
         family = validated_data.pop('family')
         card = Card_Main.objects.create(**validated_data)
-        
+        print(phones_data,facebooks_data,'===>serialize')
         for i in family:
             if i != card:
                 card.family.add(i)
@@ -180,6 +187,56 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
     tiktok = TiktokSerializer(many=True)
     instagram = InstagramSerializer(many=True)
     facebook = FacebookSerializer(many=True)
+
+    def create(self, validated_data):
+        phones_data= validated_data.pop("phone")
+        works_data = validated_data.pop("work")
+        homes_data = validated_data.pop("home")
+        cars_data = validated_data.pop("car")
+        tiktoks_data = validated_data.pop("tiktok")
+        instagrams_data = validated_data.pop("instagram")
+        facebooks_data = validated_data.pop("facebook")
+        user_images = validated_data.pop("images")
+        family = validated_data.pop('family')
+        card = Card_Main.objects.create(**validated_data)
+        print(phones_data,facebooks_data,'===>serialize')
+        for i in family:
+            if i != card:
+                card.family.add(i)
+                card.save()
+        
+        for phone_data in phones_data:
+            Phone.objects.create(card_phones=card,**phone_data)
+        for work_data in works_data:
+            Work.objects.create(card_works=card,**work_data) 
+        for home_data in homes_data:
+            Home.objects.create(card_homes=card,**home_data) 
+        for tiktok_data in tiktoks_data:
+            Tiktok.objects.create(card_tiktoks=card,**tiktok_data)
+        for instagram_data in instagrams_data:
+            Instagram.objects.create(card_instagrams=card,**instagram_data)
+        for facebook_data in facebooks_data:
+            Facebook.objects.create(card_facebooks=card,**facebook_data)
+        for user_image in user_images:
+            Photos.objects.create(card_photos=card,**user_image)
+
+        for car_data in cars_data:
+            select = ChooseCars.objects.get(id=car_data['choose_car']['name'])
+            if car_data['car_model']['carModels']:
+                data_car = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                if select.id==data_car.car_model.id:
+                    car_model = Car_Model.objects.get(id=car_data['car_model']['carModels'])
+                else:
+                    car_model=None
+            else:
+                car_model=None
+            if car_data['car_color']['colors']:
+                car_color = Color.objects.get(id=car_data['car_color']['colors']) 
+            else:
+                car_color = None
+            car_data.update({"choose_car":select,"car_color":car_color,"car_model":car_model})
+            Car.objects.create(card_cars=card,**car_data)
+        return card    
   
 
     def update(self, instance, validated_data):   
@@ -281,7 +338,7 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                     continue
             else:
                 c=Home.objects.create(card_homes=card, **home_data)
-                keep_homes_id(c.id)
+                keep_homes_id.append(c.id)
         for hm in homes:
             if hm.id not in keep_homes_id:
                 hm.delete()
@@ -334,16 +391,12 @@ class UpdateCardSerializerPut(serializers.ModelSerializer):
                 fb.delete()                
         for car_data in cars_data:
             if "id" in car_data.keys():
-                print(car_data)
                 if Car.objects.filter(id=car_data["id"],card_cars=card):
-                    print('ikinci if isledi')
                     c=Car.objects.get(id=car_data["id"])
                     if car_data['car_color']['colors'] !="----":
-                        print('if color')
                         car_color = Color.objects.get(id=car_data['car_color']['colors'])
                         c.car_color=car_color
                     elif car_data['car_color']['colors'] =="----":
-                        print('elif color')
                         c.car_color = None
                     car_choose = ChooseCars.objects.get(id=car_data['choose_car']['name'])
                     c.choose_car=car_choose

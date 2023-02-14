@@ -7,6 +7,30 @@ from rest_framework import status
 from django.http import Http404
 from card.models import *
 
+
+class CarApi(APIView):
+    def get(self, request, format=None):
+        car = ChooseCars.objects.all()
+        serialize = ChooseCarSerialize(car, many=True)
+        return Response(data=serialize.data)
+
+class CarApiPK(APIView):
+    def get(self, request,pk, format=None):
+        car = ChooseCars.objects.filter(id=pk)
+        serialize = ChooseCarSerialize(car, many=True)
+        return Response(data=serialize.data)  
+class Model_CarPK(APIView):
+    def get(self, request, pk, format=None):
+        model = Car_Model.objects.filter(car_model=pk) 
+        serializer = CarModelSerializer(model,many=True)
+        return Response(data=serializer.data)         
+    
+class ColorApi(APIView):
+    def get(self, request, format=None):
+        color = Color.objects.all()
+        serialize = ColorSerialize(color,many=True)
+        return Response(data=serialize.data)    
+
 class CardApi(APIView):
     permission_classes = [AllowAny]
 
