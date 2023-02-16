@@ -24,8 +24,8 @@ class Photos(models.Model):
     card_photos = models.ForeignKey(Card_Main, related_name="images", on_delete=models.CASCADE)
     photo = models.ImageField(blank=True,null=True)
 
-    def __str__(self) -> str:
-        return self.user_image.name
+    # def __str__(self) -> str:
+    #     return self.user_image.name
 
 class Phone(models.Model):
     card_phones = models.ForeignKey(Card_Main, related_name="phone", on_delete=models.CASCADE)

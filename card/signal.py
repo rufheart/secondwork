@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save,pre_save
 from card.models import Card_Main, About,Home,Phone,Work,Car,Tiktok,Instagram,Facebook
 from django.dispatch import receiver
 
@@ -9,9 +9,13 @@ ab=0
 status = []
 @receiver(post_save)
 def created_card(sender, instance, created=False, **kwargs):
+    if sender.__name__ == 'Card_Main':
+        pass
     global id  
-    global status
+    # print(ab)
     if created: 
+        # print(sender.__name__,'created')
+        # print(sender.__name__,'created')
         lists = ['Card_Main','Phone','Work','Home','Tiktok','Instagram','Facebook','Car']
         if sender.__name__ == 'Card_Main':
             id = instance.id
@@ -59,6 +63,45 @@ def created_card(sender, instance, created=False, **kwargs):
                 elif about.car==None:
                     about.car=False
                     about.save()   
-    # if not created:
-    #     print(sender.__name__,'not')
+    if not created:
+        global status
+        print(status)
+    
+        if sender.__name__=='Card_Main':
+            id = instance.id
+            status=[]
+        about=About.objects.get(card_about=id)
+        if Phone.objects.filter(card_phones=id).first()==None and 'Phone' not in status:
+   
+            status.append('Phone')
+            about.phone=False
+            about.save()
+        if Work.objects.filter(card_works=id).first()==None and 'Work' not in status:
+   
+            status.append('Work')
+            about.work=False
+            about.save()
+        if Home.objects.filter(card_homes=id).first()==None and 'Home' not in status:
+   
+            status.append('Home')
+            about.home=False
+            about.save()   
+        if Tiktok.objects.filter(card_tiktoks=id).first()==None and 'Tiktok' not in status:
+ 
+            status.append('Tiktok')
+            about.tiktok=False
+            about.save()         
+        if Instagram.objects.filter(card_instagrams=id).first()==None and 'Instagram' not in status:
+         
+            status.append('Instagram')
+            about.instagram=False
+            about.save()  
+        if Facebook.objects.filter(card_facebooks=id).first()==None and 'Facebook' not in status:
+      
+            status.append('Facebook')
+            about.facebook=False
+            about.save()                                              
+                                               
+
+
 
