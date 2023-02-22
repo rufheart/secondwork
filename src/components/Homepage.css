@@ -1,0 +1,46 @@
+html, body, #root {
+  box-sizing: border-box;
+  height: 968px;
+  padding: 0px;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.main {
+  border: 1px solid red;
+  width: hug(1440px);
+  height: hug(1024px);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.main div:nth-child(1) {
+  width: 364px;
+  height: 1025px;
+  gap: 21px;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.main div:nth-child(1) div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 16px;
+  width: 364px;
+  height: 56px;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}/*# sourceMappingURL=Homepage.css.map */
