@@ -10,8 +10,14 @@ import { Context } from './Context';
 function Homepage(){
     return(
         <div className='main'>
-            <div className='homepage'>
-
+            <div className='left-bar'>
+                <div className='search-bar'>
+                    <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars'/></div></div>
+                    <div className='frame-search'><i className='fa fa-search'/><input type="text" /></div>
+                </div>
+                <div className='chat-list'>
+                    
+                </div>
             </div>
         </div>
     )

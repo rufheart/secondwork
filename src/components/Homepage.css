@@ -18,7 +18,7 @@ html, body, #root {
   left: 0px;
   top: 0px;
 }
-.main div:nth-child(1) {
+.main > div:nth-child(1) { /* leftbar */
   width: 364px;
   height: 1025px;
   gap: 21px;
@@ -31,7 +31,7 @@ html, body, #root {
   left: 0px;
   top: 0px;
 }
-.main div:nth-child(1) div:nth-child(1) {
+.main > div:nth-child(1) > div:nth-child(1) { /* searchbar */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -39,8 +39,79 @@ html, body, #root {
   gap: 16px;
   width: 364px;
   height: 56px;
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) { /* menu-icon */
+  width: 40px;
+  height: 40px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  border: 1px solid red;
+  position: relative;
+}
+.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) { /*menu-icon2*/
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 8px;
+  top: 8px;
+}
+.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > i { /*icon*/
+  position: absolute;
+  left: 8.34%;
+  right: 8.34%;
+  top: 20.83%;
+  bottom: 20.83%;
+}
+.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 16px;
+  width: 276px;
+  height: 40px;
+  background: #F5F5F5;
+  border-radius: 32px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+  position: absolute;
+  left: 6.14%;
+  right: 9.38%;
+  top: 6.14%;
+  bottom: 9.38%;
+  background: #959595;
+}
+.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) {
+  width: 53px;
+  height: 24px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #262626;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.main > div:nth-child(1) > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 364px;
+  height: 880px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  border: 1px solid black;
 }/*# sourceMappingURL=Homepage.css.map */
