@@ -11,18 +11,18 @@ html, body, #root {
 }
 
 .main {
-  border: 1px solid red;
+  border: 2px solid grey;
   width: hug(1440px);
   height: hug(1024px);
-  position: absolute;
+  position: relative;
   left: 0px;
   top: 0px;
+  padding: 0px;
 }
-.main > div:nth-child(1) { /* leftbar */
+.main > nav:nth-child(1) { /* leftbar */
   width: 364px;
-  height: 1025px;
+  height: hug(1025px);
   gap: 21px;
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -30,8 +30,9 @@ html, body, #root {
   position: absolute;
   left: 0px;
   top: 0px;
+  background: #FFFFFF;
 }
-.main > div:nth-child(1) > div:nth-child(1) { /* searchbar */
+.main > nav:nth-child(1) > div:nth-child(1) { /* searchbar */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -42,31 +43,31 @@ html, body, #root {
   flex: none;
   order: 0;
   flex-grow: 0;
+  border: 1px solid red;
 }
-.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) { /* menu-icon */
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(1) { /* menu-icon */
   width: 40px;
   height: 40px;
   flex: none;
   order: 0;
   flex-grow: 0;
-  border: 1px solid red;
   position: relative;
 }
-.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) { /*menu-icon2*/
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) { /*menu-icon2*/
   position: absolute;
   width: 24px;
   height: 24px;
-  left: 8px;
+  left: 10px;
   top: 8px;
 }
-.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > i { /*icon*/
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > i { /*icon*/
   position: absolute;
   left: 8.34%;
   right: 8.34%;
   top: 20.83%;
   bottom: 20.83%;
 }
-.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(2) { /* frame-search*/
   border: 1px solid red;
   display: flex;
   flex-direction: row;
@@ -81,16 +82,24 @@ html, body, #root {
   order: 1;
   flex-grow: 0;
 }
-.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
-  position: absolute;
-  left: 6.14%;
-  right: 9.38%;
-  top: 6.14%;
-  bottom: 9.38%;
-  background: #959595;
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  position: relative;
 }
-.main > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) {
-  width: 53px;
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > i:nth-child(1) {
+  position: absolute;
+  left: 20.14%;
+  right: 9.38%;
+  top: 20.14%;
+  bottom: 9.38%;
+  background: #F5F5F5;
+}
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(2) {
+  width: 80px;
   height: 24px;
   font-family: "Inter";
   font-style: normal;
@@ -99,11 +108,16 @@ html, body, #root {
   line-height: 24px;
   text-align: center;
   color: #262626;
+  background-color: #F5F5F5;
   flex: none;
   order: 1;
   flex-grow: 0;
+  border: none;
 }
-.main > div:nth-child(1) > div:nth-child(2) {
+.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:focus {
+  outline: None;
+}
+.main > nav:nth-child(1) > div:nth-child(2) { /*chat-list*/
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -114,4 +128,20 @@ html, body, #root {
   order: 1;
   flex-grow: 0;
   border: 1px solid black;
+}
+.main > nav:nth-child(1) > div:nth-child(3) { /* tab-bar-menu */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 48px;
+  width: 364px;
+  height: 60px;
+  background: #FFFFFF;
+  border-top: 1px solid #EFEFEF;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  border: 1px solid;
 }/*# sourceMappingURL=Homepage.css.map */
