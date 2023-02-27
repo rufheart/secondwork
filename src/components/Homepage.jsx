@@ -19,7 +19,7 @@ function Homepage(){
                     </div>
                 </div>
                 <div><div><i class="material-icons">search</i></div></div>
-                <div><div><i className='fa fa-phone'/></div></div>
+                <div><div><i class="material-icons" style={{"font-size":"20px"}}>phone</i></div></div>
                 <div><div><i className='fa fa-ellipsis-v'></i></div></div>
             </nav>
             <nav className='left-bar'>
@@ -249,11 +249,11 @@ function Homepage(){
                     </ul>
                 </div>
                 <ul className='tab-bar-menu'>
-                    <li><NavLink><i class="material-icons">person_outline</i></NavLink></li>
-                    <li><NavLink><i className='fas fa-phone-alt' style={{"font-size":"22px"}}></i></NavLink></li>
+                    <li><NavLink><i class="material-icons" style={{"font-size":"24px"}}>person_outline</i></NavLink></li>
+                    <li><NavLink><i class="material-icons" style={{"font-size":"24px"}}>phone</i></NavLink></li>
                     <li><NavLink><i className='far fa-comment' style={{"font-size":"24px"}}></i></NavLink></li>
                     <li><NavLink><i className='far fa-address-card' style={{"font-size":"24px"}}></i></NavLink></li>
-                    <li><NavLink><i className='fas fa-gear' style={{"font-size":"24px"}}></i></NavLink></li>
+                    <li><NavLink><i class="material-icons">settings</i></NavLink></li>
                 </ul>
             </nav>
             <div className='input-bar'>
