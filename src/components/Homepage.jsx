@@ -18,15 +18,15 @@ function Homepage(){
                         <div><p>5 min ago</p></div>
                     </div>
                 </div>
-                <div><div><i className='fa fa-search'/></div></div>
+                <div><div><i class="material-icons">search</i></div></div>
                 <div><div><i className='fa fa-phone'/></div></div>
                 <div><div><i className='fa fa-ellipsis-v'></i></div></div>
             </nav>
             <nav className='left-bar'>
                 <div className='frame'>
                     <div className='search-bar'>
-                        <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars'/></div></div>
-                        <div className='frame-search'><div><i className='fa fa-search'/></div><input type="text" placeholder="Search" /></div>
+                        <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars' aria-hidden="true"/></div></div>
+                        <div className='frame-search'><div><i class="material-icons">search</i></div><input type="text" placeholder="Search" /></div>
                     </div>
                     <ul className='chat-list'>
                         <li>
@@ -249,17 +249,17 @@ function Homepage(){
                     </ul>
                 </div>
                 <ul className='tab-bar-menu'>
-                    <li><NavLink><i class="fa fa-address-book-o" style={{"font-size":"24px"}}></i></NavLink></li>
-                    <li><NavLink><i className='fa fa-phone' style={{"font-size":"24px"}}></i></NavLink></li>
-                    <li><NavLink><i className='fa fa-comment' style={{"font-size":"24px"}}></i></NavLink></li>
-                    <li><NavLink><i className='fa fa-address-card-o' style={{"font-size":"24px"}}></i></NavLink></li>
-                    <li><NavLink><i className='fa fa-gear' style={{"font-size":"24px"}}></i></NavLink></li>
+                    <li><NavLink><i class="material-icons">person_outline</i></NavLink></li>
+                    <li><NavLink><i className='fas fa-phone-alt' style={{"font-size":"22px"}}></i></NavLink></li>
+                    <li><NavLink><i className='far fa-comment' style={{"font-size":"24px"}}></i></NavLink></li>
+                    <li><NavLink><i className='far fa-address-card' style={{"font-size":"24px"}}></i></NavLink></li>
+                    <li><NavLink><i className='fas fa-gear' style={{"font-size":"24px"}}></i></NavLink></li>
                 </ul>
             </nav>
             <div className='input-bar'>
-                <div><i className="fa fa-smile-o"></i></div>
+                <div><i className="far fa-smile"></i></div>
                 <input type="text" placeholder='Message' />
-                <div><i className="fa fa-sent-o"></i></div>
+                <div><i class="material-icons">send</i></div>
             </div>
         </div>
     )
