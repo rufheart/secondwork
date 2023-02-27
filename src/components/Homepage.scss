@@ -3,7 +3,8 @@ html, body, #root{
     height: 968px;
     width: hug(1440px);
     padding: 0px;
-    background-color: #37A2DE;
+    background-color: hsl(202, 72%, 54%);
+
     // border: 1px solid red;
     
 }
@@ -12,12 +13,14 @@ html, body, #root{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+
+
 }
 
 .main{
-    // border: 2px solid red;
+    border: 1px solid red;
     width: hug(1440px);
-    height:968px;
+    height:hug(1024px);
     position: relative;
     left: 0px;
     top: 0px;
@@ -32,9 +35,9 @@ html, body, #root{
         padding: 8px 16px;
         gap: 8px;        
         position: absolute;
-        left: 364px;
-        width: hug(1076px);
+        width: 1076;
         height: 74px;
+        left: 364px;
         top: 0px;       
         background: #FFFFFF;
         border-bottom: 1px solid #EFEFEF;  
@@ -157,8 +160,8 @@ html, body, #root{
         }              
     }
     &>nav:nth-child(2){  /* leftbar */
-        width: 364px;
-        height: hug(968px);      
+        width: hug(364px);
+        height: hug(1024px);      
         gap: 21px;
         // border: 1px solid blue;  
         display: flex;
@@ -220,7 +223,6 @@ html, body, #root{
                     }
                 }
                 &>div:nth-child(2){  /* frame-search*/
-                    border: 1px solid red;
                     display: flex;
                     flex-direction: row;
                     align-items: center;
@@ -240,7 +242,6 @@ html, body, #root{
                         order: 0;
                         flex-grow: 0; 
                         position: relative;
-                        // border: 1px solid red;
                         &>i:nth-child(1){
                             position: absolute;
                             left: 20.14%;
@@ -253,13 +254,11 @@ html, body, #root{
                     &>input:nth-child(2){
                         width: 80px;
                         height: 24px;
-                        font-family: 'Inter';
                         font-style: normal;
-                        font-weight: 400;
+                        font-weight: 500;
                         font-size: 16px;
                         line-height: 24px;
                         text-align: center;
-                        color: #262626;
                         background-color: #F5F5F5;
                         flex: none;
                         order: 1;
@@ -282,8 +281,10 @@ html, body, #root{
                 flex: none;
                 order: 1;
                 flex-grow: 0;  
+                color: black;
+                overflow: scroll;
                 // border: 1px solid black;   
-                &>li:nth-child(1){  /* chat list active */
+                &>li{  /* chat list active */
                     &>a:nth-child(1){  
                         display: flex;
                         flex-direction: row;
@@ -291,11 +292,12 @@ html, body, #root{
                         padding: 12px 16px;
                         gap: 16px;                   
                         width: 364px;
-                        height: 80px;
+                        height: 82px;
                         flex: none;
                         order: 0;
                         flex-grow: 0; 
-                        border: 1px solid red;                       
+                        border: 1px solid blue;   
+                        text-decoration: none;                      
                         &>img{
                             border: 1px solid blue;
                             width: 56px;
@@ -317,6 +319,7 @@ html, body, #root{
                             flex: none;
                             order: 1;
                             flex-grow: 0;  
+                            border: 1px solid red;
                             &>div:nth-child(1){ /*frame2*/
                                 display: flex;
                                 flex-direction: row;
@@ -341,17 +344,18 @@ html, body, #root{
                                     order: 0;
                                     flex-grow: 1;
                                     &>div:nth-child(1){  /* writing name */
+                                        font-family: 'Inter', sans-serif;
                                         width: 76px;
                                         height: 24px;                                    
-                                        font-family: 'Inter';
+                                        text-decoration: none;
                                         font-style: normal;
-                                        font-weight: 500;
+                                        font-weight: 800;
                                         font-size: 16px;
                                         line-height: 24px;
                                         color: #262626;
                                         flex: none;
                                         order: 0;
-                                        flex-grow: 0;                                    
+                                        flex-grow: 0;                               
                                     }
                                     &>div:nth-child(2){  /* icon div*/
                                         width: 24px;
@@ -360,20 +364,22 @@ html, body, #root{
                                         order: 1;
                                         flex-grow: 0;  
                                         position: relative; 
+                                        // border: 1px solid red;
                                         &>i{
                                             position: absolute;
                                             left: 32.02%;
                                             right: 31.67%;
-                                            top: 38.79%;
+                                            top: 25.79%;
                                             bottom: 34.1%;                                        
-                                            background: #FFFFFF;                                        
+                                            background: #FFFFFF;   
+                                                                                
                                         }                                 
                                     }
                                 }
                                 &>div:nth-child(2){
+                                    border: 1px solid red;
                                     width: 34px;
-                                    height: 16px;                              
-                                    font-family: 'Inter';
+                                    height: 16px;                                                              
                                     font-style: normal;
                                     font-weight: 500;
                                     font-size: 12px;
@@ -381,7 +387,8 @@ html, body, #root{
                                     color: #565656;
                                     flex: none;
                                     order: 1;
-                                    flex-grow: 0;                                
+                                    flex-grow: 0;    
+                                                                
                                 }
 
                             }   
@@ -401,23 +408,25 @@ html, body, #root{
                                 &>p:nth-child(1){    
                                     width: 203px;
                                     height: 20px;                                
-                                    font-family: 'Inter';
                                     font-style: normal;
                                     font-weight: 400;
-                                    font-size: 12px;
+                                    font-size: 14px;
                                     line-height: 20px; 
-                                    border: 1px solid black;                               
+                                    color: #565656;                             
                                 }
                                 &>p:nth-child(2){
                                     display: flex;
                                     flex-direction: column;
                                     justify-content: center;
+                                    font-family: 'Inter', sans-serif;
                                     align-items: center;
                                     padding: 1px 5px;
                                     gap: 10px;                                
                                     width: 18px;
                                     height: 18px;                               
                                     background: #37A2DE;
+                                    color: #FFFFFF;
+                                    font-size: 12px;
                                     border-radius: 151px;
                                     flex: none;
                                     order: 1;
@@ -431,14 +440,14 @@ html, body, #root{
             }
         }    
         &>ul:nth-child(2){  /* tab-bar-menu */
-            // border: 1px solid red;
+            border: 1px solid red;
             box-sizing: border-box;
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 16px;
+            // padding: 16px;
             gap: 48px;   
-            width: hug(364px);
+            width: 364px;
             height: 60px;
             background: #FFFFFF;
             border-top: 1px solid #EFEFEF;
@@ -446,15 +455,19 @@ html, body, #root{
             order: 1;
             flex-grow: 0;
             position: relative;
+            &>li{
+                padding-left: 26px;
+            }
             &>li:nth-child(1){
                 list-style: none;
+
                 &>a{
                     width: 28px;
                     height: 28px;
                     flex: none;
                     order: 0;
                     flex-grow: 0; 
-                    position: relative;
+                    position: relative;                    
                     &>i{
                         position: absolute;
                         left: 16.67%;
@@ -500,7 +513,8 @@ html, body, #root{
                         right: 6.25%;
                         top: 16.25%;
                         bottom: 16.67%;
-                        color: #7C7C7C;                        
+                        background-color: white;
+                        // color: white;                        
                     }                
                 }
                 

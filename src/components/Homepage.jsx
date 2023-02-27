@@ -35,7 +35,7 @@ function Homepage(){
                                 <div className='chat-text'>
                                     <div className='frame2'>
                                         <div className='name'>
-                                            <div>Chatagram</div>
+                                            <div>Chatgram</div>
                                             <div><i className='fa fa-check-circle'></i></div>
                                         </div>
                                         <div>09:25</div>
@@ -47,6 +47,205 @@ function Homepage(){
                                 </div>                                
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink>
+                                <img src="" alt="" />
+                                <div className='chat-text'>
+                                    <div className='frame2'>
+                                        <div className='name'>
+                                            <div>Chatgram</div>
+                                            <div><i className='fa fa-check-circle'></i></div>
+                                        </div>
+                                        <div>09:25</div>
+                                    </div>
+                                    <div className='message'>
+                                        <p>Chatgram verify code:45545</p>
+                                        <p>2</p>
+                                    </div>                                
+                                </div>                                
+                            </NavLink>
+                        </li>
+                                                
                     </ul>
                 </div>
                 <ul className='tab-bar-menu'>
