@@ -11,13 +11,13 @@ function Homepage(){
     return(
         <div className='main'>
             <nav className='top-bar'>
-                <div className='other-user'>
+                <NavLink className='other-user'>
                     <img src="" alt="" />
                     <div className='texts'>
                         <div><p>Lele S</p></div>
                         <div><p>5 min ago</p></div>
                     </div>
-                </div>
+                </NavLink>
                 <div><div><i class="material-icons">search</i></div></div>
                 <div><div><i class="material-icons" style={{"font-size":"20px"}}>phone</i></div></div>
                 <div><div><i className='fa fa-ellipsis-v'></i></div></div>
@@ -248,18 +248,19 @@ function Homepage(){
                                                 
                     </ul>
                 </div>
-                <ul className='tab-bar-menu'>
-                    <li><NavLink><i class="material-icons" style={{"font-size":"24px"}}>person_outline</i></NavLink></li>
-                    <li><NavLink><i class="material-icons" style={{"font-size":"24px"}}>phone</i></NavLink></li>
-                    <li><NavLink><i className='far fa-comment' style={{"font-size":"24px"}}></i></NavLink></li>
-                    <li><NavLink><i className='far fa-address-card' style={{"font-size":"24px"}}></i></NavLink></li>
-                    <li><NavLink><i class="material-icons">settings</i></NavLink></li>
-                </ul>
+                <div className='tab-bar-menu'>
+                    <NavLink><i class="material-icons">person_outline</i></NavLink>
+                    <NavLink><i class="material-icons">phone</i></NavLink>
+                    <NavLink><i className='far fa-comment'  style={{"font-size":"21px"}}></i></NavLink>
+                    <NavLink><i className='far fa-address-card' ></i></NavLink>
+                    <NavLink><span class="material-symbols-outlined">settings</span></NavLink>
+                </div>
             </nav>
             <div className='input-bar'>
                 <div><i className="far fa-smile"></i></div>
                 <input type="text" placeholder='Message' />
                 <div><i class="material-icons">send</i></div>
+                
             </div>
         </div>
     )

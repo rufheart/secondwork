@@ -37,7 +37,7 @@ html, body, #root {
   background: #FFFFFF;
   border-bottom: 1px solid #EFEFEF;
 }
-.main > nav:nth-child(1) > div:nth-child(1) { /* other users */
+.main > nav:nth-child(1) > a:nth-child(1) { /* other users */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,7 +51,7 @@ html, body, #root {
   align-self: stretch;
   flex-grow: 0;
 }
-.main > nav:nth-child(1) > div:nth-child(1) > img:nth-child(1) {
+.main > nav:nth-child(1) > a:nth-child(1) > img:nth-child(1) {
   border: 1px solid red;
   width: 40px;
   height: 40px;
@@ -60,7 +60,7 @@ html, body, #root {
   order: 0;
   flex-grow: 0;
 }
-.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
+.main > nav:nth-child(1) > a:nth-child(1) > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -72,7 +72,7 @@ html, body, #root {
   order: 1;
   flex-grow: 1;
 }
-.main > nav:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+.main > nav:nth-child(1) > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
   border: 1px solid red;
 }
 .main > nav:nth-child(1) > div:nth-child(2) { /* search messages*/
@@ -98,6 +98,7 @@ html, body, #root {
   top: 10.42%;
   bottom: 12.5%;
   color: #707991;
+  -webkit-text-stroke: 0.5px white;
 }
 .main > nav:nth-child(1) > div:nth-child(3) { /* call icon */
   width: 40px;
@@ -237,6 +238,7 @@ html, body, #root {
   top: 20.14%;
   bottom: 9.38%;
   color: #707991;
+  -webkit-text-stroke: 0.5px white;
 }
 .main > nav:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(2) {
   width: 80px;
@@ -267,6 +269,9 @@ html, body, #root {
   flex-grow: 0;
   color: black;
   overflow: scroll;
+}
+.main > nav:nth-child(2) > div:nth-child(1) > ul:nth-child(2) > li:hover {
+  background-color: #F5F5F5;
 }
 .main > nav:nth-child(2) > div:nth-child(1) > ul:nth-child(2) > li { /* chat list active */ }
 .main > nav:nth-child(2) > div:nth-child(1) > ul:nth-child(2) > li > a:nth-child(1) {
@@ -414,12 +419,13 @@ html, body, #root {
   order: 1;
   flex-grow: 0;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) { /* tab-bar-menu */
+.main > nav:nth-child(2) > div:nth-child(2) { /* tab-bar-menu */
   border: 1px solid red;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 16px;
   gap: 48px;
   width: 364px;
   height: 60px;
@@ -430,101 +436,84 @@ html, body, #root {
   flex-grow: 0;
   position: relative;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li {
-  padding-left: 26px;
+.main > nav:nth-child(2) > div:nth-child(2) > a {
+  border: 1px solid red;
+  position: relative;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(1) {
-  list-style: none;
-}
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(1) {
   width: 28px;
   height: 28px;
   flex: none;
   order: 0;
   flex-grow: 0;
-  position: relative;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a > i {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(1) > i {
   position: absolute;
-  left: 16.67%;
-  right: 16.67%;
-  top: 16.25%;
-  bottom: 16.67%;
-  color: #7C7C7C;
-}
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(2) {
-  list-style: none;
-}
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(2) > a {
-  width: 28px;
-  height: 28px;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  position: relative;
-}
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(2) > a > i {
-  position: absolute;
-  left: 18.04%;
+  left: 8.04%;
   right: 17.71%;
-  top: 16.25%;
-  bottom: 16.67%;
+  top: 7.15%;
+  bottom: 7.12%;
   color: #7C7C7C;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(3) {
-  list-style: none;
-}
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(3) > a {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(2) {
   width: 28px;
   height: 28px;
   flex: none;
   order: 2;
   flex-grow: 0;
-  position: relative;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(3) > a > i {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(2) > i {
   position: absolute;
-  left: 6.25%;
-  right: 6.25%;
-  top: 16.25%;
-  bottom: 16.67%;
-  background-color: white;
+  left: 8.04%;
+  right: 17.71%;
+  top: 7.15%;
+  bottom: 7.12%;
+  color: #7C7C7C;
+  -webkit-text-stroke: 2px #7C7C7C;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(4) {
-  list-style: none;
-}
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(3) {
   width: 28px;
   height: 28px;
+  flex: none;
   order: 3;
   flex-grow: 0;
-  position: relative;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a > i {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(3) > i {
   position: absolute;
-  left: 8.33%;
-  right: 8.33%;
-  top: 16.25%;
-  bottom: 16.67%;
+  left: 10.25%;
+  right: 10.25%;
+  top: 12.38%;
+  bottom: 6.21%;
   color: #7C7C7C;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(5) {
-  list-style: none;
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(4) {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  order: 3;
+  flex-grow: 0;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(5) > a {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(4) > i {
+  position: absolute;
+  left: 14.33%;
+  right: 8.33%;
+  top: 18.67%;
+  bottom: 14.65%;
+  color: #7C7C7C;
+}
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(5) {
   width: 28px;
   height: 28px;
   flex: none;
   order: 4;
   flex-grow: 0;
-  position: relative;
 }
-.main > nav:nth-child(2) > ul:nth-child(2) > li:nth-child(5) > a > i {
+.main > nav:nth-child(2) > div:nth-child(2) > a:nth-child(5) > span {
   position: absolute;
   left: 7.36%;
   right: 7.36%;
-  top: 16.25%;
-  bottom: 16.67%;
+  top: 5.25%;
+  bottom: 8.25%;
   color: #7C7C7C;
 }
 .main > div:nth-child(3) {
@@ -574,13 +563,17 @@ html, body, #root {
   flex: none;
   order: 2;
   flex-grow: 0;
-  border: 1px solid red;
+  position: relative;
 }
-.main > div:nth-child(3) > div:nth-child(3):i:nth-child(1) {
+.main > div:nth-child(3) > div:nth-child(3) > i:nth-child(1) {
   position: absolute;
   left: 9.36%;
   right: 9.37%;
-  top: 9.36%;
+  top: 11.36%;
   bottom: 9.36%;
-  background: #8BABD8;
+  color: #8BABD8;
+  font-size: larger;
+}
+.main > div:nth-child(3) > div:nth-child(3) > i:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=Homepage.css.map */

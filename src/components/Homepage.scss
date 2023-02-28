@@ -41,7 +41,7 @@ html, body, #root{
         top: 0px;       
         background: #FFFFFF;
         border-bottom: 1px solid #EFEFEF;  
-        &>div:nth-child(1){ /* other users */
+        &>a:nth-child(1){ /* other users */
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -102,7 +102,8 @@ html, body, #root{
                     right: 12.51%;
                     top: 10.42%;
                     bottom: 12.5%;
-                    color: #707991;                    
+                    color: #707991;      
+                    -webkit-text-stroke: 0.5px white;                
                 }                
             }
         }
@@ -248,7 +249,8 @@ html, body, #root{
                             right: 9.38%;
                             top: 20.14%;
                             bottom: 9.38%;
-                            color: #707991;                        
+                            color: #707991;  
+                            -webkit-text-stroke: 0.5px white;                        
                         }                  
                     }  
                     &>input:nth-child(2){
@@ -283,7 +285,10 @@ html, body, #root{
                 flex-grow: 0;  
                 color: black;
                 overflow: scroll;
-                // border: 1px solid black;   
+                // border: 1px solid black;  
+                &>li:hover{
+                    background-color: #F5F5F5;
+                } 
                 &>li{  /* chat list active */
                     &>a:nth-child(1){  
                         display: flex;
@@ -439,13 +444,13 @@ html, body, #root{
         
             }
         }    
-        &>ul:nth-child(2){  /* tab-bar-menu */
+        &>div:nth-child(2){  /* tab-bar-menu */
             border: 1px solid red;
             box-sizing: border-box;
             display: flex;
             flex-direction: row;
             align-items: center;
-            // padding: 16px;
+            padding: 16px;
             gap: 48px;   
             width: 364px;
             height: 60px;
@@ -455,107 +460,88 @@ html, body, #root{
             order: 1;
             flex-grow: 0;
             position: relative;
-            &>li{
-                padding-left: 26px;
-            }
-            &>li:nth-child(1){
-                list-style: none;
-
-                &>a{
-                    width: 28px;
-                    height: 28px;
-                    flex: none;
-                    order: 0;
-                    flex-grow: 0; 
-                    position: relative;                    
-                    &>i{
-                        position: absolute;
-                        left: 16.67%;
-                        right: 16.67%;
-                        top: 16.25%;
-                        bottom: 16.67%;
-                        color: #7C7C7C;                        
-                    }                   
-                }
+            &>a{
+                border: 1px solid red;
+                position: relative;
             }   
-            &>li:nth-child(2){
-                list-style: none;
-                &>a{
-                    width: 28px;
-                    height: 28px;
-                    flex: none;
-                    order: 1;
-                    flex-grow: 0;
-                    position: relative;
-                    &>i{
-                        position: absolute;
-                        left: 18.04%;
-                        right: 17.71%;
-                        top: 16.25%;
-                        bottom: 16.67%;
-                        color: #7C7C7C;
-                    }
-                }
-                
+            &>a:nth-child(1){
+                width: 28px;
+                height: 28px;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                &>i{
+                    position: absolute;
+                    left: 8.04%;
+                    right: 17.71%;
+                    top: 7.15%;
+                    bottom: 7.12%;
+                    color: #7C7C7C;                 
+                }                
+            }    
+            &>a:nth-child(2){
+                width: 28px;
+                height: 28px;
+                flex: none;
+                order: 2;
+                flex-grow: 0;
+                &>i{
+                    position: absolute;
+                    left: 8.04%;
+                    right: 17.71%;
+                    top: 7.15%;
+                    bottom: 7.12%;
+                    color: #7C7C7C; 
+                    // font-weight: bold;     
+                    -webkit-text-stroke: 2px #7C7C7C;          
+                }                
+            }    
+            &>a:nth-child(3){
+                width: 28px;
+                height: 28px;
+                flex: none;
+                order: 3;
+                flex-grow: 0;
+                &>i{
+                    position: absolute;
+                    left: 10.25%;
+                    right: 10.25%;
+                    top: 12.38%;
+                    bottom: 6.21%; 
+                    color: #7C7C7C;                  
+                }                
             }   
-            &>li:nth-child(3){
-                list-style: none;
-                &>a{
-                    width: 28px;
-                    height: 28px;
-                    flex: none;
-                    order: 2;
-                    flex-grow: 0; 
-                    position: relative;   
-                    &>i{
-                        position: absolute;
-                        left: 6.25%;
-                        right: 6.25%;
-                        top: 16.25%;
-                        bottom: 16.67%;
-                        background-color: white;
-                        // color: white;                        
-                    }                
-                }
-                
-            }   
-            &>li:nth-child(4){
-                list-style: none;
-                &>a{
-                    width: 28px;
-                    height: 28px;
-                    order: 3;
-                    flex-grow: 0;  
-                    position: relative;
-                    &>i{
-                        position: absolute;
-                        left: 8.33%;
-                        right: 8.33%;
-                        top: 16.25%;
-                        bottom: 16.67%;
-                        color: #7C7C7C;                        
-                    }                  
-                }
-            }   
-            &>li:nth-child(5){
-                list-style: none;
-                &>a{
-                    width: 28px;
-                    height: 28px;
-                    flex: none;
-                    order: 4;
-                    flex-grow: 0;    
-                    position: relative;
-                    &>i{
-                        position: absolute;
-                        left: 7.36%;
-                        right: 7.36%;
-                        top: 16.25%;
-                        bottom: 16.67%;
-                        color: #7C7C7C;                        
-                    }                
-                }
-            }                                                    
+            &>a:nth-child(4){
+                width: 28px;
+                height: 28px;
+                flex: none;
+                order: 3;
+                flex-grow: 0;
+                &>i{
+                    position: absolute;
+                    left: 14.33%;
+                    right: 8.33%;
+                    top: 18.67%;
+                    bottom: 14.65%;
+                    color: #7C7C7C;              
+                }                
+            } 
+            &>a:nth-child(5){
+                width: 28px;
+                height: 28px;
+                flex: none;
+                order: 4;
+                flex-grow: 0;
+                &>span{
+                    position: absolute;
+                    left: 7.36%;
+                    right: 7.36%;
+                    top: 5.25%;
+                    bottom: 8.25%;
+                    color: #7C7C7C;  
+                               
+                }                
+            }                                                                               
         }
 
     }
@@ -605,14 +591,18 @@ html, body, #root{
             flex: none;
             order: 2;
             flex-grow: 0;
-            border: 1px solid red;
-            &:i:nth-child(1){
+            position: relative;
+            &>i:nth-child(1){
                 position: absolute;
                 left: 9.36%;
                 right: 9.37%;
-                top: 9.36%;
-                bottom: 9.36%;
-                background: #8BABD8;                
+                top: 11.36%;
+                bottom: 9.36%;    
+                color:#8BABD8;
+                font-size:larger;   
+            }
+            &>i:hover{
+                cursor: pointer;
             }
         }     
     }
