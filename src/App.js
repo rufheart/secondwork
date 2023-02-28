@@ -6,6 +6,7 @@ import Message from './components/Message';
 import Cards from './components/Cards';
 import Welcome from './components/Wellcome';
 import Homepage from './components/Homepage';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path='' element={<Welcome />} />
           <Route path='messages/:userName/:id' element={<Message />} />
         </Route>
-        <Route path='/card' element={<Cards/>}/>
+        <Route path='/contact' element={<Contact/>}/>
     </Routes>
   );
 }

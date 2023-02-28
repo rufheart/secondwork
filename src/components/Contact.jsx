@@ -8,7 +8,7 @@ import { Context } from './Context';
 
 function Contact(){
     return(
-        <ul>
+        <ul className='contact-main'>
             <li>
                 <NavLink>
                     <div>
@@ -31,3 +31,5 @@ function Contact(){
         </ul>
     )
 }
+
+export default Contact;

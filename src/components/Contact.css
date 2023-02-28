@@ -1,0 +1,171 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.contact-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0px;
+  position: absolute;
+  width: 364px;
+  height: 968px;
+  left: 0px;
+  top: 0px;
+  background: #FFFFFF;
+}
+.contact-main > li:hover {
+  background-color: #F5F5F5;
+}
+.contact-main > li > a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 12px;
+  width: 360px;
+  height: 56px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.contact-main > li > a > div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  position: absolute;
+  width: 66px;
+  height: 60px;
+  left: 16px;
+  top: 386px;
+}
+.contact-main > li > a > div:nth-child(1) > p {
+  width: 66px;
+  height: 12px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #B7B7B7;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.contact-main > li > a > div:nth-child(1) > div {
+  width: 44px;
+  height: 44px;
+  border-radius: 25px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.contact-main > li > a > div:nth-child(1) > div > i {
+  position: absolute;
+  left: 12.5%;
+  right: 4.17%;
+  top: 16.67%;
+  bottom: 16.65%;
+  background: #EAE79C;
+}
+.contact-main > li > a > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  position: absolute;
+  width: 70px;
+  height: 60px;
+  left: 282px;
+  top: 386px;
+}
+.contact-main > li > a > div:nth-child(2) > p {
+  width: 70px;
+  height: 12px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #B7B7B7;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.contact-main > li > a > div:nth-child(2) > div {
+  width: 44px;
+  height: 44px;
+  border-radius: 25px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.contact-main > li > a > div:nth-child(2) > div > i {
+  position: absolute;
+  left: 12.5%;
+  right: 4.17%;
+  top: 16.67%;
+  bottom: 16.65%;
+  background: #78E378;
+}
+.contact-main > li > a > div:nth-child(3) {
+  position: absolute;
+  width: 1px;
+  height: 56px;
+  left: 273px;
+  top: 386px;
+  background: #EFEFEF;
+}
+.contact-main > li > a > div:nth-child(4) {
+  position: absolute;
+  width: 1px;
+  height: 56px;
+  left: 89px;
+  top: 386px;
+  background: #EFEFEF;
+}
+.contact-main > li > a > div:nth-child(5) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  position: absolute;
+  width: 171px;
+  height: 48px;
+  left: 98px;
+  top: 392px;
+}
+.contact-main > li > a > div:nth-child(5) > img {
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.contact-main > li > a > div:nth-child(5) > p {
+  width: 107px;
+  height: 24px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #383838;
+  flex: none;
+  order: 1;
+}
+.contact-main > li > a > div:nth-child(6) {
+  position: absolute;
+  width: 364px;
+  height: 80px;
+  left: 0px;
+  top: 376px;
+  background: #FFFFFF;
+}/*# sourceMappingURL=Contact.css.map */

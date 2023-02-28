@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { useContext } from 'react';
 import { Context } from './Context';
+import Contact from './Contact';
 
 
 function Homepage(){
@@ -249,7 +250,7 @@ function Homepage(){
                     </ul>
                 </div>
                 <div className='tab-bar-menu'>
-                    <NavLink><i class="material-icons">person_outline</i></NavLink>
+                    <NavLink to='/contact'><i class="material-icons">person_outline</i></NavLink>
                     <NavLink><i class="material-icons">phone</i></NavLink>
                     <NavLink><i className='far fa-comment'  style={{"font-size":"21px"}}></i></NavLink>
                     <NavLink><i className='far fa-address-card' ></i></NavLink>
