@@ -9,6 +9,13 @@ import Contact from './Contact';
 
 
 function Homepage(){
+    let activeStyle = {
+        textDecoration: "underline",
+      };
+    
+    let activeClassName = "underline";
+
+
     return(
         <div className='main'>
             <nav className='top-bar'>
@@ -252,7 +259,7 @@ function Homepage(){
                 <div className='tab-bar-menu'>
                     <NavLink to='/contact'><i class="material-icons">person_outline</i></NavLink>
                     <NavLink><i class="material-icons">phone</i></NavLink>
-                    <NavLink><i className='far fa-comment'  style={{"font-size":"21px"}}></i></NavLink>
+                    <NavLink className={({ isActive }) =>isActive ? activeClassName : undefined}><i className='far fa-comment'  style={{"font-size":"21px"}}></i></NavLink>
                     <NavLink><i className='far fa-address-card' ></i></NavLink>
                     <NavLink><span class="material-symbols-outlined">settings</span></NavLink>
                 </div>
