@@ -11,7 +11,7 @@ import Contact from './components/Contact';
 function App() {
   return (
     <Routes>
-        <Route path='' element={<Homepage/>}>
+        <Route path='/' element={<Homepage/>}>
           <Route path='' element={<Welcome />} />
           <Route path='messages/:userName/:id' element={<Message />} />
         </Route>

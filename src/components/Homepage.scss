@@ -461,6 +461,7 @@ html, body, #root{
             order: 1;
             flex-grow: 0;
             position: relative;
+
             &>a{
                 border: 1px solid red;
                 position: relative;
@@ -509,7 +510,8 @@ html, body, #root{
                     right: 10.25%;
                     top: 12.38%;
                     bottom: 6.21%; 
-                    color: #7C7C7C;                  
+                    color: #7C7C7C;   
+                                 
                 }                
             }   
             &>a:nth-child(4){
@@ -524,7 +526,8 @@ html, body, #root{
                     right: 8.33%;
                     top: 18.67%;
                     bottom: 14.65%;
-                    color: #7C7C7C;              
+                    color: #7C7C7C;     
+                             
                 }                
             } 
             &>a:nth-child(5){
@@ -540,6 +543,7 @@ html, body, #root{
                     top: 5.25%;
                     bottom: 8.25%;
                     color: #7C7C7C;  
+                    
                                
                 }                
             }                                                                               
@@ -608,3 +612,4 @@ html, body, #root{
         }     
     }
 }
+

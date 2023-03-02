@@ -32,7 +32,7 @@
         order: 0;
         flex-grow: 0;  
         &>div:nth-child(1){
-            border: 1px solid blue;
+            border: 1px solid orange;
             width: 40px;
             height: 40px;
             flex: none;
@@ -49,17 +49,15 @@
         } 
         &>div:nth-child(2){
             box-sizing: border-box;
-            border: 1px solid blue;
             /* Auto layout */
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 8px 16px;
-            gap: 16px;
+            // padding: 8px 16px;
+            gap:30px;
             
             width: 276px;
             height: 40px;
-            
             /* Neutral/00 */
             background: #F5F5F5;
             border: 1px solid #37A2DE;
@@ -69,43 +67,56 @@
             flex: none;
             order: 1;
             flex-grow: 0;  
-            &>span{
-                position: absolute;
-                left: 6.14%;
-                right: 9.38%;
-                top: 6.14%;
-                bottom: 9.38%;            
-                color: #37A2DE;            
-            }      
-        }
-        &>input{
-            width: 53px;
-            height: 24px;
-            
-            /* Body/Subtitle 2/Regular */
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            
-            /* identical to box height, or 150% */
-            text-align: center;
-            
-            /* Neutral/800 */
-            color: #262626;
-            
-            
-            /* Inside auto layout */
-            flex: none;
-            order: 1;
-            flex-grow: 0; 
-            border: 1px solid blue;       
-        } 
+            &>div:nth-child(1){
+                border: 1px solid gold;
+                width: 24px;
+                height: 40px;                                
+                border-top-left-radius: 32px;
+                border-bottom-left-radius: 32px;
+                /* Inside auto layout */
+                flex: none;
+                order: 0;
+                flex-grow: 0;                
+                &>span{
+                    position: absolute;
+                    left: 6.14%;
+                    right: 9.38%;
+                    top: 6.14%;
+                    bottom: 9.38%;            
+                    color: #37A2DE;            
+                }  
+            }            
+            &>input{
+                width: 220px;
+                height: 38px;
+                border: 1px solid red;
+                display: block;
+                /* Body/Subtitle 2/Regular */
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                // border-radius: 32px;
+                border-top-right-radius: 32px;
+                border-bottom-right-radius: 32px;
+                /* identical to box height, or 150% */
+                text-align: center;
+                outline: none;
+                /* Neutral/800 */
+                color: #262626;
+                
+                
+                /* Inside auto layout */
+                flex: none;
+                order: 1;
+                flex-grow: 0;      
+            } 
+        }    
     }
 
 
-    &>a:nth-child(2){
+    &>a:nth-child(2){ /**/
         width: 364px;
         height: 80px;
         border: 1px solid red;
