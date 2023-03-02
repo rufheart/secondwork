@@ -252,7 +252,8 @@ function Homepage(){
                                 </div>                                
                             </NavLink>
                         </li>
-                                                
+                        {Contact}
+                         <Outlet/>                       
                     </ul>
                 </div>
                 <div className='tab-bar-menu'>
