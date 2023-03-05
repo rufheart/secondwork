@@ -6,260 +6,49 @@ import { useRef, useState } from 'react';
 import { useContext } from 'react';
 import { Context } from './Context';
 import Contact from './Contact';
-
+import Chat from './Chat-list';
+import Topbar from './Top-bar';
+import Allcards from './All-cards';
 
 function Homepage(){
-    let [color_contact, setCCont] = useState()
+    let [color_contact, setCCont] = useState('grey')
     let [color_chat,setCC] = useState()
     let [color_friends, SetCF] = useState()
     let [color_call, setCCall] = useState()
     let [color_settings, setCS] = useState()
-
+    let [chat, setChat] = useState(true)
+    let [contact, setContact] = useState(false)
+    function Chat(){
+        setChat(true)
+        setContact(false)
+    }
+    function Contact(){
+        setContact(true)
+        setChat(false)
+    }
+    let activeStyle = {
+        chart
+      };
+    function chart(){
+        console.log('vhart')
+    }
     return(
         <div className='main'>
-            <nav className='top-bar'>
-                <NavLink className='other-user'>
-                    <img src="" alt="" />
-                    <div className='texts'>
-                        <div><p>Lele S</p></div>
-                        <div><p>5 min ago</p></div>
-                    </div>
-                </NavLink>
-                <div><div><i className="material-icons">search</i></div></div>
-                <div><div><i className="material-icons" style={{"fontSize":"20px"}}>phone</i></div></div>
-                <div><div><i className='fa fa-ellipsis-v'></i></div></div>
+            <nav >
+                <Allcards/>
+                {/* <Topbar/> */}
+                {/* <Outlet/> */}
             </nav>
             <nav className='left-bar'>
-                <div className='frame'>
-                    <div className='search-bar'>
-                        <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars' aria-hidden="true"/></div></div>
-                        <div className='frame-search'><div><i className="material-icons">search</i></div><input type="text" placeholder="Search" /></div>
-                    </div>
-                    <ul className='chat-list'>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink>
-                                <img src="" alt="" />
-                                <div className='chat-text'>
-                                    <div className='frame2'>
-                                        <div className='name'>
-                                            <div>Chatgram</div>
-                                            <div><i className='fa fa-check-circle'></i></div>
-                                        </div>
-                                        <div>09:25</div>
-                                    </div>
-                                    <div className='message'>
-                                        <p>Chatgram verify code:45545</p>
-                                        <p>2</p>
-                                    </div>                                
-                                </div>                                
-                            </NavLink>
-                        </li>
-                        {Contact}
-                         <Outlet/>                       
-                    </ul>
+                <div className='left-bar-top'>
+                    {/* {<Chat/>} */}
+                    {contact==true?<Contact/>:null}
+                    <Outlet/>
                 </div>
                 <div className='tab-bar-menu'>
-                    <NavLink to='/contact'><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
-                    <NavLink to='/call' ><i className="material-icons" style={{"color":color_call}}>phone</i></NavLink>
-                    <NavLink to='/' className={'active'?(color_chat='#37A2DE'):null}><i className='far fa-comment'  style={{"fontSize":"21px","WebkitTextStroke":"0.5px #FFFFFF ","color":color_chat}}></i></NavLink>
+                    <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
+                    <NavLink to='/call'className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} ><i className="material-icons" style={{"color":color_call}}>phone</i></NavLink>
+                    <NavLink to='/' className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} onClick={Chat}><i className='far fa-comment'  style={{"fontSize":"21px","WebkitTextStroke":"0.5px #FFFFFF ","color":color_chat}}></i></NavLink>
                     <NavLink to='/users' className={'active'?(color_friends='#37A2DE'):null}><i className='far fa-address-card'style={{color_friends}} ></i></NavLink>
                     <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
                 </div>
@@ -269,6 +58,9 @@ function Homepage(){
                 <input type="text" placeholder='Message' />
                 <div><i className="material-icons">send</i></div>
                 
+            </div>
+            <div className='background'>
+
             </div>
         </div>
     )

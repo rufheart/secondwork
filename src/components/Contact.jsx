@@ -16,24 +16,26 @@ function Contact(){
                     <input type="text" placeholder='Search'/>
                 </div>
             </div>
-            <NavLink>
-                <div>
-                    <p>Gozlemede</p>
-                    <div><i className='far fa-address-card' style={{"font-size":"24px"}}></i></div>
-                </div>
-                <div>
-                    <p>Movcuddur</p>
-                    <div><i className='far fa-address-card' style={{"font-size":"24px"}}></i></div>
-                </div>
-                <div></div>
-                <div></div>
-                <div>
-                    <img src="" alt="" />
-                    <p>Ad Soyad</p>
-                </div>
-                <div></div>
-            </NavLink>
-            <div><p>Invite to Chatgram</p></div>
+            <div>
+                <NavLink>
+                    <div>
+                        <p>Gozlemede</p>
+                        <div><i className='far fa-address-card' style={{"font-size":"24px"}}></i></div>
+                    </div>
+                    <div>
+                        <p>Movcuddur</p>
+                        <div><i className='far fa-address-card' style={{"font-size":"24px"}}></i></div>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div>
+                        <img src="" alt="" />
+                        <p>Ad Soyad</p>
+                    </div>
+                    <div></div>
+                </NavLink>
+                <div><p>Invite to Chatgram</p></div>
+            </div>
         </nav>
     )
 }

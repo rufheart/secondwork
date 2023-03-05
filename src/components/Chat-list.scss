@@ -1,0 +1,288 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.frame{  /* frame */
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;  
+    margin: 0px;
+    padding: 0px;         
+    width: hug(364px);
+    height: 900px;
+    flex: none;
+    order: 0;
+    flex-grow: 0; 
+    left: 0px;
+    top: 0px;           
+    &>div:nth-child(1){ /* searchbar */
+        border: 1px solid red;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 8px 16px;
+        gap: 12px;
+        width: hug(364px);
+        height: 56px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        &>div:nth-child(1){   /* menu-icon */               
+            width: 40px;
+            height: 40px;
+            border: 1px solid red;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+            // border: 1px solid red;
+            position: relative;
+            &>div:nth-child(1){ /*menu-icon2*/
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                left: 10px;
+                top: 8px;
+                &>i{                     /*icon*/
+                    position: absolute;
+                    left: 8.34%;
+                    right: 8.34%;
+                    top: 16.83%;
+                    bottom: 20.83%;
+                    color: #707991;
+                }
+            }
+        }
+        &>div:nth-child(2){  /* frame-search*/
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            // padding: 8px 16px;
+            gap: 30px;               
+            width: 276px;
+            height: 40px;   
+            background: #F5F5F5;
+            border-radius: 32px; 
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+            border: 1px solid red;
+            position: relative;
+            &>div:nth-child(1){
+                // border: 1px solid red;
+                width: 34px;
+                height: 38px;  
+                flex: none;
+                order: 0;
+                flex-grow: 0; 
+                position: absolute;
+                left: 15px;
+                &>i:nth-child(1){
+                    position: absolute;
+                    left: 20.14%;
+                    right: 9.38%;
+                    top: 20.14%;
+                    bottom: 9.38%;
+                    color: #707991;  
+                    -webkit-text-stroke: 0.5px white;                        
+                }                  
+            }  
+            &>input:nth-child(2){
+                width: 276px;
+                height: 38px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                text-align: center;
+                background-color: #F5F5F5;
+                padding-left: 50px;
+                padding-right: 10px;
+                flex: none;
+                order: 1;
+                flex-grow: 0;   
+                // border: none
+                border: 1px solid red;
+                border-radius: 32px;
+            }     
+            &>input:focus{
+                outline: None;
+            }                                     
+        }
+    }
+    &>ul:nth-child(2){ /*chat-list*/
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;           
+        width: 364px;
+        height: 822px;
+        flex: none;
+        order: 1;
+        flex-grow: 0;  
+        color: black;
+        overflow: scroll;
+        // border: 1px solid black;  
+        &>li:hover{
+            background-color: #F5F5F5;
+        } 
+        &>li{  /* chat list active */
+            
+            &>a:nth-child(1){  
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 12px 16px;
+                gap: 16px;                   
+                width: 364px;
+                height: 82px;
+                flex: none;
+                order: 0;
+                flex-grow: 0; 
+                border: 1px solid blue;   
+                text-decoration: none;                      
+                &>img{
+                    border: 1px solid blue;
+                    width: 56px;
+                    height: 56px;
+                    // background: url(.jpg), #8BABD8;
+                    border-radius: 100px;
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;                        
+                }    
+                &>div:nth-child(2){  /* texts */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 0px;
+                    gap: 8px;
+                    width: 268px;
+                    height: 52px;
+                    flex: none;
+                    order: 1;
+                    flex-grow: 0;  
+                    border: 1px solid red;
+                    &>div:nth-child(1){ /*frame2*/
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        padding: 0px;
+                        gap: 130px;                         
+                        width: 268px;
+                        height: 24px;
+                        flex: none;
+                        order: 0;
+                        align-self: stretch;
+                        flex-grow: 0;
+                        &>div:nth-child(1){ /* name*/
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            padding: 0px;
+                            gap: 4px;                               
+                            width: 104px;
+                            height: 24px;
+                            flex: none;
+                            order: 0;
+                            flex-grow: 1;
+                            &>div:nth-child(1){  /* writing name */
+                                font-family: 'Inter', sans-serif;
+                                width: 76px;
+                                height: 24px;                                    
+                                text-decoration: none;
+                                font-style: normal;
+                                font-weight: 800;
+                                font-size: 16px;
+                                line-height: 24px;
+                                color: #262626;
+                                flex: none;
+                                order: 0;
+                                flex-grow: 0;                               
+                            }
+                            &>div:nth-child(2){  /* icon div*/
+                                width: 24px;
+                                height: 24px;
+                                flex: none;
+                                order: 1;
+                                flex-grow: 0;  
+                                position: relative; 
+                                // border: 1px solid red;
+                                &>i{
+                                    position: absolute;
+                                    left: 32.02%;
+                                    right: 31.67%;
+                                    top: 25.79%;
+                                    bottom: 34.1%;                                        
+                                    background: #FFFFFF;   
+                                                                        
+                                }                                 
+                            }
+                        }
+                        &>div:nth-child(2){
+                            border: 1px solid red;
+                            width: 34px;
+                            height: 16px;                                                              
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 12px;
+                            line-height: 16px;
+                            color: #565656;
+                            flex: none;
+                            order: 1;
+                            flex-grow: 0;    
+                                                        
+                        }
+
+                    }   
+                    &>div:nth-child(2){ /*message*/
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 0px;
+                        gap: 47px;                            
+                        width: 268px;
+                        height: 20px;
+                        flex: none;
+                        order: 1;
+                        flex-grow: 0; 
+                        border: 1px solid red;
+                        &>p:nth-child(1){    
+                            width: 203px;
+                            height: 20px;                                
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 20px; 
+                            color: #565656;                             
+                        }
+                        &>p:nth-child(2){
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            font-family: 'Inter', sans-serif;
+                            align-items: center;
+                            padding: 1px 5px;
+                            gap: 10px;                                
+                            width: 18px;
+                            height: 18px;                               
+                            background: #37A2DE;
+                            color: #FFFFFF;
+                            font-size: 12px;
+                            border-radius: 151px;
+                            flex: none;
+                            order: 1;
+                            flex-grow: 0;
+                        }                           
+                    }                   
+                } 
+            }        
+        } 
+
+    }
+}    

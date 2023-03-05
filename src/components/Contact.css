@@ -7,21 +7,23 @@
 .contact-main { /*left-bar*/
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   padding: 0px;
   margin: 0px;
-  position: absolute;
+  gap: 8px;
   width: hug(364px);
-  height: 968px;
+  height: 900px;
   left: 0px;
   top: 0px;
   background: #FFFFFF;
+  flex: none;
+  flex-grow: 0;
 }
 .contact-main > div:nth-child(1) { /* search div*/
-  border: 1px solid blue;
+  border: 1px solid red;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   padding: 8px 16px;
   gap: 12px;
   width: hug(364px);
@@ -31,6 +33,7 @@
   flex-grow: 0;
 }
 .contact-main > div:nth-child(1) > div:nth-child(1) {
+  border: 1px solid red;
   width: 40px;
   height: 40px;
   flex: none;
@@ -79,13 +82,13 @@
   left: 15px;
   display: flex;
   align-items: center;
-  border-right: 1px solid #686767;
+  box-shadow: 1px 0px;
 }
 .contact-main > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > i {
   position: absolute;
   left: 3.14%;
   right: 15.38%;
-  top: 18.14%;
+  top: 16.14%;
   bottom: 2.38%;
   color: #37A2DE;
   cursor: pointer;
@@ -116,16 +119,18 @@
   order: 1;
   flex-grow: 0;
 }
-.contact-main > a:nth-child(2) { /**/
+.contact-main > div:nth-child(2) {
+  height: hug(822px);
+}
+.contact-main > div:nth-child(2) > a:nth-child(1) { /**/
   width: 364px;
   height: 80px;
-  border: 1px solid red;
   /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
 }
-.contact-main > a:nth-child(2) > div:nth-child(1) {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(1) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,7 +142,7 @@
   left: 16px;
   top: 386px;
 }
-.contact-main > a:nth-child(2) > div:nth-child(1) > p {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(1) > p {
   width: 66px;
   height: 12px;
   font-family: "Inter";
@@ -150,7 +155,7 @@
   order: 0;
   flex-grow: 0;
 }
-.contact-main > a:nth-child(2) > div:nth-child(1) > div {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(1) > div {
   width: 44px;
   height: 44px;
   border-radius: 25px;
@@ -160,7 +165,7 @@
   border: 1px solid green;
   position: relative;
 }
-.contact-main > a:nth-child(2) > div:nth-child(1) > div > i {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(1) > div > i {
   position: absolute;
   left: 12.5%;
   right: 4.17%;
@@ -168,7 +173,7 @@
   bottom: 16.65%;
   color: #EAE79C;
 }
-.contact-main > a:nth-child(2) > div:nth-child(2) {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,7 +185,7 @@
   left: 282px;
   top: 386px;
 }
-.contact-main > a:nth-child(2) > div:nth-child(2) > p {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(2) > p {
   width: hug(70px);
   height: 12px;
   font-family: "Inter";
@@ -193,7 +198,7 @@
   order: 0;
   flex-grow: 0;
 }
-.contact-main > a:nth-child(2) > div:nth-child(2) > div {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(2) > div {
   width: 44px;
   height: 44px;
   border-radius: 25px;
@@ -203,7 +208,7 @@
   position: relative;
   border: 1px solid red;
 }
-.contact-main > a:nth-child(2) > div:nth-child(2) > div > i {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(2) > div > i {
   position: absolute;
   left: 12.5%;
   right: 4.17%;
@@ -211,7 +216,7 @@
   bottom: 16.65%;
   color: #78E378;
 }
-.contact-main > a:nth-child(2) > div:nth-child(3) {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(3) {
   position: absolute;
   width: hug(1px);
   height: 56px;
@@ -219,7 +224,7 @@
   top: 386px;
   background: #EFEFEF;
 }
-.contact-main > a:nth-child(2) > div:nth-child(4) {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(4) {
   position: absolute;
   width: hug(1px);
   height: 56px;
@@ -227,7 +232,7 @@
   top: 386px;
   background: #EFEFEF;
 }
-.contact-main > a:nth-child(2) > div:nth-child(5) {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(5) {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -239,7 +244,7 @@
   left: 98px;
   top: 392px;
 }
-.contact-main > a:nth-child(2) > div:nth-child(5) > img {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(5) > img {
   width: 48px;
   height: 48px;
   border-radius: 100px;
@@ -247,7 +252,7 @@
   order: 0;
   flex-grow: 0;
 }
-.contact-main > a:nth-child(2) > div:nth-child(5) > p {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(5) > p {
   width: hug(107px);
   height: 24px;
   font-family: "Inter", sans-serif;
@@ -259,7 +264,7 @@
   flex: none;
   order: 1;
 }
-.contact-main > a:nth-child(2) > div:nth-child(6) {
+.contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(6) {
   position: absolute;
   width: 364px;
   height: 80px;
@@ -267,7 +272,7 @@
   top: 376px;
   border: 1px solid red;
 }
-.contact-main > div:nth-child(3) {
+.contact-main > div:nth-child(2) > div:nth-child(2) {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -280,7 +285,7 @@
   order: 9;
   flex-grow: 0;
 }
-.contact-main > div:nth-child(3) > p {
+.contact-main > div:nth-child(2) > div:nth-child(2) > p {
   width: 142px;
   height: 24px;
   /* Body/Subtitle 2/Medium */

@@ -1,7 +1,7 @@
 html, body, #root{
     box-sizing: border-box;
-    height: 968px;
-    width: hug(1440px);
+    // height: 1024px;
+    // width: hug(1440px);
     padding: 0px;
     background-color: hsl(202, 72%, 54%);
 
@@ -25,146 +25,21 @@ html, body, #root{
     left: 0px;
     top: 0px;
     padding: 0px;
-    background: url(../../../../Downloads/wpback.jpg);
+    background: #F2F1F6;
     &>nav:nth-child(1){ /*top bar*/
-        // border: 1px solid red;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 8px 16px;
-        gap: 8px;        
+        border: 1px solid red;
+        width: 1478px;    
+        height: 968px; 
         position: absolute;
-        width: 1076;
-        height: 74px;
-        left: 364px;
-        top: 0px;       
-        background: #FFFFFF;
-        border-bottom: 1px solid #EFEFEF;  
-        &>a:nth-child(1){ /* other users */
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 8px 0px;
-            gap: 16px;
-            width: 900px;
-            height: 58px;
-            background: #FFFFFF;
-            flex: none;
-            order: 0;
-            align-self: stretch;
-            flex-grow: 0;            
-            &>img:nth-child(1){
-                border: 1px solid red;
-                width: 40px;
-                height: 40px;           
-                // background: url(.png);
-                border-radius: 100px;
-                flex: none;
-                order: 0;
-                flex-grow: 0;            
-            }      
-            &>div:nth-child(2){
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0px;
-                gap: 4px;           
-                width: 844px;
-                height: 42px;
-                flex: none;
-                order: 1;
-                flex-grow: 1; 
-                &>div:nth-child(1){
-                    border: 1px solid red;
-                }           
-            }            
-        }
-        &>div:nth-child(2){  /* search messages*/
-            width: 40px;
-            height: 40px;            
-            border-radius: 100px;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
-            position: relative;
-            // border: 1px solid red;
-            &>div:nth-child(1){
-                position: absolute;
-                left: 20%;
-                right: 20%;
-                top: 20%;
-                bottom: 20%;
-                // border: 1px solid red;
-                &>i{
-                    position: absolute;
-                    left: 10.42%;
-                    right: 12.51%;
-                    top: 10.42%;
-                    bottom: 12.5%;
-                    color: #707991;      
-                    -webkit-text-stroke: 0.5px white;                
-                }                
-            }
-        }
-        &>div:nth-child(3){  /* call icon */
-            width: 40px;
-            height: 40px;           
-            border-radius: 100px;
-            flex: none;
-            order: 2;
-            flex-grow: 0;  
-            // border: 1px solid red;
-            position: relative;
-            &>div:nth-child(1){
-                position: absolute;
-                left: 20%;
-                right: 20%;
-                top: 25%;
-                bottom: 20%;
-                // border: 1px solid red;
-                &>i{
-                    position: absolute;
-                    left: 22.54%;
-                    right: 19.13%;
-                    top: 8.33%;
-                    bottom: 8.33%;
-                    color: #707991;
-                }              
-            }          
-        }  
-        &>div:nth-child(4){ /* more icon */
-            width: 40px;
-            height: 40px;           
-            border-radius: 100px;
-            flex: none;
-            order: 3;
-            flex-grow: 0;  
-            position: relative;
-            // border: 1px solid red;
-            &>div:nth-child(1){
-                // border: 1px solid red;
-                position: absolute;
-                left: 20%;
-                right: 20%;
-                top: 20%;
-                bottom: 20%;
-                &>i{
-                    position: absolute;
-                    left: 41.67%;
-                    right: 41.67%;
-                    top: 16.67%;
-                    bottom: 16.67%;      
-                    color: #707991;              
-                }                
-            }          
-        }              
+        left: 367px;
+        z-index: 1;
     }
     &>nav:nth-child(2){  /* leftbar */
+        z-index: 1;
         width: hug(364px);
         height: hug(1024px);      
-        gap: 21px;
-        // border: 1px solid blue;  
+        gap: 5;
+        border: 1px solid blue;  
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -174,277 +49,11 @@ html, body, #root{
         top: 0px;
         background: #FFFFFF;
         box-sizing: border-box;
-        &>div:nth-child(1){  /* frame */
-            // border: 1px solid red;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 0px;
-            gap: 8px;           
+        &>div:nth-child(1){  /* top-bar-top */
             width: 364px;
-            height: hug(900px);
-            flex: none;
-            order: 0;
-            flex-grow: 0;            
-            &>div:nth-child(1){ /* searchbar */
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-                padding: 8px 16px;
-                gap: 16px;
-                width: 364px;
-                height: 56px;
-                flex: none;
-                order: 0;
-                flex-grow: 0;
-                // border: 1px solid red;
-                &>div:nth-child(1){   /* menu-icon */               
-                    width: 40px;
-                    height: 40px;
-                    // border-radius: 100px;
-                    flex: none;
-                    order: 0;
-                    flex-grow: 0;
-                    // border: 1px solid red;
-                    position: relative;
-                    &>div:nth-child(1){ /*menu-icon2*/
-                        position: absolute;
-                        width: 24px;
-                        height: 24px;
-                        left: 10px;
-                        top: 8px;
-                        &>i{                     /*icon*/
-                            position: absolute;
-                            left: 8.34%;
-                            right: 8.34%;
-                            top: 20.83%;
-                            bottom: 20.83%;
-                            color: #707991;
-                        }
-                    }
-                }
-                &>div:nth-child(2){  /* frame-search*/
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    padding: 8px 16px;
-                    gap: 16px;               
-                    width: 276px;
-                    height: 40px;   
-                    background: #F5F5F5;
-                    border-radius: 32px; 
-                    flex: none;
-                    order: 1;
-                    flex-grow: 0;
-                    &>div:nth-child(1){
-                        width: 24px;
-                        height: 24px;
-                        flex: none;
-                        order: 0;
-                        flex-grow: 0; 
-                        position: relative;
-                        &>i:nth-child(1){
-                            position: absolute;
-                            left: 20.14%;
-                            right: 9.38%;
-                            top: 20.14%;
-                            bottom: 9.38%;
-                            color: #707991;  
-                            -webkit-text-stroke: 0.5px white;                        
-                        }                  
-                    }  
-                    &>input:nth-child(2){
-                        width: 80px;
-                        height: 24px;
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 16px;
-                        line-height: 24px;
-                        text-align: center;
-                        background-color: #F5F5F5;
-                        flex: none;
-                        order: 1;
-                        flex-grow: 0;   
-                        border: none
-
-                    }     
-                    &>input:focus{
-                        outline: None;
-                    }                                     
-                }
-            }
-            &>ul:nth-child(2){ /*chat-list*/
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0px;           
-                width: 364px;
-                height: 822px;
-                flex: none;
-                order: 1;
-                flex-grow: 0;  
-                color: black;
-                overflow: scroll;
-                // border: 1px solid black;  
-                &>li:hover{
-                    background-color: #F5F5F5;
-                } 
-                &>li{  /* chat list active */
-                    
-                    &>a:nth-child(1){  
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        padding: 12px 16px;
-                        gap: 16px;                   
-                        width: 364px;
-                        height: 82px;
-                        flex: none;
-                        order: 0;
-                        flex-grow: 0; 
-                        border: 1px solid blue;   
-                        text-decoration: none;                      
-                        &>img{
-                            border: 1px solid blue;
-                            width: 56px;
-                            height: 56px;
-                            // background: url(.jpg), #8BABD8;
-                            border-radius: 100px;
-                            flex: none;
-                            order: 0;
-                            flex-grow: 0;                        
-                        }    
-                        &>div:nth-child(2){  /* texts */
-                            display: flex;
-                            flex-direction: column;
-                            align-items: flex-start;
-                            padding: 0px;
-                            gap: 8px;
-                            width: 268px;
-                            height: 52px;
-                            flex: none;
-                            order: 1;
-                            flex-grow: 0;  
-                            border: 1px solid red;
-                            &>div:nth-child(1){ /*frame2*/
-                                display: flex;
-                                flex-direction: row;
-                                align-items: center;
-                                padding: 0px;
-                                gap: 130px;                         
-                                width: 268px;
-                                height: 24px;
-                                flex: none;
-                                order: 0;
-                                align-self: stretch;
-                                flex-grow: 0;
-                                &>div:nth-child(1){ /* name*/
-                                    display: flex;
-                                    flex-direction: row;
-                                    align-items: center;
-                                    padding: 0px;
-                                    gap: 4px;                               
-                                    width: 104px;
-                                    height: 24px;
-                                    flex: none;
-                                    order: 0;
-                                    flex-grow: 1;
-                                    &>div:nth-child(1){  /* writing name */
-                                        font-family: 'Inter', sans-serif;
-                                        width: 76px;
-                                        height: 24px;                                    
-                                        text-decoration: none;
-                                        font-style: normal;
-                                        font-weight: 800;
-                                        font-size: 16px;
-                                        line-height: 24px;
-                                        color: #262626;
-                                        flex: none;
-                                        order: 0;
-                                        flex-grow: 0;                               
-                                    }
-                                    &>div:nth-child(2){  /* icon div*/
-                                        width: 24px;
-                                        height: 24px;
-                                        flex: none;
-                                        order: 1;
-                                        flex-grow: 0;  
-                                        position: relative; 
-                                        // border: 1px solid red;
-                                        &>i{
-                                            position: absolute;
-                                            left: 32.02%;
-                                            right: 31.67%;
-                                            top: 25.79%;
-                                            bottom: 34.1%;                                        
-                                            background: #FFFFFF;   
-                                                                                
-                                        }                                 
-                                    }
-                                }
-                                &>div:nth-child(2){
-                                    border: 1px solid red;
-                                    width: 34px;
-                                    height: 16px;                                                              
-                                    font-style: normal;
-                                    font-weight: 500;
-                                    font-size: 12px;
-                                    line-height: 16px;
-                                    color: #565656;
-                                    flex: none;
-                                    order: 1;
-                                    flex-grow: 0;    
-                                                                
-                                }
-
-                            }   
-                            &>div:nth-child(2){ /*message*/
-                                display: flex;
-                                flex-direction: row;
-                                justify-content: space-between;
-                                align-items: center;
-                                padding: 0px;
-                                gap: 47px;                            
-                                width: 268px;
-                                height: 20px;
-                                flex: none;
-                                order: 1;
-                                flex-grow: 0; 
-                                border: 1px solid red;
-                                &>p:nth-child(1){    
-                                    width: 203px;
-                                    height: 20px;                                
-                                    font-style: normal;
-                                    font-weight: 400;
-                                    font-size: 14px;
-                                    line-height: 20px; 
-                                    color: #565656;                             
-                                }
-                                &>p:nth-child(2){
-                                    display: flex;
-                                    flex-direction: column;
-                                    justify-content: center;
-                                    font-family: 'Inter', sans-serif;
-                                    align-items: center;
-                                    padding: 1px 5px;
-                                    gap: 10px;                                
-                                    width: 18px;
-                                    height: 18px;                               
-                                    background: #37A2DE;
-                                    color: #FFFFFF;
-                                    font-size: 12px;
-                                    border-radius: 151px;
-                                    flex: none;
-                                    order: 1;
-                                    flex-grow: 0;
-                                }                           
-                            }                   
-                        } 
-                    }        
-                } 
-        
-            }
-        }    
+            height: 900px;
+            // border: 1px solid red;
+        }
         &>div:nth-child(2){  /* tab-bar-menu */
             border: 1px solid red;
             box-sizing: border-box;
@@ -551,6 +160,7 @@ html, body, #root{
 
     }
     &>div:nth-child(3){
+        z-index: 1;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -610,6 +220,14 @@ html, body, #root{
                 cursor: pointer;
             }
         }     
+    }
+    &>div:nth-child(4){
+        position: absolute;
+        width: hug(1440px);
+        height: hug(1024px);
+        left: 0px;
+        top: 0px;   
+        background: url(../../../../Downloads/wpback.jpg);             
     }
 }
 
