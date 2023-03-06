@@ -162,7 +162,6 @@
   flex: none;
   order: 1;
   flex-grow: 0;
-  border: 1px solid green;
   position: relative;
 }
 .contact-main > div:nth-child(2) > a:nth-child(1) > div:nth-child(1) > div > i {

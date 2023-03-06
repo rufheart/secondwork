@@ -34,33 +34,16 @@ function Homepage(){
     }
     return(
         <div className='main'>
-            <nav >
-                <Allcards/>
-                {/* <Topbar/> */}
-                {/* <Outlet/> */}
-            </nav>
-            <nav className='left-bar'>
-                <div className='left-bar-top'>
-                    {/* {<Chat/>} */}
-                    {contact==true?<Contact/>:null}
-                    <Outlet/>
-                </div>
-                <div className='tab-bar-menu'>
-                    <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
-                    <NavLink to='/call'className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} ><i className="material-icons" style={{"color":color_call}}>phone</i></NavLink>
-                    <NavLink to='/' className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} onClick={Chat}><i className='far fa-comment'  style={{"fontSize":"21px","WebkitTextStroke":"0.5px #FFFFFF ","color":color_chat}}></i></NavLink>
-                    <NavLink to='/users' className={'active'?(color_friends='#37A2DE'):null}><i className='far fa-address-card'style={{color_friends}} ></i></NavLink>
-                    <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
-                </div>
-            </nav>
-            <div className='input-bar'>
-                <div><i className="far fa-smile"></i></div>
-                <input type="text" placeholder='Message' />
-                <div><i className="material-icons">send</i></div>
-                
+            <div className='tab-bar-menu'>
+                <NavLink to='/' className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} onClick={Chat} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className='far fa-comment'  style={{"fontSize":"21px","WebkitTextStroke":"0.5px #FFFFFF ","color":color_chat}}></i></NavLink>
+                <NavLink to='/users' className={'active'?(color_friends='#37A2DE'):null}><i className='far fa-address-card' style={{color_friends}} ></i></NavLink>
+                <NavLink to='/call'className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} ><i className="material-icons" style={{"color":color_call}}>add</i></NavLink>
+                <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
+                <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
             </div>
-            <div className='background'>
-
+            <div>
+                <Chat/>
+                <Outlet/>
             </div>
         </div>
     )
