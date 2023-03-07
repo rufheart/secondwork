@@ -5,7 +5,6 @@
 }
 
 .frame {
-  border: 1px solid white;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -13,20 +12,24 @@
   gap: 8px;
   margin: 0px;
   padding: 0px;
+  width: 422px;
   order: 0;
   flex-grow: 0;
   left: 0px;
   top: 0px;
+  z-index: 10;
+  background: #FFFFFF;
 }
 .frame > div:nth-child(1) { /* searchbar */
   border: 1px solid blue;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 8px 16px;
-  gap: 12px;
-  width: 424px;
-  height: 56px;
+  padding: 12px 75px 8px 16px;
+  gap: 16px;
+  width: 100%;
+  height: 60px;
+  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -34,7 +37,8 @@
 .frame > div:nth-child(1) > div:nth-child(1) { /* menu-icon */
   width: 40px;
   height: 40px;
-  border: 1px solid red;
+  border-radius: 100px;
+  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -42,17 +46,16 @@
 }
 .frame > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) { /*menu-icon2*/
   position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 10px;
-  top: 8px;
+  width: 30px;
+  height: 40px;
+  left: 8px;
 }
 .frame > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > i { /*icon*/
   position: absolute;
-  left: 8.34%;
-  right: 8.34%;
-  top: 16.83%;
-  bottom: 20.83%;
+  left: 14.34%;
+  right: 2.34%;
+  top: 12.83%;
+  bottom: 24.83%;
   color: #707991;
 }
 .frame > div:nth-child(1) > div:nth-child(2) { /* frame-search*/
@@ -60,14 +63,14 @@
   flex-direction: row;
   align-items: center;
   gap: 30px;
-  width: 276px;
-  height: 40px;
+  width: 324px;
+  height: 38px;
   background: #F5F5F5;
   border-radius: 32px;
   flex: none;
   order: 1;
   flex-grow: 0;
-  border: 1px solid red;
+  border: 1px solid green;
   position: relative;
 }
 .frame > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
@@ -89,13 +92,13 @@
   -webkit-text-stroke: 0.5px white;
 }
 .frame > div:nth-child(1) > div:nth-child(2) > input:nth-child(2) {
-  width: 276px;
+  width: 324px;
   height: 38px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  text-align: center;
+  text-align: left;
   background-color: #F5F5F5;
   padding-left: 50px;
   padding-right: 10px;
@@ -113,31 +116,32 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  width: 424px;
-  height: 822px;
+  width: 100%;
+  height: 820px;
   flex: none;
   order: 1;
   flex-grow: 0;
   color: black;
   overflow: scroll;
-  border: 1px solid white;
 }
 .frame > ul:nth-child(2) > li:hover {
   background-color: #F5F5F5;
 }
-.frame > ul:nth-child(2) > li { /* chat list active */ }
+.frame > ul:nth-child(2) > li { /* chat list active */
+  width: 100%;
+  border: 1px solid black;
+}
 .frame > ul:nth-child(2) > li > a:nth-child(1) {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 12px 16px;
   gap: 16px;
-  width: 424px;
+  width: 410px;
   height: 82px;
   flex: none;
   order: 0;
   flex-grow: 0;
-  border: 1px solid blue;
   text-decoration: none;
 }
 .frame > ul:nth-child(2) > li > a:nth-child(1) > img {
@@ -155,7 +159,7 @@
   align-items: flex-start;
   padding: 0px;
   gap: 8px;
-  width: 268px;
+  width: 315px;
   height: 52px;
   flex: none;
   order: 1;
@@ -168,7 +172,7 @@
   align-items: center;
   padding: 0px;
   gap: 130px;
-  width: 268px;
+  width: 315px;
   height: 24px;
   flex: none;
   order: 0;
@@ -208,14 +212,10 @@
   order: 1;
   flex-grow: 0;
   position: relative;
+  border: 1px solid red;
 }
-.frame > ul:nth-child(2) > li > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > i {
-  position: absolute;
-  left: 32.02%;
-  right: 31.67%;
-  top: 25.79%;
-  bottom: 34.1%;
-  background: #FFFFFF;
+.frame > ul:nth-child(2) > li > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > span {
+  color: #356CD2;
 }
 .frame > ul:nth-child(2) > li > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   border: 1px solid red;
@@ -237,7 +237,7 @@
   align-items: center;
   padding: 0px;
   gap: 47px;
-  width: 268px;
+  width: 315px;
   height: 20px;
   flex: none;
   order: 1;

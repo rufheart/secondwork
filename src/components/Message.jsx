@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import './Chat.css';
+// import './Chat.css';
 
 function Message(){
     console.log('message isledi')

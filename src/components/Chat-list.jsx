@@ -12,7 +12,7 @@ function Chat(){
     return(
         <div className='frame'>
             <div className='search-bar'>
-                <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars' aria-hidden="true"/></div></div>
+                <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars' aria-hidden="true" style={{"fontSize":"24px"}}/></div></div>
                 <div className='frame-search'><div><i className="material-icons">search</i></div><input type="text" placeholder="Search" /></div>
             </div>
             <ul className='chat-list'>
@@ -23,7 +23,7 @@ function Chat(){
                             <div className='frame2'>
                                 <div className='name'>
                                     <div>Chatgram</div>
-                                    <div><i className='fa fa-check-circle'></i></div>
+                                    <div><span class="material-symbols-outlined">verified</span></div>
                                 </div>
                                 <div>09:25</div>
                             </div>

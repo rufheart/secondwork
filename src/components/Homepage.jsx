@@ -45,6 +45,9 @@ function Homepage(){
                 <Chat/>
                 <Outlet/>
             </div>
+            <div>
+                
+            </div>
         </div>
     )
 }
