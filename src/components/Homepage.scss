@@ -163,5 +163,160 @@ html, body, #root{
         left: 0px;
         top: 0px;
     }
-}
+    &>div:nth-child(4){
+
+        box-sizing: border-box;
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // padding: 9px 16px;
+        gap: 656px;
+        
+        position: absolute;
+        width: 1424px;
+        height: 60px;
+        left: 423px;
+        top: 0px;
+        /* Solid/White */
+        background: red;
+        
+        /* Neutral/10 */
+        border-bottom: 1px solid #ECECEC;
+    }
+    &>div:nth-child(5){
+        display: flex;
+        width: 866px;
+        height: 835px;
+        border: 1px solid blue;
+        position: absolute;
+        top: 60px;
+        left: 708px;
+    }
+    &>div:nth-child(6){ /*message input*/
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 16px;
+        
+        position: absolute;
+        width: 766px;
+        height: 56px;
+        left: 708px;
+        top: 896px;  
+        &>div:nth-child(1){
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 8px 16px;
+            gap: 16px;
+            
+            width: 694px;
+            height: 56px;
+            
+            /* Solid/White */
+            background: #FFFFFF;
+            border-radius: 12px;
+            
+            /* Inside auto layout */
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+            &>div:nth-child(1){
+                width: 24px;
+                height: 24px;
+                
+                
+                /* Inside auto layout */
+                flex: none;
+                order: 0;
+                flex-grow: 0;   
+                &>span{
+                    color: #959595;;
+                }             
+            }  
+            &>input:nth-child(2){
+
+                width: 572.27px;
+                height: 52px;
+                
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 20px;
+                border: none;
+                /* identical to box height, or 125% */
+                
+                /* Neutral/300 */
+                color: #959595;
+                
+                
+                /* Inside auto layout */
+                flex: none;
+                order: 1;
+                flex-grow: 1;                
+            } 
+            &>div:nth-child(3){
+                width: 24px;
+                height: 24px;
+                
+                transform: rotate(38.53deg);
+                
+                /* Inside auto layout */
+                flex: none;
+                order: 2;
+                flex-grow: 0;   
+                &>span{
+                    color:#959595;
+                }             
+            }         
+        }      
+        &>div:nth-child(2){
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 16px;
+            gap: 10px;
+            
+            width: 56px;
+            height: 56px;
+            
+            /* Primary/950 */
+            background: #356CD2;
+            border-radius: 52px;
+            
+            /* Inside auto layout */
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+            &>div:nth-child(1){
+
+                width: 24px;
+                height: 24px;
+                
+                
+                /* Inside auto layout */
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                position: relative;
+                // border: 1px solid red;
+                &>span{
+
+                    // position: absolute;
+                    // left: 20.83%;
+                    // right: 20.83%;
+                    // top: 8.33%;
+                    // bottom: 12.5%;
+                    
+                    /* Solid/White */
+                    color: #FFFFFF;           
+                }                
+            }        
+        }
+    }
+}    
 

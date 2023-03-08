@@ -9,6 +9,7 @@ import Contact from './Contact';
 import Chat from './Chat-list';
 import Topbar from './Top-bar';
 import Allcards from './All-cards';
+import Get_Send_Msg from './Get_Send_Msg';
 
 function Homepage(){
     let [color_contact, setCCont] = useState('grey')
@@ -47,6 +48,22 @@ function Homepage(){
             </div>
             <div>
                 
+            </div>
+            <div className='Top-bar'>
+                <Topbar/>
+            </div>
+            <div>
+                <Get_Send_Msg/>
+            </div>
+            <div className='input'>
+                <div>
+                    <div><span class="material-symbols-outlined">sentiment_satisfied</span></div>
+                    <input type="text" placeholder='Message'/>
+                    <div><span class="material-symbols-outlined" style={{"transform":"rotate(10deg)"}}>attach_file</span></div>
+                </div>
+                <div>
+                    <div><span class="material-symbols-outlined">mic</span></div>
+                </div>
             </div>
         </div>
     )
