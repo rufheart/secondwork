@@ -11,8 +11,13 @@ import { Context } from './Context';
 function Chat(){
     let [activecolor, setAcColor] = useState()
     let [showmenu, setShowMenu] = useState(false)
+    let [newcontact, setNewContact] = useState(false)
     function ShowMenu(){
         setShowMenu(!showmenu)
+    }
+    function ShowNewContact(){
+        setNewContact(!newcontact)
+        setShowMenu(false)
     }
     return(
         <div className='frame'>
@@ -21,10 +26,10 @@ function Chat(){
                 <div className='frame-search'><div><i className="material-icons">search</i></div><input type="text" placeholder="Search" /></div>
                 {showmenu==true?
                <div>
-                <div><span><span class="material-symbols-outlined">bookmark</span></span>Saved Cards</div>
-                <div><span><span class="material-symbols-outlined">person</span></span>New Contact</div>
-                <div><span><span class="material-symbols-outlined">supervisor_account</span></span>New Group</div>
-                <div><span><span class="material-symbols-outlined">logout</span></span>Logout</div>
+                <button><span><span class="material-symbols-outlined">bookmark</span></span>Saved Cards</button>
+                <button onClick={ShowNewContact}><span><span class="material-symbols-outlined">person</span></span>New Contact</button>
+                <button><span><span class="material-symbols-outlined">supervisor_account</span></span>New Group</button>
+                <button><span><span class="material-symbols-outlined">logout</span></span>Logout</button>
                 </div>                    
                 :null
                 }
@@ -247,6 +252,22 @@ function Chat(){
                     </NavLink>
                 </li>                    
             </ul>
+            {newcontact==true?
+                <div className='new_contact_add'>
+                    <div className='top'>
+                        <p>New Contact</p>
+                        <div>
+                            <input type="text" placeholder='First name'/>
+                            <input type="text" placeholder='Last name' />
+                            <input type="text" placeholder='Phone number'/>
+                        </div>
+                    </div>
+                    <div className='button'>
+                        <button onClick={ShowNewContact}>Cancel</button>
+                        <button>Create Contact</button>
+                    </div>
+                </div> :null           
+            }
         </div>        
     )
 }
