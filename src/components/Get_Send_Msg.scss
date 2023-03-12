@@ -13,7 +13,7 @@
     border: 1px solid red;
     overflow: scroll;
     &>div{
-        margin: 5px;
+        margin-top: 5px;
     }
     &>div:nth-child(1){ /* your message fiv*/
         width: 100%;

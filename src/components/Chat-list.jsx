@@ -10,6 +10,8 @@ import { Context } from './Context';
 
 function Chat(){
     let [activecolor, setAcColor] = useState()
+    let [smsbackground, setSmsBackGround] = useState()
+    let [smscolor, setSmsColor] = useState()
     let [showmenu, setShowMenu] = useState(false)
     let [newcontact, setNewContact] = useState(false)
     let menuRef=useRef();
@@ -43,8 +45,8 @@ function Chat(){
             </div>
             <ul className='chat-list'>
                 <li>
-                    <NavLink style={({isActive})=>({"background":isActive?"#356CD2":null})} className={({isActive})=>isActive?setAcColor("#FFFFFF"):null}>
-                        <img src="" alt="" />
+                    <NavLink style={({isActive})=>({"background":isActive?"#356CD2":null})} className={({isActive})=>isActive?(setAcColor("#FFFFFF"),setSmsBackGround('#FFFFFF'),setSmsColor('#356CD2')):null}>
+                        <img src={require('../panda.jpg')} alt="" />
                         <div className='chat-text'>
                             <div className='frame2'>
                                 <div className='name'>
@@ -55,7 +57,7 @@ function Chat(){
                             </div>
                             <div className='message' >
                                 <p style={{"color":activecolor}}>Chatgram verify code:45545</p>
-                                <p>2</p>
+                                <p style={{"background":smsbackground,"color":smscolor}}>2</p>
                             </div>                                
                         </div>                                
                     </NavLink>

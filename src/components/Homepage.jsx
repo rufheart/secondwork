@@ -2,7 +2,7 @@ import './Homepage.css';
 import { NavLink } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useRef, useState ,useEffect} from 'react';
 import { useContext } from 'react';
 import { Context } from './Context';
 import Contact from './Contact';
@@ -19,6 +19,21 @@ function Homepage(){
     let [color_settings, setCS] = useState()
     let [chat, setChat] = useState(true)
     let [contact, setContact] = useState(false)
+    let [voicebutton, setVoiceButton] = useState(true)
+    let [val, setVal] = useState();
+    let textAreaRef = useRef(null);
+
+    let resizeTextArea = () => {
+        textAreaRef.current.style.height = "auto";
+        textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
+      };
+
+    useEffect(resizeTextArea, [val]);
+
+    const onChange = e => {
+        setVal(e.target.value);
+    };
+
     function Chat(){
         setChat(true)
         setContact(false)
@@ -27,12 +42,21 @@ function Homepage(){
         setContact(true)
         setChat(false)
     }
-    let activeStyle = {
-        chart
-      };
-    function chart(){
-        console.log('vhart')
+    function Change(){
+        if(val.length==0){
+        setVoiceButton(true)
+        }
+        if(val.length!=0){
+            setVoiceButton(false) 
+        }
     }
+   
+    // let activeStyle = {
+    //     chart
+    //   };
+    // function chart(){
+    //     console.log('vhart')
+    // }
     return(
         <div className='main'>
             <div className='tab-bar-menu'>
@@ -42,7 +66,7 @@ function Homepage(){
                 <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
                 <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
             </div>
-            <div>
+            <div className='left_side_bar'>
                 <Chat/>
                 <Outlet/>
             </div>
@@ -58,11 +82,13 @@ function Homepage(){
             <div className='input'>
                 <div>
                     <div><span class="material-symbols-outlined">sentiment_satisfied</span></div>
-                    <input type="text" placeholder='Message'/>
+                    <textarea type="text" placeholder='Message' ref={textAreaRef} value={val} onChange={onChange} onInput={Change}/>
                     <div><span class="material-symbols-outlined" style={{"transform":"rotate(10deg)"}}>attach_file</span></div>
                 </div>
                 <div>
-                    <div><span class="material-symbols-outlined">mic</span></div>
+                    <div>
+                        {voicebutton==true?<span class="material-symbols-outlined">mic</span>:<span class="material-symbols-outlined">send</span>}
+                    </div>
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ html, body, #root{
         align-items: center;
         padding: 8px 16px;
         gap: 20px;
-        z-index: 1;
+        z-index: 2;
         position: absolute;
         width: 424px;
         height: 80px;
@@ -149,6 +149,7 @@ html, body, #root{
     }
     &>div:nth-child(2){ /*left bar*/
         // border: 1px solid orange;
+        height: 888px;
         width: 424px;
         position: relative;
         border-right: 1px solid #ECECEC;
@@ -237,17 +238,19 @@ html, body, #root{
                     color: #959595;;
                 }             
             }  
-            &>input:nth-child(2){
+            &>textarea:nth-child(2){
 
                 width: 572.27px;
                 height: 52px;
-                
+                resize:none;
+                overflow-y: hidden;
                 font-family: 'Inter';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 20px;
                 border: none;
+                
                 /* identical to box height, or 125% */
                 
                 /* Neutral/300 */

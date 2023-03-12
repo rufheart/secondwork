@@ -14,7 +14,7 @@
   overflow: scroll;
 }
 .sendandget > div {
-  margin: 5px;
+  margin-top: 5px;
 }
 .sendandget > div:nth-child(1) { /* your message fiv*/
   width: 100%;

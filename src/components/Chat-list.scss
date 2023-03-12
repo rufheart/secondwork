@@ -13,6 +13,7 @@
     margin: 0px;
     padding: 0px;         
     width: 422px;
+    height: 888px;
     order: 0;
     flex-grow: 0; 
     left: 0px;
@@ -339,6 +340,7 @@
         
     }
     &>div:nth-child(3){
+        border: 1px solid red;
         &>div{
             display: flex;
             flex-direction: column;
