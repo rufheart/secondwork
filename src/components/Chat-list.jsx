@@ -1,6 +1,6 @@
 import './Chat-list.css';
 import { NavLink } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useRef, useState,useEffect} from 'react';
 import { useContext } from 'react';
@@ -45,7 +45,7 @@ function Chat(){
             </div>
             <ul className='chat-list'>
                 <li>
-                    <NavLink style={({isActive})=>({"background":isActive?"#356CD2":null})} className={({isActive})=>isActive?(setAcColor("#FFFFFF"),setSmsBackGround('#FFFFFF'),setSmsColor('#356CD2')):null}>
+                    <NavLink to={`messages/rufat/1`} style={({isActive})=>({"background":isActive?"#356CD2":null})} className={({isActive})=>isActive?(setAcColor("#FFFFFF"),setSmsBackGround('#FFFFFF'),setSmsColor('#356CD2')):null}>
                         <img src={require('../panda.jpg')} alt="" />
                         <div className='chat-text'>
                             <div className='frame2'>
@@ -63,7 +63,7 @@ function Chat(){
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink>
+                    <NavLink to={`messages/rufat/2`} >
                         <img src="" alt="" />
                         <div className='chat-text'>
                             <div className='frame2'>

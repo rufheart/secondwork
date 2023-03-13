@@ -11,6 +11,7 @@ function Topbar(){
     let [deletechat,setDeleteChat] = useState(false)
     let [blockshow, setBlockShow] = useState(false)
     let [reportshow, setReportShow] = useState(false)
+    let params = useParams()
     let menuRef=useRef();
     useEffect(()=>{
         let handler=(e)=>{
@@ -33,7 +34,7 @@ function Topbar(){
             <NavLink className='other-user'>
                 <img src="" alt="" />
                 <div className='texts'>
-                    <div><p>Lele S</p></div>
+                    <div><p>{params.userName}</p></div>
                     <div><p>5 min ago</p></div>
                 </div>
             </NavLink>

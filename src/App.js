@@ -8,15 +8,20 @@ import Welcome from './components/Wellcome';
 import Homepage from './components/Homepage';
 import Contact from './components/Contact';
 import Chat from './components/Chat-list';
+import Get_Send_Msg from './components/Get_Send_Msg';
+import Topbar from './components/Top-bar';
 
 function App() {
   return (
     <Routes>
         <Route path='/' element={<Homepage/>}>
-          <Route path='' element={<Chat/>}/>
+          <Route path='' element={<Chat/>}>
+            <Route path='messages/:userName/:id' element={<Topbar/>} /> 
+          </Route>
           <Route path='/contact' element={<Contact/>}/>
-          {/* <Route path='' element={<Welcome />} />
-          <Route path='messages/:userName/:id' element={<Message />} /> */}
+          {/* <Route path='messages/:userName/:id' element={<Get_Send_Msg/>}/> */}
+          {/* <Route path='' element={<Welcome />} />*/}
+          
         </Route>
     </Routes>
   );
