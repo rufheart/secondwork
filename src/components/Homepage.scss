@@ -156,7 +156,7 @@ html, body, #root{
         z-index: 1;
     }
     &>div:nth-child(3){
-        background: url('../../../../Downloads/wpback.jpg');
+        background: url('../../../../Downloads/wp_new.jpeg');
         // z-index: 1;
         position: absolute;
         width: 100%;
@@ -213,44 +213,55 @@ html, body, #root{
             align-items: center;
             padding: 8px 16px;
             gap: 16px;
-            
             width: 694px;
-            height: 56px;
-            
+            min-height: 56px;
+            max-height: 200px;
+            outline: none;
             /* Solid/White */
             background: #FFFFFF;
             border-radius: 12px;
-            
+            position: relative;
             /* Inside auto layout */
-            flex: none;
-            order: 0;
-            flex-grow: 0;
-            &>div:nth-child(1){
+            // flex: none;
+            // order: 0;
+            // flex-grow: 0;
+            &>button:hover{
+                cursor: pointer;
+            }
+            &>button:nth-child(1){
                 width: 24px;
                 height: 24px;
-                
-                
+                border: none;
+                background-color: transparent;
+                border: 1px solid red;
                 /* Inside auto layout */
                 flex: none;
                 order: 0;
-                flex-grow: 0;   
+                flex-grow: 0;  
+                min-height: 52px;
+                max-height: 200px;
+                box-sizing: content-box;
                 &>span{
                     color: #959595;;
                 }             
             }  
             &>textarea:nth-child(2){
-
                 width: 572.27px;
-                height: 52px;
+                min-height: 52px;
+                max-height: 180px;
                 resize:none;
-                overflow-y: hidden;
+                overflow-y: scroll;
                 font-family: 'Inter';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 20px;
                 border: none;
-                
+                display: flex;
+                box-sizing: border-box;
+                // padding-left: 10px;
+                // padding-right: 10px;
+                // padding-top: 10px;
                 /* identical to box height, or 125% */
                 
                 /* Neutral/300 */
@@ -262,10 +273,11 @@ html, body, #root{
                 order: 1;
                 flex-grow: 1;                
             } 
-            &>div:nth-child(3){
+            &>button:nth-child(3){
                 width: 24px;
                 height: 24px;
-                
+                border: none;
+                background-color: transparent;
                 transform: rotate(38.53deg);
                 
                 /* Inside auto layout */
@@ -276,7 +288,13 @@ html, body, #root{
                     color:#959595;
                 }             
             }         
-        }      
+        }  
+        &>div:nth-child(2):hover{
+            cursor: pointer;
+            &>button:hover{
+                cursor: pointer;
+            }
+        }    
         &>div:nth-child(2){
             display: flex;
             flex-direction: row;
@@ -295,8 +313,9 @@ html, body, #root{
             flex: none;
             order: 1;
             flex-grow: 0;
-            &>div:nth-child(1){
-
+            &>button:nth-child(1){
+                background-color: transparent;
+                border: none;
                 width: 24px;
                 height: 24px;
                 

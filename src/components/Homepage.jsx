@@ -23,7 +23,7 @@ function Homepage(){
     let [val, setVal] = useState();
     let textAreaRef = useRef(null);
 
-    let resizeTextArea = () => {
+    let resizeTextArea = () => {                 /* message yazilan textarea-sini avtomatik genislediren funksiya*/
         textAreaRef.current.style.height = "auto";
         textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
       };
@@ -42,21 +42,8 @@ function Homepage(){
         setContact(true)
         setChat(false)
     }
-    function Change(){
-        if(val.length==0){
-        setVoiceButton(true)
-        }
-        if(val.length!=0){
-            setVoiceButton(false) 
-        }
-    }
-   
-    // let activeStyle = {
-    //     chart
-    //   };
-    // function chart(){
-    //     console.log('vhart')
-    // }
+
+    console.log(val)
     return(
         <div className='main'>
             <div className='tab-bar-menu'>
@@ -81,14 +68,14 @@ function Homepage(){
             </div>
             <div className='input'>
                 <div>
-                    <div><span class="material-symbols-outlined">sentiment_satisfied</span></div>
-                    <textarea type="text" placeholder='Message' ref={textAreaRef} value={val} onChange={onChange} onInput={Change}/>
-                    <div><span class="material-symbols-outlined" style={{"transform":"rotate(10deg)"}}>attach_file</span></div>
+                    <button><span class="material-symbols-outlined">sentiment_satisfied</span></button>
+                    <textarea type="text" placeholder='Message' ref={textAreaRef} value={val} onChange={onChange} onInput={(e)=>{setVal(val=e.target.value);if(val.length!=0){setVoiceButton(false)};if(val.length==0){setVoiceButton(true)}}}/>
+                    <button><span class="material-symbols-outlined" style={{"transform":"rotate(10deg)"}}>attach_file</span></button>
                 </div>
                 <div>
-                    <div>
+                    <button>
                         {voicebutton==true?<span class="material-symbols-outlined">mic</span>:<span class="material-symbols-outlined">send</span>}
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
