@@ -5,11 +5,14 @@ import { useParams } from 'react-router-dom';
 import { useRef, useState,useEffect} from 'react';
 import { useContext } from 'react';
 import { Context } from './Context';
+import Homepage from './Homepage';
 
 
 
 function Chat(){
+    let [chalistshow, setChatListShow] = useState(true)
     let [activecolor, setAcColor] = useState()
+    let [activecolor2, setAcColor2] = useState()
     let [smsbackground, setSmsBackGround] = useState()
     let [smscolor, setSmsColor] = useState()
     let [showmenu, setShowMenu] = useState(false)
@@ -29,7 +32,17 @@ function Chat(){
         }
     });
     return(
-        <div className='frame'>
+        <div>
+            {chalistshow==false?<Homepage func={false}/>:<Homepage func={true}/>}
+            {chalistshow==false?<div>
+                <div></div>
+                <div></div>
+                <div>
+                    <div><input type="checkbox" /></div>
+                    <div></div>
+                </div>
+            </div>:null}
+            {chalistshow==true?<div className='frame'>
             <div className='search-bar'  ref={menuRef}>
                 <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars' aria-hidden="true" style={{"fontSize":"24px"}} onClick={()=>(setShowMenu(!showmenu),setNewContact(false))} /></div></div>
                 <div className='frame-search'><div><i className="material-icons">search</i></div><input type="text" placeholder="Search" /></div>
@@ -37,7 +50,7 @@ function Chat(){
                <div ref={menuRef}>
                     <button><span><span class="material-symbols-outlined">bookmark</span></span>Saved Cards</button>
                     <button onClick={()=>(setNewContact(!newcontact),setShowMenu(false))}><span><span class="material-symbols-outlined">person</span></span>New Contact</button>
-                    <button><span><span class="material-symbols-outlined">supervisor_account</span></span>New Group</button>
+                    <button onClick={()=>setChatListShow(false)}><span><span class="material-symbols-outlined">supervisor_account</span></span>New Group</button>
                     <button><span><span class="material-symbols-outlined">logout</span></span>Logout</button>
                 </div>                    
                 :null
@@ -45,7 +58,7 @@ function Chat(){
             </div>
             <ul className='chat-list'>
                 <li>
-                    <NavLink to={`messages/rufat/1`} style={({isActive})=>({"background":isActive?"#356CD2":null})} className={({isActive})=>isActive?(setAcColor("#FFFFFF"),setSmsBackGround('#FFFFFF'),setSmsColor('#356CD2')):null}>
+                    <NavLink to={`messages/rufat/1`} style={({isActive})=>({"background":isActive?"#356CD2":"#FFFFFF"})} className={({isActive})=>isActive?(setAcColor("#FFFFFF"),setAcColor2("#FFFFFF"),setSmsBackGround('#FFFFFF'),setSmsColor('#356CD2')):(setAcColor("#262626"),setAcColor2("#565656"),setSmsBackGround('#356CD2'),setSmsColor('#FFFFFF'))}>
                         <img src={require('../panda.jpg')} alt="" />
                         <div className='chat-text'>
                             <div className='frame2'>
@@ -53,17 +66,17 @@ function Chat(){
                                     <div  style={{"color":activecolor}}>Chatgram</div>
                                     <div><span class="material-symbols-outlined">verified</span></div>
                                 </div>
-                                <div  style={{"color":activecolor}}>09:25</div>
+                                <div style={{"color":activecolor2}}>09:25</div>
                             </div>
                             <div className='message' >
-                                <p style={{"color":activecolor}}>Chatgram verify code:45545</p>
+                                <p style={{"color":activecolor2}}>Chatgram verify code:45545</p>
                                 <p style={{"background":smsbackground,"color":smscolor}}>2</p>
                             </div>                                
                         </div>                                
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to={`messages/rufat/2`} >
+                    <NavLink>
                         <img src="" alt="" />
                         <div className='chat-text'>
                             <div className='frame2'>
@@ -279,7 +292,7 @@ function Chat(){
                     </div> :null           
                 }
             </div>  
-        </div>        
+        </div>:null}</div>     
     )
 }
 

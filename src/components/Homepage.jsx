@@ -11,7 +11,10 @@ import Topbar from './Top-bar';
 import Allcards from './All-cards';
 import Get_Send_Msg from './Get_Send_Msg';
 
-function Homepage(){
+function Homepage(ten){
+    console.log(ten,'++')
+    let func = true
+    let [show_tab_bar, setShowTabBar]=useState(func)
     let [color_contact, setCCont] = useState('grey')
     let [color_chat,setCC] = useState()
     let [color_friends, SetCF] = useState()
@@ -46,13 +49,13 @@ function Homepage(){
     console.log(val)
     return(
         <div className='main'>
-            <div className='tab-bar-menu'>
+            {show_tab_bar==true?<div className='tab-bar-menu'>
                 <NavLink to='/' className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} onClick={Chat} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className='far fa-comment'  style={{"fontSize":"21px","WebkitTextStroke":"0.5px #FFFFFF ","color":color_chat}}></i></NavLink>
                 <NavLink to='/users' className={'active'?(color_friends='#37A2DE'):null}><i className='far fa-address-card' style={{color_friends}} ></i></NavLink>
                 <NavLink to='/call'className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} ><i className="material-icons" style={{"color":color_call}}>add</i></NavLink>
                 <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
                 <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
-            </div>
+            </div>:null}
             <div className='left_side_bar'>
                 <Chat/>
                 <Outlet/>

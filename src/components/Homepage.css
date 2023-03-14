@@ -11,7 +11,7 @@ html, body, #root {
 }
 
 .main {
-  width: 1840px;
+  width: 1846px;
   height: 968px;
   position: relative;
   left: 0px;
@@ -143,14 +143,12 @@ html, body, #root {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 656px;
   position: absolute;
-  width: 1424px;
+  width: 1420px;
   height: 60px;
-  left: 423px;
+  left: 426px;
   top: 0px;
   /* Solid/White */
-  background: red;
   /* Neutral/10 */
   border-bottom: 1px solid #ECECEC;
 }
