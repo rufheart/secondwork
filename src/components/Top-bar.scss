@@ -12,11 +12,12 @@
     padding: 0px 12px;
     gap: 8px;        
     position: absolute;
-    width: 100%;
+    width: 1420px;
     height: 100%;
     gap: 1070px;
     top: 0px;       
     background: #FFFFFF;
+    border: 1px solid blue;
     border-bottom: 1px solid #EFEFEF;              
     &>a:nth-child(1){ /* other users */
         display: flex;

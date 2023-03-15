@@ -49,39 +49,40 @@ function Homepage(ten){
     console.log(val)
     return(
         <div className='main'>
-            {show_tab_bar==true?<div className='tab-bar-menu'>
-                <NavLink to='/' className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} onClick={Chat} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className='far fa-comment'  style={{"fontSize":"21px","WebkitTextStroke":"0.5px #FFFFFF ","color":color_chat}}></i></NavLink>
-                <NavLink to='/users' className={'active'?(color_friends='#37A2DE'):null}><i className='far fa-address-card' style={{color_friends}} ></i></NavLink>
-                <NavLink to='/call'className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} ><i className="material-icons" style={{"color":color_call}}>add</i></NavLink>
-                <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
-                <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
-            </div>:null}
-            <div className='left_side_bar'>
-                <Chat/>
-                <Outlet/>
-            </div>
-            <div>
-                
-            </div>
-            <div className='Top-bar'>
-                <Topbar/>
-                
-            </div>
-            <div>
-                <Get_Send_Msg/>
-            </div>
-            <div className='input'>
-                <div>
-                    <button><span class="material-symbols-outlined">sentiment_satisfied</span></button>
-                    <textarea type="text" placeholder='Message' ref={textAreaRef} value={val} onChange={onChange} onInput={(e)=>{setVal(val=e.target.value);if(val.length!=0){setVoiceButton(false)};if(val.length==0){setVoiceButton(true)}}}/>
-                    <button><span class="material-symbols-outlined" style={{"transform":"rotate(10deg)"}}>attach_file</span></button>
+            <div className='left'>
+                <div className='tab-bar-menu'>
+                    <NavLink to='/' className={({ isActive }) =>isActive ? setCC('#37A2DE') : setCC('#7C7C7C')} onClick={Chat} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className='far fa-comment'  style={{"fontSize":"21px","WebkitTextStroke":"0.5px #FFFFFF ","color":color_chat}}></i></NavLink>
+                    <NavLink to='/users' className={'active'?(color_friends='#37A2DE'):null}><i className='far fa-address-card' style={{color_friends}} ></i></NavLink>
+                    <NavLink to='/call'className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} ><i className="material-icons" style={{"color":color_call}}>add</i></NavLink>
+                    <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
+                    <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
+                </div>
+                <div className='left_side_bar'>
+                    <Chat/>
+                    <Outlet/>
+                </div>
+            </div>  
+            <div className='middle'></div>
+            <div className='right'> 
+                <div className='Top-bar'>
+                    <Topbar/>                   
                 </div>
                 <div>
-                    <button>
-                        {voicebutton==true?<span class="material-symbols-outlined">mic</span>:<span class="material-symbols-outlined">send</span>}
-                    </button>
+                    <Get_Send_Msg/>
                 </div>
-            </div>
+                <div className='input'>
+                    <div>
+                        <button><span class="material-symbols-outlined">sentiment_satisfied</span></button>
+                        <textarea type="text" placeholder='Message' ref={textAreaRef} value={val} onChange={onChange} onInput={(e)=>{setVal(val=e.target.value);if(val.length!=0){setVoiceButton(false)};if(val.length==0){setVoiceButton(true)}}}/>
+                        <button><span class="material-symbols-outlined" style={{"transform":"rotate(10deg)"}}>attach_file</span></button>
+                    </div>
+                    <div>
+                        <button>
+                            {voicebutton==true?<span class="material-symbols-outlined">mic</span>:<span class="material-symbols-outlined">send</span>}
+                        </button>
+                    </div>
+                </div>
+            </div>                
         </div>
     )
 }
