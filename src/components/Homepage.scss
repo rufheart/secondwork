@@ -23,11 +23,13 @@ html, body, #root{
     display: flex;
     // flex-direction: column;
     background: #F2F1F6;
-    &>div:nth-child(1){
+    &>div:nth-child(1){ /* left bar */
         width: 424px;
         height: 968px;
-        border: 1px solid red;  
-        // position: relative;  
+        // border: 1px solid red;  
+        position: relative;  
+        z-index: 1;
+        background: #FFFFFF;
         &>div:nth-child(1){  /* tab-bar-menu */
             display: flex;
             flex-direction: row;
@@ -150,16 +152,168 @@ html, body, #root{
                 flex-grow: 0;            
             }                                                                                             
         }
-        &>div:nth-child(2){ /*left bar*/
+        &>div:nth-child(2){ /* searchbar */
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 12px 75px 8px 16px;
+            gap: 16px;
+            width: 100%;
+            height: 60px;
+            z-index: 5;
+
+            /* Inside auto layout */
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+            &>div:nth-child(1){   /* menu-icon */               
+                width: 40px;
+                height: 40px;
+                
+                border-radius: 100px;
+                
+                /* Inside auto layout */
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                // border: 1px solid red;
+                position: relative;
+                &>div:nth-child(1){ /*menu-icon2*/
+                    position: absolute;
+                    width: 30px;
+                    height: 40px;
+                    left: 8px;
+                    // top: 8px;
+                    // border: 1px solid red;             
+                    &>i{                     /*icon*/
+                        position: absolute;
+                        left: 14.34%;
+                        right: 2.34%;
+                        top: 12.83%;
+                        bottom: 24.83%;
+                        color: #707991;
+                    }
+                }
+            }
+            &>div:nth-child(2){  /* frame-search*/
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                // padding: 8px 16px;
+                gap: 30px;               
+                width: 324px;
+                height: 38px;   
+                background: #F5F5F5;
+                border-radius: 32px; 
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+                border: 1px solid green;
+                position: relative;
+                &>div:nth-child(1){
+                    // border: 1px solid red;
+                    width: 34px;
+                    height: 38px;  
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0; 
+                    position: absolute;
+                    left: 15px;
+                    &>i:nth-child(1){
+                        position: absolute;
+                        left: 20.14%;
+                        right: 9.38%;
+                        top: 20.14%;
+                        bottom: 9.38%;
+                        color: #707991;  
+                        -webkit-text-stroke: 0.5px white;                        
+                    }                  
+                }  
+                &>input:nth-child(2){
+                    width: 324px;
+                    height: 38px;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    text-align: left;
+                    background-color: #F5F5F5;
+                    padding-left: 50px;
+                    padding-right: 10px;
+                    flex: none;
+                    order: 1;
+                    flex-grow: 0;   
+                    // border: none
+                    border: 1px solid red;
+                    border-radius: 32px;
+                }     
+                &>input:focus{
+                    outline: None;
+                }                                     
+            }
+            &>div:nth-child(3){ /* left bar menu*/
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px;
+                gap: 12px;
+                z-index: 1;
+                position: absolute;
+                width: 218px;
+                height: 164px;
+                left: 16px;
+                top: 60px;
+                /* Solid/White */
+                background: #FFFFFF;
+                box-shadow: 2px 4px 40px rgba(0, 0, 0, 0.2);
+                border-radius: 16px;
+                &>button:hover{
+                    background-color: #e2e6eb;
+                    border-radius: 8px;
+                }
+                &>button{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    padding: 0px;
+                    gap: 12px;
+                    border: none;
+                    background-color: transparent;
+                    width: 129px;
+                    height: 24px;
+                    /* Inside auto layout */
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+                    &>span{
+    
+                        width: 20px;
+                        height: 20px;
+                        
+                        
+                        /* Inside auto layout */
+                        display: flex;
+                        align-items: center;
+                        flex: none;
+                        order: 0;
+                        flex-grow: 0;                 
+                    }                
+                }
+                           
+            }
+        }
+        &>div:nth-child(3){ /*left bar*/
             // border: 1px solid orange;
-            height: 888px;
+            height: 828px;
             width: 424px;
-            position: relative;
+            position: absolute;
             border-right: 1px solid #ECECEC;
-            z-index: 1;
+            border: 1px solid red;
+        //    top: 10px;
+            // z-index: 1;
         }
     }
-    &>div:nth-child(2){
+    &>div:nth-child(2){   /* middle area */
         position: absolute;
 
         background: url('../../../../Downloads/Rectangle.png');
@@ -170,7 +324,7 @@ html, body, #root{
         left: 0px;
         top: 0px;        
     }
-    &>div:nth-child(3){
+    &>div:nth-child(3){  /* right area */
         width: 1420px;
         height: 100%;
 

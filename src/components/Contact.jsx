@@ -10,13 +10,6 @@ function Contact(){
     return(
         <div className='contact-main'>
             <div>
-                <button><span class="material-symbols-outlined">menu</span></button>                
-                <div>                    
-                    <button><i class="material-icons">search</i></button>
-                    <input type="text" placeholder='Search'/>
-                </div>
-            </div>
-            <div>
                 <div>
                     <NavLink>
                         <div>

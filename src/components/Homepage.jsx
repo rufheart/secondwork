@@ -9,7 +9,8 @@ import Contact from './Contact';
 import Chat from './Chat-list';
 import Topbar from './Top-bar';
 import Allcards from './All-cards';
-import Get_Send_Msg from './Get_Send_Msg';
+// import Get_Send_Msg from './Get_Send_Msg';
+import Welcome from './Wellcome';
 
 function Homepage(ten){
     console.log(ten,'++')
@@ -24,6 +25,11 @@ function Homepage(ten){
     let [contact, setContact] = useState(false)
     let [voicebutton, setVoiceButton] = useState(true)
     let [val, setVal] = useState();
+    let [chalistshow, setChatListShow] = useState(true)
+    let [smsbackground, setSmsBackGround] = useState()
+    let [smscolor, setSmsColor] = useState()
+    let [showmenu, setShowMenu] = useState(false)
+    let [newcontact, setNewContact] = useState(false)
     let textAreaRef = useRef(null);
 
     let resizeTextArea = () => {                 /* message yazilan textarea-sini avtomatik genislediren funksiya*/
@@ -57,18 +63,28 @@ function Homepage(ten){
                     <NavLink to='/contact' onClick={Contact} className={({ isActive }) =>isActive ? setCCont('#37A2DE') : setCCont('#7C7C7C')} style={({isActive})=>({"background":isActive?"#D2ECFF":null})}><i className="material-icons" style={{"color":color_contact}}>person_outline</i></NavLink>
                     <NavLink to='/settings'><span className="material-symbols-outlined" style={{"color":color_settings}}>settings</span></NavLink>
                 </div>
+                <div className='search-bar'  ref={textAreaRef}>
+                    <div className='menu-icon'><div className='menu-icon2'> <i className='fa fa-bars' aria-hidden="true" style={{"fontSize":"24px"}} onClick={()=>(setShowMenu(!showmenu),setNewContact(false))} /></div></div>
+                    <div className='frame-search'><div><i className="material-icons">search</i></div><input type="text" placeholder="Search" /></div>
+                    {showmenu==true?
+                        <div ref={textAreaRef}>
+                            <button><span><span class="material-symbols-outlined">bookmark</span></span>Saved Cards</button>
+                            <button onClick={()=>(setNewContact(!newcontact),setShowMenu(false))}><span><span class="material-symbols-outlined">person</span></span>New Contact</button>
+                            <button onClick={()=>setChatListShow(false)}><span><span class="material-symbols-outlined">supervisor_account</span></span>New Group</button>
+                            <button><span><span class="material-symbols-outlined">logout</span></span>Logout</button>
+                        </div>:null
+                    }
+                </div>                
                 <div className='left_side_bar'>
-                    <Chat/>
                     <Outlet/>
                 </div>
             </div>  
             <div className='middle'></div>
             <div className='right'> 
-                <div className='Top-bar'>
-                    <Topbar/>                   
+                <div className='Top-bar'>   
+                               
                 </div>
                 <div>
-                    <Get_Send_Msg/>
                 </div>
                 <div className='input'>
                     <div>
